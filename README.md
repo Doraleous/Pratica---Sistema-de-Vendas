@@ -1,6 +1,6 @@
 # Pr-tica---Sistema-de-Vendas
 
-Sistema de Vendas de ingresso para um cinema
+Sistema de Vendas de ingresso para um cinema.
 
 Projeto deverá ter front e backend, as principais tecnologias utilizadas foram definidas como JavaFX e Arquivo.
 
