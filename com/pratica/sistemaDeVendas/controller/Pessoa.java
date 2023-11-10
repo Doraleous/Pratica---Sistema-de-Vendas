@@ -11,10 +11,15 @@ import java.io.Serializable;
  * @author emart
  */
 public class Pessoa implements Serializable {
+
     private String CPF;
-    
-    public Pessoa (String CPF){
+
+    public Pessoa(String CPF) {
         this.CPF = CPF;
     }
-    
+
+    public String toString() {
+        return this.CPF;
+    }
+
 }
