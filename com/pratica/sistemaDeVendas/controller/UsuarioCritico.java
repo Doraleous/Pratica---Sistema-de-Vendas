@@ -5,19 +5,15 @@
 package com.pratica.sistemaDeVendas.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  *
  * @author emart
  */
-public class Filme implements Serializable {
-    private String titulo;
-    double notaMedia;
-    ArrayList<Double> notas;
+public class UsuarioCritico extends UsuarioComum implements Serializable {
     
-    public Filme (String titulo){
-        this.titulo = titulo;
+    public UsuarioCritico(String CPF, String senha) {
+        super(CPF, senha);
     }
     
 }

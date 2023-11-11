@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class cadastroDeUsuarios {
 
-    private ArrayList<Pessoa> usuarios;
+    private ArrayList<Usuario> usuarios;
     private String caminhoDoArquivo = "C:\\PraticaProjeto\\usuarios";
 
     public cadastroDeUsuarios() {
@@ -27,9 +27,9 @@ public class cadastroDeUsuarios {
 
     }
 
-    public void addUsuario(String CPF) {
+    public void addUsuario(String CPF, String senha) {
 
-        Pessoa novoUsuario = new Pessoa(CPF);
+        Usuario novoUsuario = new Usuario(CPF, senha);
         usuarios.add(novoUsuario);
 
     }
@@ -55,14 +55,16 @@ public class cadastroDeUsuarios {
         File listaDeUsuarios = new File(caminhoDoArquivo);
         if (listaDeUsuarios.exists()) {
             try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(listaDeUsuarios))) {
-                ArrayList<Pessoa> usuarios = (ArrayList<Pessoa>) ois.readObject();
+                ArrayList<Usuario> usuarios = (ArrayList<Usuario>) ois.readObject();
                 return usuarios;
 
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        ArrayList<Pessoa> usuarios = new ArrayList<>();
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        Administrador root = new Administrador("01986", "1234");
+        usuarios.add(root);
         return usuarios;
 
     }
@@ -70,7 +72,7 @@ public class cadastroDeUsuarios {
     public static void main(String args[]) {
         cadastroDeUsuarios cadastro = new cadastroDeUsuarios();
 
-        cadastro.addUsuario("93492848");
+        cadastro.addUsuario("93492848", "0987");
 
         cadastro.salvaUsuarios();
     }

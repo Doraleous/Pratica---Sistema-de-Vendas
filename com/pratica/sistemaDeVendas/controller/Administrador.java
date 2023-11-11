@@ -10,10 +10,11 @@ import java.io.Serializable;
  *
  * @author emart
  */
-public class Administrador extends Pessoa implements Serializable {
+public class Administrador extends Usuario implements Serializable {
     
-    public Administrador(String CPF) {
-        super(CPF);
+    public Administrador(String CPF, String senha) {
+        super(CPF, senha);
+        
     }
     
 }
