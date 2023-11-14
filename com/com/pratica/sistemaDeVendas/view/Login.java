@@ -44,30 +44,41 @@ public class Login extends Application {
             String email = textFieldEmail.getText();
             String senha = passwordFieldSenha.getText();
             String situacaoDados = validaDados(email);
-
             if(!situacaoDados.equals("ok")){
-                Label labelErro = new Label(situacaoDados);
-                labelErro.setStyle("-fx-text-fill: red;");
-                layout.getChildren().add(labelErro);
+                if(layout.getChildren().size() <=7){
+                    Label labelErro = new Label(situacaoDados);
+                    labelErro.setStyle("-fx-text-fill: black;");
+                    layout.getChildren().add(labelErro);
+                }else{
+                    layout.getChildren().remove(7);
+                    Label labelErro = new Label(situacaoDados);
+                    labelErro.setStyle("-fx-text-fill: black;");
+                    layout.getChildren().add(labelErro);
+                }
+
             }else{
                 UsuarioController usuarioController = new UsuarioController();
                 boolean loginSucesso = usuarioController.login(email, senha);
 
                 if(!loginSucesso){
                     Label labelErro = new Label("Erro: Login falhou!");
-                    labelErro.setStyle("-fx-text-fill: red;");
+                    labelErro.setStyle("-fx-text-fill: black;");
                     layout.getChildren().add(labelErro);
                 }
             }
         });
 
+        Button btnSair = new Button("Sair");
+        btnSair.setStyle("-fx-text-fill: black; -fx-background-color: white;");
+        btnSair.setOnAction(event -> primaryStage.close());
+
         // Layout
         layout = new VBox(10);
-        layout.setStyle("-fx-background-color: #FFD700; -fx-padding: 20px;");
-        layout.getChildren().addAll(labelTitulo, labelEmail, textFieldEmail, labelSenha, passwordFieldSenha, btnEntrar);
+        layout.setStyle("-fx-background-color: #FF0000; -fx-padding: 20px;");
+        layout.getChildren().addAll(labelTitulo, labelEmail, textFieldEmail, labelSenha, passwordFieldSenha, btnEntrar ,btnSair);
 
         // Cena
-        Scene scene = new Scene(layout, 300, 250, Color.RED);
+        Scene scene = new Scene(layout, 300, 350, Color.RED);
 
         primaryStage.setScene(scene);
         primaryStage.show();

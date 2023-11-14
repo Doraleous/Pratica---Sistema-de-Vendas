@@ -8,21 +8,28 @@ import com.pratica.sistemaDeVendas.model.Usuario;
 
 public class UsuarioController {
     private ArrayList<Usuario> usuarios;
-    private static final String CAMINHO_DO_ARQUIVO_USUARIO = 
-    "SistemaDeVendas" +
+    private static final String CAMINHO_DO_ARQUIVO_USUARIO = System.getProperty("user.dir") +
+    File.separator +
+    "com" +
+    File.separator +
+    "com" +
+    File.separator +
+    "pratica" +
+    File.separator +
+    "sistemaDeVendas" +
     File.separator +
     "data"+
     File.separator +
-    "usuarios";
+    "usuarios.txt";
 
-    private boolean CadastrarUsuario(String cpf, String email, String senha){
+    /*private boolean CadastrarUsuario(String cpf, String email, String senha){
         if(buscarUsuario(email) == null){
             Usuario usuario = new Usuario(cpf, email, senha);
             salvarUsuario(usuario);
             return true;
         }
         return false;
-    }
+    }*/
 
     public boolean login(String email, String senha){
         Usuario usuario = buscarUsuario(email);
@@ -73,6 +80,5 @@ public class UsuarioController {
         }
         return usuarios;
     }
-
 
 }

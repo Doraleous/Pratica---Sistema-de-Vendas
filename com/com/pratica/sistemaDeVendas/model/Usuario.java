@@ -113,4 +113,9 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
+    /*public static void main(String[] args) {
+        String diretorio = System.getProperty("user.dir");
+        System.out.println("meud diretorio é: " + diretorio);
+    } */
+
 }

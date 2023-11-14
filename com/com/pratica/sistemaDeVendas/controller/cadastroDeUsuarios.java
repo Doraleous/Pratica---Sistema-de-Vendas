@@ -30,9 +30,9 @@ public class cadastroDeUsuarios {
 
     }
 
-    public void addUsuario(String CPF, String senha) {
+    public void addUsuario(String CPF, String email, String senha) {
 
-        Usuario novoUsuario = new Usuario(CPF, senha);
+        Usuario novoUsuario = new Usuario(CPF, email, senha);
         usuarios.add(novoUsuario);
 
     }
@@ -66,7 +66,7 @@ public class cadastroDeUsuarios {
             }
         }
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        Administrador root = new Administrador("01986", "1234");
+        Administrador root = new Administrador("01986","admin@cinecap.com", "admin");
         usuarios.add(root);
         return usuarios;
 
@@ -75,7 +75,7 @@ public class cadastroDeUsuarios {
     public static void main(String args[]) {
         cadastroDeUsuarios cadastro = new cadastroDeUsuarios();
 
-        cadastro.addUsuario("93492848", "0987");
+        cadastro.addUsuario("93492848","email@.com", "0987");
 
         cadastro.salvaUsuarios();
     }
