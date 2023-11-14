@@ -2,18 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemaDeVendas.controller;
+package com.pratica.sistemaDeVendas.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author emart
  */
-public class UsuarioEstudante extends UsuarioComum implements Serializable {
+public class Filme implements Serializable {
+    private String titulo;
+    double notaMedia;
+    ArrayList<Double> notas;
     
-    public UsuarioEstudante(String CPF, String senha) {
-        super(CPF, senha);
+    public Filme (String titulo){
+        this.titulo = titulo;
     }
     
 }

@@ -12,6 +12,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import com.pratica.sistemaDeVendas.model.Filme;
+
 /**
  *
  * @author emart
