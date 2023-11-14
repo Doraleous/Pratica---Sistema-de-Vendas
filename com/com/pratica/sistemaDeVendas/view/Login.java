@@ -1,5 +1,7 @@
 package com.pratica.sistemaDeVendas.view;
 
+import com.pratica.sistemaDeVendas.controller.UsuarioController;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,6 +13,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Login extends Application {
+
+    private VBox layout;
 
     public static void main(String[] args) {
         launch(args);
@@ -36,9 +40,29 @@ public class Login extends Application {
 
         Button btnEntrar = new Button("Entrar");
         btnEntrar.setStyle("-fx-text-fill: black; -fx-background-color: white;");
+        btnEntrar.setOnAction(event ->{
+            String email = textFieldEmail.getText();
+            String senha = passwordFieldSenha.getText();
+            String situacaoDados = validaDados(email);
+
+            if(!situacaoDados.equals("ok")){
+                Label labelErro = new Label(situacaoDados);
+                labelErro.setStyle("-fx-text-fill: red;");
+                layout.getChildren().add(labelErro);
+            }else{
+                UsuarioController usuarioController = new UsuarioController();
+                boolean loginSucesso = usuarioController.login(email, senha);
+
+                if(!loginSucesso){
+                    Label labelErro = new Label("Erro: Login falhou!");
+                    labelErro.setStyle("-fx-text-fill: red;");
+                    layout.getChildren().add(labelErro);
+                }
+            }
+        });
 
         // Layout
-        VBox layout = new VBox(10);
+        layout = new VBox(10);
         layout.setStyle("-fx-background-color: #FFD700; -fx-padding: 20px;");
         layout.getChildren().addAll(labelTitulo, labelEmail, textFieldEmail, labelSenha, passwordFieldSenha, btnEntrar);
 
@@ -48,5 +72,29 @@ public class Login extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    /**
+     * @return VBox return the layout
+     */
+    public VBox getLayout() {
+        return layout;
+    }
+
+    /**
+     * @param layout the layout to set
+     */
+    public void setLayout(VBox layout) {
+        this.layout = layout;
+    }
+
+    public String validaDados(String email){
+        if(email.equalsIgnoreCase("")){
+            return "E-mail em branco";
+        }
+        if(!email.contains("@") && !email.contains(".")){
+            return "E-mail inválido";
+        }
+        return "ok";
+    }
+
 }
 

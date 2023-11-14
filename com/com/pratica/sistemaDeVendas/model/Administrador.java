@@ -13,8 +13,8 @@ import java.io.Serializable;
 public class Administrador extends Usuario implements Serializable {
     //teste
     
-    public Administrador(String CPF, String senha) {
-        super(CPF, senha);
+    public Administrador(String CPF, String email, String senha) {
+        super(CPF, email, senha);
         
     }
     
