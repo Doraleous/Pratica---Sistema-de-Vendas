@@ -8,7 +8,12 @@ import com.pratica.sistemaDeVendas.model.Usuario;
 
 public class UsuarioController {
     private ArrayList<Usuario> usuarios;
-    private static final String CAMINHO_DO_ARQUIVO_USUARIO = "C:\\PraticaProjeto\\usuarios";
+    private static final String CAMINHO_DO_ARQUIVO_USUARIO = 
+    "SistemaDeVendas" +
+    File.separator +
+    "data"+
+    File.separator +
+    "usuarios";
 
     private boolean CadastrarUsuario(String cpf, String email, String senha){
         if(buscarUsuario(email) == null){
