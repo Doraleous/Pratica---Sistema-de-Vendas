@@ -23,6 +23,7 @@ public class Login extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("CineCap - Tela de Login");
+        UsuarioController usuarioController = new UsuarioController();
 
         // Criar elementos da interface
         Label labelTitulo = new Label("CineCap");
@@ -43,7 +44,7 @@ public class Login extends Application {
         btnEntrar.setOnAction(event ->{
             String email = textFieldEmail.getText();
             String senha = passwordFieldSenha.getText();
-            String situacaoDados = validaDados(email);
+            String situacaoDados = validaDados(email,senha);
             if(!situacaoDados.equals("ok")){
                 if(layout.getChildren().size() <=7){
                     Label labelErro = new Label(situacaoDados);
@@ -57,11 +58,14 @@ public class Login extends Application {
                 }
 
             }else{
-                UsuarioController usuarioController = new UsuarioController();
                 boolean loginSucesso = usuarioController.login(email, senha);
 
                 if(!loginSucesso){
                     Label labelErro = new Label("Erro: Login falhou!");
+                    labelErro.setStyle("-fx-text-fill: black;");
+                    layout.getChildren().add(labelErro);
+                }else{
+                    Label labelErro = new Label("sucesso: Login deu certo!");
                     labelErro.setStyle("-fx-text-fill: black;");
                     layout.getChildren().add(labelErro);
                 }
@@ -70,7 +74,10 @@ public class Login extends Application {
 
         Button btnSair = new Button("Sair");
         btnSair.setStyle("-fx-text-fill: black; -fx-background-color: white;");
-        btnSair.setOnAction(event -> primaryStage.close());
+        btnSair.setOnAction(event -> {
+            usuarioController.sair();
+            primaryStage.close();
+        });
 
         // Layout
         layout = new VBox(10);
@@ -97,9 +104,12 @@ public class Login extends Application {
         this.layout = layout;
     }
 
-    public String validaDados(String email){
+    public String validaDados(String email, String senha){
         if(email.equalsIgnoreCase("")){
             return "E-mail em branco";
+        }
+        if(senha.equalsIgnoreCase("")){
+            return "Senha em branco";
         }
         if(!email.contains("@") && !email.contains(".")){
             return "E-mail inválido";

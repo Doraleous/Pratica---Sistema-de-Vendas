@@ -16,18 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class AdminMenu extends Application {
-    private static final String CAMINHO_DA_PASTA_DE_IMAGEM = System.getProperty("user.dir") +
-    File.separator +
-    "com" +
-    File.separator +
-    "com" +
-    File.separator +
-    "pratica" +
-    File.separator +
-    "sistemaDeVendas" +
-    File.separator +
-    "img"+
-    File.separator;
 
     @Override
     public void start(Stage primaryStage) {

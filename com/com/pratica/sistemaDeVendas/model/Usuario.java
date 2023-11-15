@@ -15,7 +15,6 @@ public class Usuario implements Serializable {
 
     private String CPF;
     private String nome;
-    private String genero;
     private Date dataDeNascimento;
     private String email;
     private String senha;
@@ -27,7 +26,7 @@ public class Usuario implements Serializable {
     }
 
     public String toString() {
-        return "CPF: " + this.CPF + "Nome: " + this.nome + "Gênero: " + this.genero + "E-mail: " + this.email;
+        return "CPF: " + this.CPF + "Nome: " + this.nome +  "E-mail: " + this.email;
     }
     /**
      * @return String return the CPF
@@ -55,20 +54,6 @@ public class Usuario implements Serializable {
      */
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    /**
-     * @return String return the genero
-     */
-    public String getGenero() {
-        return genero;
-    }
-
-    /**
-     * @param genero the genero to set
-     */
-    public void setGenero(String genero) {
-        this.genero = genero;
     }
 
     /**
