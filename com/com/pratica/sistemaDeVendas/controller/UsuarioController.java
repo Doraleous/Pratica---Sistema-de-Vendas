@@ -28,7 +28,7 @@ public class UsuarioController {
         usuarios = this.iniciaCadastro();
     }
 
-    private boolean cadastrarUsuario(String cpf, String email, String senha){
+    /*private boolean cadastrarUsuario(String cpf, String email, String senha){
         System.out.println("entrando no cadastrarUsuario");
         if(buscarUsuario(email) == null){
             Usuario novoUsuario = new Usuario(cpf, email, senha);
@@ -37,12 +37,7 @@ public class UsuarioController {
             return true;
         }
         return false;
-    }
-
-    public ArrayList getUsuarios(){
-        System.out.println("entrando no getUsuarios");
-        return this.usuarios;
-    }
+    }*/
 
     public void salvarUsuario() {
         System.out.println("entrando no salvarUsuario");
@@ -82,7 +77,7 @@ public class UsuarioController {
         return usuario != null && senha.equals(usuario.getSenha());
     }
 
-    private Usuario buscarUsuario(String email) {
+    public Usuario buscarUsuario(String email) {
         System.out.println("entrando no buscarUsuario");
         for (Usuario usuario : usuarios) {
             if(usuario.getEmail().equals(email)){
@@ -111,9 +106,6 @@ public class UsuarioController {
     }
 
     public void sair(){
-        for (Usuario usuario : usuarios) {
-            System.out.println(usuario.getCPF());
-        }
         File listaDeUsuarios = new File(CAMINHO_DO_ARQUIVO_USUARIO);
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream
         (listaDeUsuarios, false))) {
@@ -122,4 +114,10 @@ public class UsuarioController {
             e.printStackTrace();
         }
     }
+
+    public ArrayList getUsuarios(){
+        System.out.println("entrando no getUsuarios");
+        return this.usuarios;
+    }
+
 }

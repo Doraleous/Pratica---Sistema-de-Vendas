@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Login extends Application {
 
@@ -22,7 +23,8 @@ public class Login extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("CineCap - Tela de Login");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        //primaryStage.setTitle("CineCap - Tela de Login");
         UsuarioController usuarioController = new UsuarioController();
 
         // Criar elementos da interface
@@ -61,9 +63,16 @@ public class Login extends Application {
                 boolean loginSucesso = usuarioController.login(email, senha);
 
                 if(!loginSucesso){
-                    Label labelErro = new Label("Erro: Login falhou!");
-                    labelErro.setStyle("-fx-text-fill: black;");
-                    layout.getChildren().add(labelErro);
+                    if(layout.getChildren().size() <=7){
+                        Label labelErro = new Label("Erro: Login falhou!");
+                        labelErro.setStyle("-fx-text-fill: black;");
+                        layout.getChildren().add(labelErro);
+                    }else{
+                        layout.getChildren().remove(7);
+                        Label labelErro = new Label("Erro: Login falhou!");
+                        labelErro.setStyle("-fx-text-fill: black;");
+                        layout.getChildren().add(labelErro);
+                    }
                 }else{
                     Label labelErro = new Label("sucesso: Login deu certo!");
                     labelErro.setStyle("-fx-text-fill: black;");
