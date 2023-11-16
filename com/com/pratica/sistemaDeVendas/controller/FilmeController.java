@@ -4,6 +4,7 @@
  */
 package com.pratica.sistemaDeVendas.controller;
 
+import com.pratica.sistemaDeVendas.model.Filme;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,11 +17,11 @@ import java.util.ArrayList;
  *
  * @author emart
  */
-public class cadastroDeFilmes {
+public class FilmeController {
     private ArrayList<Filme> filmes;
     private String caminhoDoArquivo = "C:\\PraticaProjeto\\filmes";
     
-    public cadastroDeFilmes() {
+    public FilmeController() {
         filmes = this.iniciaCadastro();
 
     }
@@ -61,7 +62,7 @@ public class cadastroDeFilmes {
     }
     
     public static void main(String args[]) {
-        cadastroDeFilmes cadastro = new cadastroDeFilmes();
+        FilmeController cadastro = new FilmeController();
 
         cadastro.addFilme("93492848");
 
