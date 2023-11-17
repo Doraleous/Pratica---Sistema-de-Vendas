@@ -16,17 +16,40 @@ import javafx.stage.StageStyle;
  */
 public class Aplicacao extends Application {
     private Stage estagioAtual;
+    private TelaAdministrador telaAdministrador; 
+    private TelaLogin telaLogin; 
+    private TelaOperacoesUsuario telaOperacoesUsuario2; 
+    
     
     public void start(Stage estagioPrimario) throws IOException {
-        this.estagioAtual = estagioPrimario;
+        //this.estagioAtual = estagioPrimario;
+        estagioAtual = new Stage();
         estagioAtual.initStyle(StageStyle.UNDECORATED);
         estagioAtual.setTitle("Cinecap - Logar Usuário");
-        TelaLogin cenaLogin = new TelaLogin(this);
+        estagioAtual.setWidth(700);
+        estagioAtual.setHeight(700);
+
+        telaAdministrador = new TelaAdministrador(this);
+        telaLogin = new TelaLogin(this);
+        telaOperacoesUsuario2 = new TelaOperacoesUsuario(this);
         
         
-        estagioAtual.setScene(cenaLogin.telaLogin());
+        estagioAtual.setScene(this.telaLogin.telaLogin());
         estagioAtual.show();
         
+    }
+
+    public TelaAdministrador getTelaAdministrador(){
+        return this.telaAdministrador;
+    }
+
+    public TelaLogin getTelaLogin(){
+        return this.telaLogin;
+    }
+
+    public TelaOperacoesUsuario getTelaOperacoesUsuario(){
+        return this.telaOperacoesUsuario2;
+
     }
     
     public void mudaCena(Scene novaCena){

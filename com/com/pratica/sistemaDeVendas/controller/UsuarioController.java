@@ -47,6 +47,10 @@ public class UsuarioController {
 
     }
 
+    public void addUsuarioTipo(Usuario usuario){
+        usuarios.add(usuario);
+    }
+
     public ArrayList getUsuarios() {
         return this.usuarios;
 
@@ -76,9 +80,9 @@ public class UsuarioController {
             }
         }
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        Administrador root = new Administrador("01986", "1234", "Jairo", "jairo@gmail");
+        Administrador root = new Administrador("01986", "admin", "Jairo", "admin@cinecap.com");
         usuarios.add(root);
-        //this.salvaUsuarios(); // teste
+        this.salvaUsuarios(); // teste
         return usuarios;
 
     }

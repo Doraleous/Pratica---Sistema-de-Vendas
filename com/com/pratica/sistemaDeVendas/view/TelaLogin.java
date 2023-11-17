@@ -34,7 +34,7 @@ public class TelaLogin {
     private Button loginBotao;
     private Button sairBotao;
 
-    private Stage estagioDeLogin;
+    
 
     private Aplicacao aplicacao;
 
@@ -55,7 +55,7 @@ public class TelaLogin {
         this.loginBotao = new Button("Login");
         this.sairBotao = new Button("Sair");
 
-        this.estagioDeLogin = new Stage();
+        
 
         this.aplicacao = aplicacao;
 
@@ -74,9 +74,9 @@ public class TelaLogin {
 
         if (usuarioController.login(loginTextField.getText(), senhaTextField.getText()) == true) {
             if (usuarioController.buscarUsuario(loginTextField.getText()) instanceof Usuario) {
-                TelaAdministrador telaADM = new TelaAdministrador(aplicacao);
-                Scene cenaADM = telaADM.telaMenuAdministrador();
-                this.aplicacao.mudaCena(cenaADM);
+                //TelaAdministrador telaADM = new TelaAdministrador(aplicacao);
+                //Scene cenaADM = telaADM.telaMenuAdministrador();
+                this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
             }
         } else {
             System.out.println("A senha tá errada");
