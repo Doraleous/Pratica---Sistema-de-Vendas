@@ -19,10 +19,11 @@ public class Usuario implements Serializable {
     private String email;
     private String senha;
 
-    public Usuario(String CPF, String email, String senha) {
+    public Usuario(String CPF, String senha, String nome, String email) {
         this.CPF = CPF;
-        this.email= email;
         this.senha = senha;
+        this.nome = nome;
+        this.email= email;
     }
 
     public String toString() {

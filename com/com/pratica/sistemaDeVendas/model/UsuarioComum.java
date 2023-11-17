@@ -12,8 +12,8 @@ import java.io.Serializable;
  */
 public class UsuarioComum extends Usuario implements Serializable {
     
-    public UsuarioComum(String CPF, String email, String senha) {
-        super(CPF, email, senha);
+    public UsuarioComum(String CPF, String senha, String nome, String email) {
+        super(CPF, senha, nome, email);
     }
     
 }

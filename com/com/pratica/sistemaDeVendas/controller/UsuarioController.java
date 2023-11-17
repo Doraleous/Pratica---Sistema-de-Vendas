@@ -76,7 +76,6 @@ public class UsuarioController {
         Usuario usuario = buscarUsuario(email);
         return usuario != null && senha.equals(usuario.getSenha());
     }
-
     public Usuario buscarUsuario(String email) {
         System.out.println("entrando no buscarUsuario");
         for (Usuario usuario : usuarios) {

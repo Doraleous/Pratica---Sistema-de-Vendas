@@ -4,6 +4,7 @@
  */
 package com.pratica.sistemaDeVendas.model;
 
+import com.pratica.sistemaDeVendas.model.Usuario;
 import java.io.Serializable;
 
 /**
@@ -11,10 +12,9 @@ import java.io.Serializable;
  * @author emart
  */
 public class Administrador extends Usuario implements Serializable {
-    //teste
     
-    public Administrador(String CPF, String email, String senha) {
-        super(CPF, email, senha);
+    public Administrador(String CPF, String senha, String nome, String email) {
+        super(CPF, senha, nome, email);
         
     }
     
