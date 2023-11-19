@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -17,6 +18,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 /**
@@ -30,9 +32,10 @@ public class TelaAdministrador {
     private Button botaoUsuarios;
     private Button botaoSair;
     private UsuarioController usuarioController;
+
     private Aplicacao aplicacao;
 
-    public TelaAdministrador(Aplicacao aplicacao) {
+    public TelaAdministrador(Aplicacao aplicacao, UsuarioController usuarioController) {
         /*String bilheteria = "C:\\PraticaProjeto\\bilheteria.png";
         String engrenagem = "C:\\PraticaProjeto\\engrenagem.png";
         String pipoca = "C:\\PraticaProjeto\\pipoca.png";*/
@@ -40,16 +43,50 @@ public class TelaAdministrador {
         this.botaoLoja = new Button("Loja");
         this.botaoUsuarios = new Button("Usuarios");
         this.botaoSair = new Button("Sair");
-        this.usuarioController = new UsuarioController();
         this.aplicacao = aplicacao;
+        this.usuarioController = usuarioController;
+
+        botaoUsuarios.setOnAction(e -> {
+            System.out.println("clicado");
+            irParaTelaDeUsuariosCRUD();
+        });
         
         botaoSair.setOnAction(e -> sair());
+        
+
+    }
+
+    public void irParaTelaDeUsuariosCRUD(){
+        System.out.println("meu corpo");
+        //TelaAdministrador telaADM = new TelaAdministrador(this.aplicacao);
+        //Scene cenaUsuarioCRUD = this.telaOperaCoesUsuario();
+        this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesUsuario().telaOperaCoesUsuario());
 
     }
     
     public void sair() {
         this.usuarioController.sair();
         this.aplicacao.estagioAtual().close();
+    }
+
+    public Scene telaMenuAdministrador() {
+
+        HBox caixaDeBotoes = new HBox(40);
+        
+        caixaDeBotoes.getChildren().addAll(botaoFilmes, botaoLoja, botaoUsuarios);
+        //caixaDeBotoes.setAlignment(Pos.CENTER);
+
+        HBox caixaSair = new HBox();
+        caixaSair.getChildren().addAll(botaoSair);
+        //caixaSair.setAlignment(Pos.BOTTOM_LEFT);
+        //alteracao
+
+        VBox paneADM = new VBox();
+        paneADM.getChildren().addAll(caixaDeBotoes, caixaSair);
+        paneADM.setStyle("-fx-background-color: red;");
+
+        Scene cenaADM = new Scene(paneADM, 600, 220);
+        return cenaADM;
     }
     
     public Button criarBotaoComImagem(String caminhoDaImagem){
@@ -71,22 +108,9 @@ public class TelaAdministrador {
         
     }
 
-    public Scene telaMenuAdministrador() {
+    
+    
 
-        HBox caixaDeBotoes = new HBox(10);
-        caixaDeBotoes.getChildren().addAll(botaoFilmes, botaoLoja, botaoUsuarios);
-        caixaDeBotoes.setAlignment(Pos.CENTER);
-
-        HBox caixaSair = new HBox();
-        caixaSair.getChildren().addAll(botaoSair);
-        caixaSair.setAlignment(Pos.BOTTOM_CENTER);
-
-        StackPane paneADM = new StackPane();
-        paneADM.getChildren().addAll(caixaDeBotoes, caixaSair);
-        paneADM.setStyle("-fx-background-color: red;");
-
-        Scene cenaADM = new Scene(paneADM, 600, 220);
-        return cenaADM;
-    }
+    
 
 }

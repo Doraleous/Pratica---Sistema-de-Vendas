@@ -29,6 +29,7 @@ public class AdministradorController {
     String cpf,
     String email,
     String senha,
+    String nome,
     String tipo
     ){
         Usuario novoUsuario = this.usuarioController.buscarUsuario(email);
@@ -39,25 +40,25 @@ public class AdministradorController {
 
         switch (tipo) {
             case "Normal":
-                UsuarioComum novoUsuarioComum = new UsuarioComum(cpf, email, senha);
+                UsuarioComum novoUsuarioComum = new UsuarioComum(cpf,senha, nome, email);
                 this.listaUsuarios.add(novoUsuarioComum);
 
                 break;
 
             case "Administrador":
-                Administrador novoAdministrador = new Administrador(cpf, email, senha);
+                Administrador novoAdministrador = new Administrador(cpf,senha, nome, email);
                 this.listaUsuarios.add(novoAdministrador);
 
                 break;
 
             case "Estudante":
-                UsuarioEstudante novUsuarioEstudante = new UsuarioEstudante(cpf, email, senha);
+                UsuarioEstudante novUsuarioEstudante = new UsuarioEstudante(cpf,senha, nome, email);
                 this.listaUsuarios.add(novUsuarioEstudante);
 
                 break;
 
             case "Critico":
-                UsuarioCritico novoUsuarioCritico = new UsuarioCritico(cpf, email, senha);
+                UsuarioCritico novoUsuarioCritico = new UsuarioCritico(cpf,senha, nome, email);
                 this.listaUsuarios.add(novoUsuarioCritico);
                 
             break;

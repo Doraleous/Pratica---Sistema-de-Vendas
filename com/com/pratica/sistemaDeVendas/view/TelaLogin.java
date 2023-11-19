@@ -34,13 +34,13 @@ public class TelaLogin {
     private Button loginBotao;
     private Button sairBotao;
 
-    private Stage estagioDeLogin;
+    
 
     private Aplicacao aplicacao;
 
     private UsuarioController usuarioController;
 
-    public TelaLogin(Aplicacao aplicacao) {
+    public TelaLogin(Aplicacao aplicacao , UsuarioController usuarioController) {
         this.loginTextField = new TextField();
         loginTextField.setPrefWidth(400);
 
@@ -55,11 +55,11 @@ public class TelaLogin {
         this.loginBotao = new Button("Login");
         this.sairBotao = new Button("Sair");
 
-        this.estagioDeLogin = new Stage();
+        
 
         this.aplicacao = aplicacao;
 
-        this.usuarioController = new UsuarioController();
+        //this.usuarioController = new UsuarioController();
 
         loginBotao.setOnAction(e -> acaoDeLogar());
         sairBotao.setOnAction(e -> sair());
@@ -72,11 +72,11 @@ public class TelaLogin {
 
     public void acaoDeLogar() {
 
-        if (usuarioController.login(loginTextField.getText(), senhaTextField.getText()) == true) {
-            if (usuarioController.buscarUsuario(loginTextField.getText()) instanceof Usuario) {
-                TelaAdministrador telaADM = new TelaAdministrador(aplicacao);
-                Scene cenaADM = telaADM.telaMenuAdministrador();
-                this.aplicacao.mudaCena(cenaADM);
+        if (this.aplicacao.getUsuarioController().login(loginTextField.getText(), senhaTextField.getText()) == true) {
+            if (this.aplicacao.getUsuarioController().buscarUsuario(loginTextField.getText()) instanceof Usuario) {
+                //TelaAdministrador telaADM = new TelaAdministrador(aplicacao);
+                //Scene cenaADM = telaADM.telaMenuAdministrador();
+                this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
             }
         } else {
             System.out.println("A senha tá errada");

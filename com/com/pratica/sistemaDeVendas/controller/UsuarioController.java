@@ -21,23 +21,12 @@ public class UsuarioController {
     File.separator +
     "data"+
     File.separator +
-    "usuarios";
+    "usuarios.txt";
 
     public UsuarioController(){
         System.out.println("entrando no UsuarioController");
         usuarios = this.iniciaCadastro();
     }
-
-    /*private boolean cadastrarUsuario(String cpf, String email, String senha){
-        System.out.println("entrando no cadastrarUsuario");
-        if(buscarUsuario(email) == null){
-            Usuario novoUsuario = new Usuario(cpf, email, senha);
-            usuarios.add(novoUsuario);
-            salvarUsuario();
-            return true;
-        }
-        return false;
-    }*/
 
     public void salvarUsuario() {
         System.out.println("entrando no salvarUsuario");
@@ -62,11 +51,11 @@ public class UsuarioController {
             }
         }
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        Administrador root = new Administrador("01986","admin@cinecap.com", "admin");
+        Administrador root = new Administrador("01986", "admin", "jairo", "admin@cinecap.com");
         usuarios.add(root);
         this.salvarUsuario();
         for(Usuario usuario : usuarios){
-            System.out.println(usuario);
+            System.out.println("nome: "+ usuario.getNome());
         }
         return usuarios;
     }
@@ -78,7 +67,9 @@ public class UsuarioController {
     }
     public Usuario buscarUsuario(String email) {
         System.out.println("entrando no buscarUsuario");
+        System.out.println(usuarios.size());
         for (Usuario usuario : usuarios) {
+            System.out.println("user:" + usuario);
             if(usuario.getEmail().equals(email)){
                 return usuario;
             }
@@ -86,7 +77,7 @@ public class UsuarioController {
         return null;
     }
 
-    public List<Usuario> listarUsuarios() {
+    /*public List<Usuario> listarUsuarios() {
         System.out.println("entrando no listarUsuarios");
         List<Usuario> usuarios = new ArrayList<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(CAMINHO_DO_ARQUIVO_USUARIO))) {
@@ -102,7 +93,7 @@ public class UsuarioController {
             e.printStackTrace();
         }
         return usuarios;
-    }
+    }*/
 
     public void sair(){
         File listaDeUsuarios = new File(CAMINHO_DO_ARQUIVO_USUARIO);
