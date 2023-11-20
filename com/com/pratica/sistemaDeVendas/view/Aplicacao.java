@@ -13,10 +13,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- *
- * @author emart
- */
 public class Aplicacao extends Application {
     private Stage estagioAtual;
     private TelaAdministrador telaAdministrador; 

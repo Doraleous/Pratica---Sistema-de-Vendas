@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "teste",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemaDeVendas.view.teste",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "FilmeController",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemaDeVendas.controller.FilmeController",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        },
+        {
+            "type": "java",
+            "name": "AdminMenu",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemaDeVendas.view.AdminMenu",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        },
+        {
+            "type": "java",
+            "name": "Aplicacao",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemaDeVendas.view.Aplicacao",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        },
+        {
+            "type": "java",
+            "name": "Login",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemaDeVendas.view.Login",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        }
+    ]
+}
