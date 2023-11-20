@@ -7,6 +7,8 @@
         "c:\\Program Files\\Java\\javafx-sdk-21.0.1\\lib\\javafx.media.jar",
         "c:\\Program Files\\Java\\javafx-sdk-21.0.1\\lib\\javafx.swing.jar",
         "c:\\Program Files\\Java\\javafx-sdk-21.0.1\\lib\\javafx.web.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-21.0.1\\lib\\javafx-swt.jar"
+        "c:\\Program Files\\Java\\javafx-sdk-21.0.1\\lib\\javafx-swt.jar",
+        "c:\\Program Files\\Java\\postgresql-42.6.0",
+        "c:\\Program Files\\Java\\postgresql-42.6.0.jar"
     ]
 }

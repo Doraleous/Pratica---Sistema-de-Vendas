@@ -12,7 +12,9 @@ import java.util.Date;
  * @author emart
  */
 public class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
 
+    private Long id;
     private String CPF;
     private String nome;
     private Date dataDeNascimento;
@@ -26,8 +28,12 @@ public class Usuario implements Serializable {
         this.email= email;
     }
 
+    public Usuario (){
+        
+    }
+
     public String toString() {
-        return "CPF: " + this.CPF + "Nome: " + this.nome +  "E-mail: " + this.email;
+        return "CPF: " + this.CPF + " Nome: " + this.nome +  " E-mail: " + this.email + /*this.dataNascimentoToString() +*/ " Senha: " + this.senha;
     }
     /**
      * @return String return the CPF
@@ -99,9 +105,25 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    /*public static void main(String[] args) {
-        String diretorio = System.getProperty("user.dir");
-        System.out.println("meud diretorio é: " + diretorio);
-    } */
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /*public String dataNascimentoToString(){
+        int dia = this.getDataDeNascimento().getDay();
+        int mes = this.getDataDeNascimento().getMonth()+1; // somo mais 1 por que o Date salva os meses de 0 a 11
+        int ano = this.getDataDeNascimento().getYear()+1900; // somo mais 1900 por que o Date salva os anos subtraindo 1900
+        return " Data= "+ dia + "/" + mes + "/" + ano;
+    }*/
 
 }

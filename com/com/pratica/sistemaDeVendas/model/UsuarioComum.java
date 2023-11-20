@@ -5,12 +5,11 @@
 package com.pratica.sistemaDeVendas.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
-/**
- *
- * @author emart
- */
 public class UsuarioComum extends Usuario implements Serializable {
+    private Date ultimoLogin;
+    private int pontos;
     
     public UsuarioComum(String CPF, String senha, String nome, String email) {
         super(CPF, senha, nome, email);
