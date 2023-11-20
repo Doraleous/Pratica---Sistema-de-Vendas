@@ -1,11 +1,9 @@
-package com.pratica.sistemaDeVendas.controller;
+package com.pratica.sistemadevendas.controller;
 
 import java.util.ArrayList;
 import java.io.*;
-import java.util.List;
-
-import com.pratica.sistemaDeVendas.model.Administrador;
-import com.pratica.sistemaDeVendas.model.Usuario;
+import com.pratica.sistemadevendas.model.Administrador;
+import com.pratica.sistemadevendas.model.Usuario;
 
 public class UsuarioController {
     private ArrayList<Usuario> usuarios;

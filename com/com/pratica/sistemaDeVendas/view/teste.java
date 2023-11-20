@@ -1,10 +1,10 @@
-package com.pratica.sistemaDeVendas.view;
+package com.pratica.sistemadevendas.view;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.pratica.sistemaDeVendas.model.Usuario;
-import com.pratica.sistemaDeVendas.model.UsuarioDAO;
+import com.pratica.sistemadevendas.model.Usuario;
+import com.pratica.sistemadevendas.model.UsuarioDAO;
 
 public class teste {
     public static void main(String[] args) throws SQLException {

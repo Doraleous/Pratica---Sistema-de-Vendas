@@ -1,6 +1,6 @@
-package com.pratica.sistemaDeVendas.view;
+package com.pratica.sistemadevendas.view;
 
-import com.pratica.sistemaDeVendas.controller.UsuarioController;
+import com.pratica.sistemadevendas.controller.UsuarioController;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
