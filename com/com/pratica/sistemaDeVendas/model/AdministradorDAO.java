@@ -18,7 +18,7 @@ public class AdministradorDAO {
         usuario.setDataDeNascimento(administrador.getDataDeNascimento());
         usuarioDAO.cadastrarUsuario(usuario);
         long idNonoUsuario = usuarioDAO.buscarUsuario(administrador.getEmail());
-        String sql = "INSERT INT cinecap.administrador (id) VALUES (?)";
+        String sql = "INSERT INTO cinecap.administrador (id) VALUES (?)";
 
         try (Connection conexao = ConexãoBanco.conectar();
         PreparedStatement statement = conexao.prepareStatement(sql)){
