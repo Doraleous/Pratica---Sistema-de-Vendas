@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 
 public class UsuarioDAO {
     public String cadastrarUsuario(Usuario usuario) throws SQLException{
@@ -17,7 +17,7 @@ public class UsuarioDAO {
             statement.setString(2, usuario.getSenha());
             statement.setString(3, usuario.getEmail());
             statement.setString(4, usuario.getNome());
-            Date dataNascimento = (Date) usuario.getDataDeNascimento();
+            java.sql.Date dataNascimento = (java.sql.Date) usuario.getDataDeNascimento();
             statement.setDate(5, dataNascimento);
             return "usuario Cadastrado com sucesso.";
         } catch (SQLException e) {
@@ -72,7 +72,7 @@ public class UsuarioDAO {
                 statement.setString(4, email);
 
                 if (dataDeNascimento != null) {
-                    Date dataNascimento = (Date) dataDeNascimento;
+                    java.sql.Date dataNascimento = (java.sql.Date) dataDeNascimento;
                     statement.setDate(5, dataNascimento);
                 }else{
                     statement.setNull(5, java.sql.Types.DATE);
@@ -93,8 +93,8 @@ public class UsuarioDAO {
     public boolean usuarioExiste(String email) {
         String sql = "SELECT COUNT(*) FROM cinecap.usuario WHERE email = ?";
         try (Connection conexao = ConexãoBanco.conectar();
-             PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setString(1, email);
+            PreparedStatement statement = conexao.prepareStatement(sql)) {
+                statement.setString(1, email);
     
             try (ResultSet resultado = statement.executeQuery()) {
                 if (resultado.next()) {
@@ -130,11 +130,9 @@ public class UsuarioDAO {
         if (encontrado) {
             String sql = "DELETE FROM cinecap.usuario WHERE email = ?";
             try (Connection conexao = ConexãoBanco.conectar();
-                 PreparedStatement statement = conexao.prepareStatement(sql)) {
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
                 statement.setString(1, email);
-
                 int linhasAfetadas = statement.executeUpdate();
-
                 return linhasAfetadas > 0;
             } catch (SQLException e) {
                 // Lidar com exceções, logar ou tratar de alguma forma
