@@ -82,6 +82,7 @@ public class TelaAdministrador {
         HBox caixaSair = new HBox();
         caixaSair.getChildren().addAll(botaoSair);
         //caixaSair.setAlignment(Pos.BOTTOM_LEFT);
+        //alteracao
 
         VBox paneADM = new VBox();
         paneADM.getChildren().addAll(caixaDeBotoes, caixaSair);

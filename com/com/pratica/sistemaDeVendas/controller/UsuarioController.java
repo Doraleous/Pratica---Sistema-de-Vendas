@@ -46,6 +46,7 @@ public class UsuarioController {
         usuarios.add(novoUsuario);
 
     }
+    //Diago é o cara kkk
 
     public void addUsuarioTipo(Usuario usuario){
         usuarios.add(usuario);
