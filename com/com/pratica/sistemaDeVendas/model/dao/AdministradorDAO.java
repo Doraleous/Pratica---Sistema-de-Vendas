@@ -1,4 +1,4 @@
-package com.pratica.sistemadevendas.model;
+package com.pratica.sistemadevendas.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.pratica.sistemadevendas.model.Administrador;
+import com.pratica.sistemadevendas.model.Usuario;
+import com.pratica.sistemadevendas.model.util.ConexãoBanco;
+
 public class AdministradorDAO {
-    public String cadastrarAdministrador(Administrador administrador) throws SQLException{
+    public String cadastrarAdministrador(Administrador administrador) throws SQLException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = new Usuario();
         usuario.setCPF(administrador.getCPF());
@@ -17,51 +21,52 @@ public class AdministradorDAO {
         usuario.setNome(administrador.getNome());
         usuario.setDataDeNascimento(administrador.getDataDeNascimento());
         usuarioDAO.cadastrarUsuario(usuario);
-        long idNonoUsuario = usuarioDAO.buscarUsuario(administrador.getEmail());
+        long idNovoUsuario = usuarioDAO.buscarUsuario(administrador.getEmail());
         String sql = "INSERT INTO cinecap.administrador (id) VALUES (?)";
 
         try (Connection conexao = ConexãoBanco.conectar();
-        PreparedStatement statement = conexao.prepareStatement(sql)){
-            statement.setLong(1, idNonoUsuario);
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setLong(1, idNovoUsuario);
             return "Usuario Administrador Cadastrado com sucesso.";
-        } catch (SQLException e){
-            return("Erro ao cadastrar Usuário Administrador");
+        } catch (SQLException e) {
+            return ("Erro ao cadastrar Usuário Administrador");
         }
     }
 
-    public ArrayList<Administrador> listarAdministradores() throws SQLException{
+    public ArrayList<Administrador> listarAdministradores() throws SQLException {
         ArrayList<Administrador> administradores = new ArrayList<>();
 
-        String sql = "SELECT cinecap.usuario.id, cinecap.usuario.cpf, cinecap.usuario.senha, cinecap.usuario.nome, " +  
-        "cinecap.usuario.email, cinecap.usuario.data_nascimento FROM cinecap.administrador inner join cinecap.usuario on" + 
-        "cinecap.usuario.id = cinecap.administrador.id";
-        try(Connection conexao = ConexãoBanco.conectar();
-        PreparedStatement statement = conexao.prepareStatement(sql);
-        ResultSet resultado = statement.executeQuery()){
-            while(resultado.next()){
-                long id =resultado.getLong("id");
+        String sql = "SELECT cinecap.usuario.id, cinecap.usuario.cpf, cinecap.usuario.senha, cinecap.usuario.nome, " +
+                "cinecap.usuario.email, cinecap.usuario.data_nascimento FROM cinecap.administrador inner join cinecap.usuario on"
+                +
+                "cinecap.usuario.id = cinecap.administrador.id";
+        try (Connection conexao = ConexãoBanco.conectar();
+                PreparedStatement statement = conexao.prepareStatement(sql);
+                ResultSet resultado = statement.executeQuery()) {
+            while (resultado.next()) {
+                long id = resultado.getLong("id");
                 String cpf = resultado.getString("cpf");
                 String nome = resultado.getString("nome");
                 String email = resultado.getString("email");
-                String senha= resultado.getString("senha");
-                Date dataDeNascimento = (java.util.Date)resultado.getDate("data_nascimento");
+                String senha = resultado.getString("senha");
+                Date dataDeNascimento = (java.util.Date) resultado.getDate("data_nascimento");
                 Administrador administrador = new Administrador(cpf, senha, nome, email);
                 administradores.add(administrador);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Erro ao listar usuários: " + e.getMessage());
         }
         return administradores;
     }
 
     public boolean atualizarUsuario(String cpf,
-    String nome,
-    Date dataDeNascimento,
-    String email,
-    String senha) throws SQLException{
+            String nome,
+            Date dataDeNascimento,
+            String email,
+            String senha) throws SQLException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         long encontrado = usuarioDAO.buscarUsuario(email);
-        if(encontrado != 0l){
+        if (encontrado != 0l) {
             usuarioDAO.atualizarUsuario(cpf, nome, dataDeNascimento, email, senha);
             return true;
         }
@@ -71,14 +76,14 @@ public class AdministradorDAO {
     public boolean administradorExiste(String email) throws SQLException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         boolean existe = usuarioDAO.usuarioExiste(email);
-        if(existe){
+        if (existe) {
             long idUsuario = usuarioDAO.buscarUsuario(email);
             String sql = "SELECT COUNT(*) FROM cinecap.administrador WHERE id = ?";
             try (Connection conexao = ConexãoBanco.conectar();
-            PreparedStatement statement = conexao.prepareStatement(sql)) {
+                    PreparedStatement statement = conexao.prepareStatement(sql)) {
                 statement.setLong(1, idUsuario);
-                
-                try (ResultSet resultado = statement.executeQuery()){
+
+                try (ResultSet resultado = statement.executeQuery()) {
                     if (resultado.next()) {
                         int count = resultado.getInt(1);
                         return count > 0;
@@ -92,18 +97,18 @@ public class AdministradorDAO {
         return false;
     }
 
-    public long buscarAdministrador(String email) throws SQLException{
+    public long buscarAdministrador(String email) throws SQLException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         long idUsuario = usuarioDAO.buscarUsuario(email);
         if (idUsuario != 0l) {
             String sql = "SELECT cinecap.administrador.id FROM cinecap.administrador where id = ?";
-            try(Connection conexao = ConexãoBanco.conectar();
-            PreparedStatement statement = conexao.prepareStatement(sql)){
+            try (Connection conexao = ConexãoBanco.conectar();
+                    PreparedStatement statement = conexao.prepareStatement(sql)) {
                 statement.setLong(1, idUsuario);
-                try(ResultSet resultado = statement.executeQuery()){
-                    if(resultado.next()){
+                try (ResultSet resultado = statement.executeQuery()) {
+                    if (resultado.next()) {
                         long id = resultado.getLong(1);
-                    return id;
+                        return id;
                     }
                 }
             }
@@ -111,18 +116,18 @@ public class AdministradorDAO {
         return 0l;
     }
 
-    public boolean deletarAdministrador(String email) throws SQLException{
+    public boolean deletarAdministrador(String email) throws SQLException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         boolean encontrado = usuarioDAO.usuarioExiste(email);
         if (encontrado) {
             long idAdmin = this.buscarAdministrador(email);
-            if(idAdmin != 0l){
+            if (idAdmin != 0l) {
                 String sql = "DELETE FROM cinecap.administrador WHERE id = ?";
                 try (Connection conexao = ConexãoBanco.conectar();
-                PreparedStatement statement = conexao.prepareStatement(sql)) {
+                        PreparedStatement statement = conexao.prepareStatement(sql)) {
                     statement.setLong(1, idAdmin);
                     int linhasAfetadas = statement.executeUpdate();
-                    if (linhasAfetadas>1) {
+                    if (linhasAfetadas > 1) {
                         usuarioDAO.deletarUsuario(email);
                     }
                     return linhasAfetadas > 0;
