@@ -83,7 +83,7 @@ public class TelaLogin {
     }
 
     public void sair() {
-        this.usuarioController.sair();
+        //this.usuarioController.sair();
         this.aplicacao.estagioAtual().close();
     }
 
