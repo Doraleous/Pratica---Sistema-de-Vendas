@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.io.IOException;
 
-import com.pratica.sistemadevendas.controller.UsuarioController;
+import com.pratica.sistemaDeVendas.controller.UsuarioController;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,24 +19,33 @@ public class Aplicacao extends Application {
     private TelaLogin telaLogin; 
     private TelaOperacoesUsuario telaOperacoesUsuario2; 
     private UsuarioController usuarioController;
+    private TelaOperacoesLanchonete telaOperacoesLanchonete;
+    
+
+    private TelaOperacoesFilme telaOperacoesFilme;
 
     public static void main(String[] args) {
         Application.launch(args);
 
-    }
-    
+    }    
     
     public void start(Stage estagioPrimario) throws IOException {
+        //this.estagioAtual = estagioPrimario;
+        estagioAtual = new Stage();
         //this.estagioAtual = estagioPrimario;
         estagioAtual = new Stage();
         estagioAtual.initStyle(StageStyle.UNDECORATED);
         estagioAtual.setTitle("Cinecap - Logar Usuário");
         estagioAtual.setWidth(700);
         estagioAtual.setHeight(700);
-        usuarioController = new UsuarioController();
-        telaAdministrador = new TelaAdministrador(this, usuarioController);
-        telaLogin = new TelaLogin(this, usuarioController);
+
+        telaAdministrador = new TelaAdministrador(this);
+        telaLogin = new TelaLogin(this);
         telaOperacoesUsuario2 = new TelaOperacoesUsuario(this);
+        telaOperacoesLanchonete = new TelaOperacoesLanchonete(this);
+        telaOperacoesFilme = new TelaOperacoesFilme(this);
+
+        usuarioController = new UsuarioController();
         
         
         estagioAtual.setScene(this.telaLogin.telaLogin());
@@ -56,6 +65,18 @@ public class Aplicacao extends Application {
         return this.telaOperacoesUsuario2;
 
     }
+
+    public TelaOperacoesLanchonete getTelaOperacoesLanchonete(){
+        return this.telaOperacoesLanchonete;
+    }
+
+    public TelaOperacoesFilme getTelaOperacoesFilme(){
+        return this.telaOperacoesFilme;
+    }
+
+    public UsuarioController getUsuarioController(){
+        return this.usuarioController;
+    }
     
     public void mudaCena(Scene novaCena){
         this.estagioAtual.setScene(novaCena);
@@ -66,58 +87,7 @@ public class Aplicacao extends Application {
     public Stage estagioAtual(){
         return this.estagioAtual;
     }
+
     
-    
-    
-    
-
-    /**
-     * @return Stage return the estagioAtual
-     */
-    public Stage getEstagioAtual() {
-        return estagioAtual;
-    }
-
-    /**
-     * @param estagioAtual the estagioAtual to set
-     */
-    public void setEstagioAtual(Stage estagioAtual) {
-        this.estagioAtual = estagioAtual;
-    }
-
-    /**
-     * @param telaAdministrador the telaAdministrador to set
-     */
-    public void setTelaAdministrador(TelaAdministrador telaAdministrador) {
-        this.telaAdministrador = telaAdministrador;
-    }
-
-    /**
-     * @param telaLogin the telaLogin to set
-     */
-    public void setTelaLogin(TelaLogin telaLogin) {
-        this.telaLogin = telaLogin;
-    }
-
-    /**
-     * @return TelaOperacoesUsuario return the telaOperacoesUsuario2
-     */
-    public TelaOperacoesUsuario getTelaOperacoesUsuario2() {
-        return telaOperacoesUsuario2;
-    }
-
-    /**
-     * @param telaOperacoesUsuario2 the telaOperacoesUsuario2 to set
-     */
-    public void setTelaOperacoesUsuario2(TelaOperacoesUsuario telaOperacoesUsuario2) {
-        this.telaOperacoesUsuario2 = telaOperacoesUsuario2;
-    }
-
-    /**
-     * @return UsuarioController return the usuarioController
-     */
-    public UsuarioController getUsuarioController() {
-        return usuarioController;
-    }
-
+   
 }
