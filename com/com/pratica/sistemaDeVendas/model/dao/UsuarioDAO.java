@@ -1,4 +1,4 @@
-package com.pratica.sistemaDeVendas.model.dao;
+package com.pratica.sistemadevendas.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.pratica.sistemaDeVendas.model.Usuario;
-import com.pratica.sistemaDeVendas.model.util.ConexãoBanco;
+import com.pratica.sistemadevendas.model.Usuario;
+import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class UsuarioDAO {
     public String cadastrarUsuario(Usuario usuario) throws SQLException {
@@ -22,6 +22,7 @@ public class UsuarioDAO {
             statement.setString(4, usuario.getNome());
             java.sql.Date dataNascimento = (java.sql.Date) usuario.getDataDeNascimento();
             statement.setDate(5, dataNascimento);
+            statement.execute();
             return "usuario Cadastrado com sucesso.";
         } catch (SQLException e) {
             // Lidar com exceções, logar ou tratar de alguma forma
@@ -50,6 +51,24 @@ public class UsuarioDAO {
             System.out.println("Erro ao listar usuários: " + e.getMessage());
         }
         return usuarios;
+    }
+
+    public boolean verificaSenha (String email, String senhaVerificar) throws SQLException{
+        String senhaRetornada;
+        String sql = "SELECT cinecap.usuario.senha from cinecap.usuario where cinecap.usuario.email = '(?)';";
+        try(Connection conexao = ConexãoBanco.conectar();
+            PreparedStatement statement = conexao.prepareStatement(sql);
+            ResultSet resultado = statement.executeQuery()){
+                statement.setString(0, email);
+                while(resultado.next()){
+                    senhaRetornada = resultado.getString("senha");
+                    return senhaVerificar.equals(senhaRetornada);
+                    
+                }
+                
+
+        }         
+        return false;
     }
 
     public boolean atualizarUsuario(String cpf,
@@ -97,7 +116,7 @@ public class UsuarioDAO {
         String sql = "SELECT COUNT(*) FROM cinecap.usuario WHERE email = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setString(1, email);
+            statement.setString(0, email);
 
             try (ResultSet resultado = statement.executeQuery()) {
                 if (resultado.next()) {
