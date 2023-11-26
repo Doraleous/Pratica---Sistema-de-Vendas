@@ -1,5 +1,7 @@
 package com.pratica.sistemaDeVendas.view;
 
+import java.sql.SQLException;
+
 import com.pratica.sistemaDeVendas.controller.UsuarioController;
 import com.pratica.sistemaDeVendas.model.Administrador;
 import com.pratica.sistemaDeVendas.model.UsuarioComum;
@@ -110,6 +112,14 @@ public class TelaOperacoesUsuario {
 
        
         botaoCadastrarADM.setPrefWidth(200);
+        botaoCadastrarADM.setOnAction(e -> {
+            try {
+                cadastraADMView();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         
         botaoCadastrarCritico.setPrefWidth(200);
        
@@ -134,13 +144,26 @@ public class TelaOperacoesUsuario {
 
     }
 
-    public Scene telaOperaCoesUsuario(){
-        
+    public Scene telaOperaCoesUsuario(){     
         
         
 
         return cenaOperacoesUsuario;
         
+    }
+
+    public Label getLabelStatusOperacao(){
+        return this.labelStatusOperacao;
+    }
+
+    public void cadastraADMView() throws SQLException{
+        String CPF = this.textFieldCPF.getText();
+        String senha = this.textFieldSenha.getText();
+        String nome = this.textFieldNome.getText();
+        String email = this.textFieldEmail.getText();
+
+        this.aplicacao.getUsuarioController().cadastraAdministradorController(CPF, senha, nome, email);
+
     }
 
     

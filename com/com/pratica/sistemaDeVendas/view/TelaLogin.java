@@ -51,7 +51,7 @@ public class TelaLogin {
         senhaTextField.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
 
         this.labelTitulo = new Label("CineCap");
-        labelTitulo.setStyle("-fx-text-fill: white; -fx-font-size: 32px;");
+        labelTitulo.setStyle("-fx-text-fill: white; -fx-font-size: 42px;");
 
         this.loginLabel = new Label("Email:");
         loginLabel.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
@@ -70,7 +70,7 @@ public class TelaLogin {
 
         this.aplicacao = aplicacao;
 
-        //this.usuarioController = new UsuarioController();
+        
 
         loginBotao.setOnAction(e -> acaoDeLogar());
         sairBotao.setOnAction(e -> sair());
@@ -89,15 +89,7 @@ public class TelaLogin {
 
     public void acaoDeLogar() {
 
-        //if (usuarioController.login(loginTextField.getText(), senhaTextField.getText()) == true) {
-            /*if (usuarioController.buscarUsuario(loginTextField.getText()) instanceof Usuario) {
-                //TelaAdministrador telaADM = new TelaAdministrador(aplicacao);
-                //Scene cenaADM = telaADM.telaMenuAdministrador();
-                this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
-            }
-        } else {
-            System.out.println("A senha tá errada");
-        }*/
+        
         if(this.loginTextField.getText().equals("admin@cinecap.com") && this.senhaTextField.getText().equals("admin")){
             this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
         }else{

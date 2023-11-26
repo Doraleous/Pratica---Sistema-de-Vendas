@@ -20,23 +20,14 @@ public class Aplicacao extends Application {
     private TelaOperacoesUsuario telaOperacoesUsuario2; 
     private UsuarioController usuarioController;
     private TelaOperacoesLanchonete telaOperacoesLanchonete;
+    
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
     public static void main(String[] args) {
         Application.launch(args);
 
-    }
-    
-    
-    
-
-    
-
-    
-    
-    
-    
+    }    
     
     public void start(Stage estagioPrimario) throws IOException {
         //this.estagioAtual = estagioPrimario;
@@ -53,6 +44,8 @@ public class Aplicacao extends Application {
         telaOperacoesUsuario2 = new TelaOperacoesUsuario(this);
         telaOperacoesLanchonete = new TelaOperacoesLanchonete(this);
         telaOperacoesFilme = new TelaOperacoesFilme(this);
+
+        usuarioController = new UsuarioController();
         
         
         estagioAtual.setScene(this.telaLogin.telaLogin());
@@ -79,6 +72,10 @@ public class Aplicacao extends Application {
 
     public TelaOperacoesFilme getTelaOperacoesFilme(){
         return this.telaOperacoesFilme;
+    }
+
+    public UsuarioController getUsuarioController(){
+        return this.usuarioController;
     }
     
     public void mudaCena(Scene novaCena){
