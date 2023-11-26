@@ -14,8 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.Stage;
 
 public class TelaOperacoesUsuario {
+
+    private UsuarioController usuarioController = new UsuarioController();
 
     private UsuarioController usuarioController = new UsuarioController();
     private Label labelCPF = new Label("CPF");
@@ -48,6 +51,7 @@ public class TelaOperacoesUsuario {
         
 
         
+        
         labelCPF.setPrefHeight(50);
         labelCPF.setPrefWidth(100);
         
@@ -57,10 +61,18 @@ public class TelaOperacoesUsuario {
         labelNome.setPrefHeight(50);
         labelNome.setPrefWidth(100);
         
+        
         labelEmail.setPrefHeight(50);
         labelEmail.setPrefWidth(100);
 
         
+        
+        
+        botaoSair.setPrefWidth(100);
+
+        
+        botaoSair.setOnAction(e -> sair());
+
         
         
         botaoSair.setPrefWidth(100);
@@ -80,6 +92,7 @@ public class TelaOperacoesUsuario {
         caixaLabelsBotoes.getChildren().addAll(labelCPF, labelSenha, 
         labelNome, labelEmail, botaoDeletar, botaoBuscar, botaoSair, labelStatusOperacao);
        
+        
         
 
         
@@ -106,6 +119,10 @@ public class TelaOperacoesUsuario {
 
         caixaTextFields.setPadding(new Insets(10.5, 2, 10.5, 2));
 
+        caixaTextFields.getChildren().addAll(textFieldCPF, textFieldEmail, textFieldNome, textFieldSenha,
+        botaoCadastrarADM, botaoCadastrarCritico, botaoCadastrarUsuarioComum, botaoCadastrarEstudante);
+
+        
         caixaTextFields.getChildren().addAll(textFieldCPF, textFieldEmail, textFieldNome, textFieldSenha,
         botaoCadastrarADM, botaoCadastrarCritico, botaoCadastrarUsuarioComum, botaoCadastrarEstudante);
 

@@ -2,14 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemaDeVendas.view;
+package com.pratica.sistemadevendas.view;
 
-import com.pratica.sistemaDeVendas.controller.UsuarioController;
+import com.pratica.sistemadevendas.controller.UsuarioController;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,6 +20,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -40,9 +43,10 @@ public class TelaAdministrador {
 
     private UsuarioController usuarioController;
 
+
     private Aplicacao aplicacao;
 
-    public TelaAdministrador(Aplicacao aplicacao) {
+    public TelaAdministrador(Aplicacao aplicacao, UsuarioController usuarioController) {
         /*String bilheteria = "C:\\PraticaProjeto\\bilheteria.png";
         String engrenagem = "C:\\PraticaProjeto\\engrenagem.png";
         String pipoca = "C:\\PraticaProjeto\\pipoca.png";*/
@@ -50,7 +54,6 @@ public class TelaAdministrador {
         this.botaoLoja = new Button("Loja");
         this.botaoUsuarios = new Button("Usuarios");
         this.botaoSair = new Button("Sair");
-        this.usuarioController = new UsuarioController();
         this.aplicacao = aplicacao;
 
         botaoUsuarios.setOnAction(e ->          
@@ -132,7 +135,10 @@ public class TelaAdministrador {
 
     
     
+    
+    
 
+    
     
 
 }

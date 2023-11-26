@@ -1,34 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.pratica.sistemaDeVendas.controller;
+package com.pratica.sistemadevendas.controller;
 
-import com.pratica.sistemaDeVendas.model.Administrador;
-import com.pratica.sistemaDeVendas.model.Usuario;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Date;
+import java.io.*;
+import com.pratica.sistemadevendas.model.Administrador;
+import com.pratica.sistemadevendas.model.Usuario;
 
-/**
- *
- * @author emart
- */
 public class UsuarioController {
-
     private ArrayList<Usuario> usuarios;
-    private String caminhoDoArquivo = "C:\\PraticaProjeto\\usuarios";
+    private final String CAMINHO_DO_ARQUIVO_USUARIO = System.getProperty("user.dir") +
+    File.separator +
+    "com" +
+    File.separator +
+    "com" +
+    File.separator +
+    "pratica" +
+    File.separator +
+    "sistemaDeVendas" +
+    File.separator +
+    "data"+
+    File.separator +
+    "usuarios.txt";
 
-    public UsuarioController() {
+    public UsuarioController(){
+        System.out.println("entrando no UsuarioController");
         usuarios = this.iniciaCadastro();
-
     }
 
     public Usuario getUsuario(Usuario usuarioDesejado) {
@@ -46,11 +41,6 @@ public class UsuarioController {
         usuarios.add(novoUsuario);
 
     }
-    //Diago é o cara kkk
-
-    public void addUsuarioTipo(Usuario usuario){
-        usuarios.add(usuario);
-    }
 
     public ArrayList getUsuarios() {
         return this.usuarios;
@@ -62,58 +52,39 @@ public class UsuarioController {
 
         try ( ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(listaDeUsuarios, false))) {
             oos.writeObject(usuarios);
-            System.out.println("Cadastro saved to " + caminhoDoArquivo);
-        } catch (IOException e) {
+        } catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
-    public ArrayList iniciaCadastro() {
-        File listaDeUsuarios = new File(caminhoDoArquivo);
-        if (listaDeUsuarios.exists()) {
-            try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(listaDeUsuarios))) {
-                ArrayList<Usuario> usuarios = (ArrayList<Usuario>) ois.readObject();
+    private ArrayList<Usuario> iniciaCadastro() {
+        System.out.println("entrando no iniciaCadastro");
+        File listaUsuarios = new File(CAMINHO_DO_ARQUIVO_USUARIO);
+        if(listaUsuarios.exists()){
+            try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(listaUsuarios))) {
+                this.usuarios = (ArrayList<Usuario>) ois.readObject();
                 return usuarios;
-
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e){
                 e.printStackTrace();
             }
         }
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        Administrador root = new Administrador("01986", "admin", "Jairo", "admin@cinecap.com");
+        Administrador root = new Administrador("01986", "1234", "Jairo", "jairo@gmail");
         usuarios.add(root);
-        this.salvaUsuarios(); // teste
+        //this.salvaUsuarios(); // teste
         return usuarios;
-
     }
 
-    public void imprimeUsuarios() {
-        File listaDeUsuarios = new File(caminhoDoArquivo);
-        if (listaDeUsuarios.exists()) {
-            try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(listaDeUsuarios))) {
-                ArrayList<Usuario> usuarios = (ArrayList<Usuario>) ois.readObject();
-                for (Usuario usuario : usuarios) {
-                    System.out.println(usuario);
-                }
-
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("Terminou o imprimeUsuarios");
-
-    }
-
-    public boolean login(String email, String senha) {
+    public boolean login(String email, String senha){
         System.out.println("entrando no login");
         Usuario usuario = buscarUsuario(email);
         return usuario != null && senha.equals(usuario.getSenha());
     }
-    
     public Usuario buscarUsuario(String email) {
         System.out.println("entrando no buscarUsuario");
+        System.out.println(usuarios.size());
         for (Usuario usuario : usuarios) {
+            System.out.println("user:" + usuario);
             if(usuario.getEmail().equals(email)){
                 return usuario;
             }
@@ -121,29 +92,26 @@ public class UsuarioController {
         return null;
     }
 
-    private Usuario buscarUsuario2(String email) {
-        System.out.println("entrando no buscarUsuario");
-        File listaUsuarios = new File(caminhoDoArquivo);
-        try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(listaUsuarios))) {
-            System.out.println("entrando no try");
-            this.usuarios = (ArrayList<Usuario>) ois.readObject();
-            System.out.println("quantidade de usuarios" + usuarios.size());
-            for (Usuario usuario : usuarios) {
-                if (usuario.getEmail().equals(email)) {
-                    return usuario;
+    /*public List<Usuario> listarUsuarios() {
+        System.out.println("entrando no listarUsuarios");
+        List<Usuario> usuarios = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(CAMINHO_DO_ARQUIVO_USUARIO))) {
+            Object obj;
+            while ((obj = ois.readObject()) != null) {
+                if (obj instanceof Usuario) {
+                    usuarios.add((Usuario) obj);
                 }
             }
-            return null;
         } catch (EOFException e) {
-            // Alcançou o final do arquivo, nenhum usuário correspondente encontrado
+            // Alcançou o final do arquivo
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null; // Usuário não encontrado
-    } 
-    
+        return usuarios;
+    }*/
+
     public void sair(){
-        File listaDeUsuarios = new File(caminhoDoArquivo);
+        File listaDeUsuarios = new File(CAMINHO_DO_ARQUIVO_USUARIO);
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream
         (listaDeUsuarios, false))) {
             oos.writeObject(usuarios);
@@ -152,14 +120,9 @@ public class UsuarioController {
         }
     }
 
-    public static void main(String args[]) {
-        UsuarioController cadastro = new UsuarioController();
-
-        cadastro.addUsuario("93492848", "0987", "Diego", "diego@gmail");
-
-        cadastro.salvaUsuarios();
-        cadastro.imprimeUsuarios();
-
-        System.out.println("O usuário buscado é" + cadastro.buscarUsuario("diego@gmail"));
+    public ArrayList getUsuarios(){
+        System.out.println("entrando no getUsuarios");
+        return this.usuarios;
     }
+
 }

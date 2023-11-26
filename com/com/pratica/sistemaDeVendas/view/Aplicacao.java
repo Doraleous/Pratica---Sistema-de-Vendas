@@ -2,20 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemaDeVendas.view;
+package com.pratica.sistemadevendas.view;
 
 import java.io.IOException;
+
+import com.pratica.sistemadevendas.controller.UsuarioController;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- *
- * @author emart
- */
 public class Aplicacao extends Application {
     private Stage estagioAtual;
+    private TelaAdministrador telaAdministrador; 
+    private TelaLogin telaLogin; 
+    private TelaOperacoesUsuario telaOperacoesUsuario2; 
+    private UsuarioController usuarioController;
+
+    public static void main(String[] args) {
+        Application.launch(args);
+
+    }
+    
     private TelaAdministrador telaAdministrador;
     
 
@@ -29,6 +38,8 @@ public class Aplicacao extends Application {
     
     
     public void start(Stage estagioPrimario) throws IOException {
+        //this.estagioAtual = estagioPrimario;
+        estagioAtual = new Stage();
         //this.estagioAtual = estagioPrimario;
         estagioAtual = new Stage();
         estagioAtual.initStyle(StageStyle.UNDECORATED);
@@ -85,5 +96,5 @@ public class Aplicacao extends Application {
         Application.launch(args);
 
     }
-    
+
 }
