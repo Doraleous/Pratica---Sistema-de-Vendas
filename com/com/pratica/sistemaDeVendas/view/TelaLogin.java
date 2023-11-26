@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -34,6 +35,10 @@ public class TelaLogin {
     private Button loginBotao;
     private Button sairBotao;
 
+    private VBox telaLogin;
+
+    private Scene cenaLogin;
+
     
 
     private Aplicacao aplicacao;
@@ -42,18 +47,30 @@ public class TelaLogin {
 
     public TelaLogin(Aplicacao aplicacao) {
         this.loginTextField = new TextField();
-        loginTextField.setPrefWidth(400);
+        loginTextField.setPrefWidth(300);
+        loginTextField.setMaxWidth(400);
+        loginTextField.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
 
         this.senhaTextField = new TextField();
-        senhaTextField.setPrefWidth(400);
+        senhaTextField.setPrefWidth(300);
+        senhaTextField.setMaxWidth(400);
+        senhaTextField.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
+
         this.labelTitulo = new Label("CineCap");
-        labelTitulo.setStyle("-fx-text-fill: white; -fx-font-size: 24px;");
+        labelTitulo.setStyle("-fx-text-fill: white; -fx-font-size: 32px;");
 
         this.loginLabel = new Label("Email:");
+        loginLabel.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
         this.senhaLabel = new Label("Senha: ");
+        senhaLabel.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
 
         this.loginBotao = new Button("Login");
         this.sairBotao = new Button("Sair");
+
+        telaLogin = new VBox();
+        telaLogin.setSpacing(50);
+        telaLogin.setStyle("-fx-background-color: red;");
+        
 
         
 
@@ -63,6 +80,12 @@ public class TelaLogin {
 
         loginBotao.setOnAction(e -> acaoDeLogar());
         sairBotao.setOnAction(e -> sair());
+
+        telaLogin.getChildren().addAll(labelTitulo, loginLabel, loginTextField, senhaLabel, senhaTextField,
+        loginBotao, sairBotao);
+        telaLogin.setAlignment(Pos.CENTER);
+
+        cenaLogin = new Scene(telaLogin);
     }
 
     public void sair() {
@@ -72,34 +95,25 @@ public class TelaLogin {
 
     public void acaoDeLogar() {
 
-        if (usuarioController.login(loginTextField.getText(), senhaTextField.getText()) == true) {
-            if (usuarioController.buscarUsuario(loginTextField.getText()) instanceof Usuario) {
+        //if (usuarioController.login(loginTextField.getText(), senhaTextField.getText()) == true) {
+            /*if (usuarioController.buscarUsuario(loginTextField.getText()) instanceof Usuario) {
                 //TelaAdministrador telaADM = new TelaAdministrador(aplicacao);
                 //Scene cenaADM = telaADM.telaMenuAdministrador();
                 this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
             }
         } else {
             System.out.println("A senha tá errada");
+        }*/
+        if(this.loginTextField.getText().equals("admin@cinecap.com") && this.senhaTextField.getText().equals("admin")){
+            this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
+        }else{
+            
         }
 
     }
 
     public Scene telaLogin() {
-        GridPane paneLogin = new GridPane();
-        paneLogin.setPadding(new Insets(11.5, 12.5, 13.5, 14.5));
-        paneLogin.setHgap(5.5);
-        paneLogin.setVgap(5.5);
-        paneLogin.setStyle("-fx-background-color: red;");
-
-        paneLogin.add(labelTitulo, 0, 0);
-        paneLogin.add(loginLabel, 0, 1);
-        paneLogin.add(loginTextField, 1, 1);
-        paneLogin.add(senhaLabel, 0, 2);
-        paneLogin.add(senhaTextField, 1, 2);
-        paneLogin.add(loginBotao, 0, 3);
-        paneLogin.add(sairBotao, 0, 4);
-
-        Scene cenaLogin = new Scene(paneLogin, 600, 350);
+        
         return cenaLogin;
 
     }

@@ -16,9 +16,16 @@ import javafx.stage.StageStyle;
  */
 public class Aplicacao extends Application {
     private Stage estagioAtual;
-    private TelaAdministrador telaAdministrador; 
+    private TelaAdministrador telaAdministrador;
+    
+
     private TelaLogin telaLogin; 
-    private TelaOperacoesUsuario telaOperacoesUsuario2; 
+
+    private TelaOperacoesUsuario telaOperacoesUsuario2;
+    
+    private TelaOperacoesLanchonete telaOperacoesLanchonete;
+
+    private TelaOperacoesFilme telaOperacoesFilme;
     
     
     public void start(Stage estagioPrimario) throws IOException {
@@ -32,6 +39,8 @@ public class Aplicacao extends Application {
         telaAdministrador = new TelaAdministrador(this);
         telaLogin = new TelaLogin(this);
         telaOperacoesUsuario2 = new TelaOperacoesUsuario(this);
+        telaOperacoesLanchonete = new TelaOperacoesLanchonete(this);
+        telaOperacoesFilme = new TelaOperacoesFilme(this);
         
         
         estagioAtual.setScene(this.telaLogin.telaLogin());
@@ -51,6 +60,14 @@ public class Aplicacao extends Application {
         return this.telaOperacoesUsuario2;
 
     }
+
+    public TelaOperacoesLanchonete getTelaOperacoesLanchonete(){
+        return this.telaOperacoesLanchonete;
+    }
+
+    public TelaOperacoesFilme getTelaOperacoesFilme(){
+        return this.telaOperacoesFilme;
+    }
     
     public void mudaCena(Scene novaCena){
         this.estagioAtual.setScene(novaCena);
@@ -61,6 +78,8 @@ public class Aplicacao extends Application {
     public Stage estagioAtual(){
         return this.estagioAtual;
     }
+
+    
     
     public static void main(String[] args) {
         Application.launch(args);

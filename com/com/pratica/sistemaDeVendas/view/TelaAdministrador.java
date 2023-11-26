@@ -31,6 +31,10 @@ public class TelaAdministrador {
     private Button botaoLoja;
     private Button botaoUsuarios;
     private Button botaoSair;
+    private HBox caixaDeBotoes = new HBox(40);
+    private HBox caixaSair = new HBox();
+    private VBox paneADM = new VBox();
+    private Scene cenaADM;
 
 
 
@@ -49,22 +53,38 @@ public class TelaAdministrador {
         this.usuarioController = new UsuarioController();
         this.aplicacao = aplicacao;
 
-        botaoUsuarios.setOnAction(e -> {
-            System.out.println("clicado");
-            irParaTelaDeUsuariosCRUD();
-        });
+        botaoUsuarios.setOnAction(e ->          
+            irParaTelaDeUsuariosCRUD()
+        );
+
+        botaoLoja.setOnAction(e -> irParaTelaDeLanchoneteCLUD());
+
+        botaoFilmes.setOnAction(e -> irParaFilmeCLUD());
         
         botaoSair.setOnAction(e -> sair());
+
+        caixaDeBotoes.getChildren().addAll(botaoFilmes, botaoLoja, botaoUsuarios);
+        caixaSair.getChildren().addAll(botaoSair);
+
+        paneADM.getChildren().addAll(caixaDeBotoes, caixaSair);
+        paneADM.setStyle("-fx-background-color: red;");
+        cenaADM = new Scene(paneADM, 600, 220);
         
 
     }
 
+    public void irParaFilmeCLUD(){
+        this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesFilme().telaOperacoesFilme());
+    }
+
     public void irParaTelaDeUsuariosCRUD(){
-        System.out.println("meu corpo");
-        //TelaAdministrador telaADM = new TelaAdministrador(this.aplicacao);
-        //Scene cenaUsuarioCRUD = this.telaOperaCoesUsuario();
+        
         this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesUsuario().telaOperaCoesUsuario());
 
+    }
+
+    public void irParaTelaDeLanchoneteCLUD(){
+        this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesLanchonete().telaOperacoesLanchonete());
     }
     
     public void sair() {
@@ -74,21 +94,20 @@ public class TelaAdministrador {
 
     public Scene telaMenuAdministrador() {
 
-        HBox caixaDeBotoes = new HBox(40);
         
-        caixaDeBotoes.getChildren().addAll(botaoFilmes, botaoLoja, botaoUsuarios);
+        
+        
         //caixaDeBotoes.setAlignment(Pos.CENTER);
 
-        HBox caixaSair = new HBox();
-        caixaSair.getChildren().addAll(botaoSair);
+        
+        
         //caixaSair.setAlignment(Pos.BOTTOM_LEFT);
         //alteracao
 
-        VBox paneADM = new VBox();
-        paneADM.getChildren().addAll(caixaDeBotoes, caixaSair);
-        paneADM.setStyle("-fx-background-color: red;");
+        
+        
 
-        Scene cenaADM = new Scene(paneADM, 600, 220);
+        
         return cenaADM;
     }
     

@@ -25,6 +25,7 @@ public class TestesJanelas extends Application {
     private Label labelSenha = new Label("Senha");
     private Label labelNome = new Label("Nome");
     private Label labelEmail = new Label("Email");
+    private Label labelStatusOperacao = new Label("Status");
     private Button botaoCadastrarADM = new Button("Cadastrar Admin");
     private Button botaoCadastrarCritico = new Button("Cadastrar Crítico");
     private Button botaoCadastrarUsuarioComum = new Button("Cadastrar Cliente");
@@ -39,9 +40,10 @@ public class TestesJanelas extends Application {
     private VBox caixaTextFields = new VBox(10);
     private HBox caixaConteiner = new HBox();
     private Stage estagioAtual = new Stage();
+    private VBox caixaLabelsBotoes = new VBox(10);
 
     public void start(Stage estagioPrimario) throws IOException{
-        VBox caixaLabelsBotoes = new VBox(10);
+        
 
         
         labelCPF.setPrefHeight(50);
@@ -62,18 +64,20 @@ public class TestesJanelas extends Application {
         botaoSair.setPrefWidth(100);
 
         
-        botaoSair.setOnAction(e -> sair());
+       
 
         
         botaoDeletar.setPrefWidth(100);
         
         botaoBuscar.setPrefWidth(100);
 
+        labelStatusOperacao.setPrefWidth(100);
+
         caixaLabelsBotoes.setPadding(new Insets(10.5, 2, 10.5, 2));
         
 
         caixaLabelsBotoes.getChildren().addAll(labelCPF, labelSenha, 
-        labelNome, labelEmail, botaoDeletar, botaoBuscar, botaoSair);
+        labelNome, labelEmail, botaoDeletar, botaoBuscar, botaoSair, labelStatusOperacao);
        
         
 
@@ -90,10 +94,7 @@ public class TestesJanelas extends Application {
         textFieldEmail.setPrefHeight(50);
         textFieldEmail.setPrefWidth(300);
 
-        botaoCadastrarADM.setOnAction(e -> cadastraADM());
-        botaoCadastrarCritico.setOnAction(e -> cadastraCritico());
-        botaoCadastrarUsuarioComum.setOnAction(e -> cadastraUsuarioComum());
-        botaoCadastrarEstudante.setOnAction(e -> cadastraEstudante());
+        
         botaoCadastrarADM.setPrefWidth(200);
         
         botaoCadastrarCritico.setPrefWidth(200);
@@ -119,40 +120,7 @@ public class TestesJanelas extends Application {
 
     }
 
-    public void cadastraADM(){
-        Administrador novoADM = new Administrador(this.textFieldCPF.getText(), this.textFieldSenha.getText(), 
-        this.textFieldNome.getText(), this.textFieldEmail.getText());
-        this.usuarioController.addUsuarioTipo(novoADM);
-        System.out.println("fui clicado botaoadm");
-        this.usuarioController.imprimeUsuarios();
-
-    }
-
-    public void cadastraCritico(){
-        UsuarioCritico novoCritico = new UsuarioCritico(this.textFieldCPF.getText(), this.textFieldSenha.getText(), 
-        this.textFieldNome.getText(), this.textFieldEmail.getText());
-        this.usuarioController.addUsuarioTipo(novoCritico);
-
-    }
-
-    public void cadastraEstudante(){
-        UsuarioEstudante novoEstudante = new UsuarioEstudante(this.textFieldCPF.getText(), this.textFieldSenha.getText(), 
-        this.textFieldNome.getText(), this.textFieldEmail.getText());
-        this.usuarioController.addUsuarioTipo(novoEstudante);
-
-    }
-    public void cadastraUsuarioComum(){
-        UsuarioComum novoUsuarioComum = new UsuarioComum(this.textFieldCPF.getText(), this.textFieldSenha.getText(), 
-        this.textFieldNome.getText(), this.textFieldEmail.getText());
-        this.usuarioController.addUsuarioTipo(novoUsuarioComum);
-
-    }
-
-    public void sair(){
-        this.usuarioController.sair();
-        this.estagioAtual.close();
-
-    }
+    
 
     public static void main(String[] args) {
         Application.launch(args);

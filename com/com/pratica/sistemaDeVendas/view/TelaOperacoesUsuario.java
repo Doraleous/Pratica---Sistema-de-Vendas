@@ -26,7 +26,7 @@ public class TelaOperacoesUsuario {
     private Button botaoCadastrarCritico = new Button("Cadastrar Crítico");
     private Button botaoCadastrarUsuarioComum = new Button("Cadastrar Cliente");
     private Button botaoCadastrarEstudante = new Button("Cadastrar Estudante");
-    private Button botaoSair = new Button ("Sair");
+    private Button botaoSair = new Button ("Voltar");
     private Button botaoDeletar = new Button("Deletar");
     private Button botaoBuscar = new Button("Buscar");
     private TextField textFieldCPF = new TextField();
@@ -36,16 +36,16 @@ public class TelaOperacoesUsuario {
     private VBox caixaTextFields = new VBox(10);
     private HBox caixaConteiner = new HBox();
     private Stage estagioAtual = new Stage();
+    private Label labelStatusOperacao = new Label("Status");
+    private VBox caixaLabelsBotoes = new VBox(10);
+    private Scene cenaOperacoesUsuario;
 
     private Aplicacao aplicacao;
 
     public TelaOperacoesUsuario(Aplicacao aplicacao){
         this.aplicacao = aplicacao;
 
-    }
-
-    public Scene telaOperaCoesUsuario(){
-        VBox caixaLabelsBotoes = new VBox(10);
+        
 
         
         labelCPF.setPrefHeight(50);
@@ -72,12 +72,13 @@ public class TelaOperacoesUsuario {
         botaoDeletar.setPrefWidth(100);
         
         botaoBuscar.setPrefWidth(100);
+        labelStatusOperacao.setPrefWidth(100);
 
         caixaLabelsBotoes.setPadding(new Insets(10.5, 2, 10.5, 2));
         
 
         caixaLabelsBotoes.getChildren().addAll(labelCPF, labelSenha, 
-        labelNome, labelEmail, botaoDeletar, botaoBuscar, botaoSair);
+        labelNome, labelEmail, botaoDeletar, botaoBuscar, botaoSair, labelStatusOperacao);
        
         
 
@@ -94,10 +95,7 @@ public class TelaOperacoesUsuario {
         textFieldEmail.setPrefHeight(50);
         textFieldEmail.setPrefWidth(300);
 
-        botaoCadastrarADM.setOnAction(e -> cadastraADM());
-        botaoCadastrarCritico.setOnAction(e -> cadastraCritico());
-        botaoCadastrarUsuarioComum.setOnAction(e -> cadastraUsuarioComum());
-        botaoCadastrarEstudante.setOnAction(e -> cadastraEstudante());
+       
         botaoCadastrarADM.setPrefWidth(200);
         
         botaoCadastrarCritico.setPrefWidth(200);
@@ -115,45 +113,25 @@ public class TelaOperacoesUsuario {
         caixaConteiner.setStyle("-fx-background-color: red;");
 
         caixaConteiner.getChildren().addAll(caixaLabelsBotoes, caixaTextFields);
+
+        cenaOperacoesUsuario = new Scene(caixaConteiner);
+
+    }
+
+    public Scene telaOperaCoesUsuario(){
         
-        Scene cenaOperacoesUsuario = new Scene(caixaConteiner);
+        
+        
 
         return cenaOperacoesUsuario;
         
     }
 
-    public void cadastraADM(){
-        Administrador novoADM = new Administrador(this.textFieldCPF.getText(), this.textFieldSenha.getText(), 
-        this.textFieldNome.getText(), this.textFieldEmail.getText());
-        this.usuarioController.addUsuarioTipo(novoADM);
-        System.out.println("fui clicado botaoadm");
-        this.usuarioController.imprimeUsuarios();
+    
 
-    }
-
-    public void cadastraCritico(){
-        UsuarioCritico novoCritico = new UsuarioCritico(this.textFieldCPF.getText(), this.textFieldSenha.getText(), 
-        this.textFieldNome.getText(), this.textFieldEmail.getText());
-        this.usuarioController.addUsuarioTipo(novoCritico);
-
-    }
-
-    public void cadastraEstudante(){
-        UsuarioEstudante novoEstudante = new UsuarioEstudante(this.textFieldCPF.getText(), this.textFieldSenha.getText(), 
-        this.textFieldNome.getText(), this.textFieldEmail.getText());
-        this.usuarioController.addUsuarioTipo(novoEstudante);
-
-    }
-    public void cadastraUsuarioComum(){
-        UsuarioComum novoUsuarioComum = new UsuarioComum(this.textFieldCPF.getText(), this.textFieldSenha.getText(), 
-        this.textFieldNome.getText(), this.textFieldEmail.getText());
-        this.usuarioController.addUsuarioTipo(novoUsuarioComum);
-
-    }
 
     public void sair(){
-        this.usuarioController.sair();
-        this.estagioAtual.close();
+        this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
 
     }
     
