@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemaDeVendas.view;
+package com.pratica.sistemadevendas.view;
 
-import com.pratica.sistemaDeVendas.controller.UsuarioController;
+import java.sql.SQLException;
+
+import com.pratica.sistemadevendas.controller.UsuarioController;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,6 +27,7 @@ public class TelaLogin {
     private Label loginLabel;
     private Label senhaLabel;
     private Label labelTitulo;
+    private Label labelStatusOperacao;
 
     private Button loginBotao;
     private Button sairBotao;
@@ -53,6 +56,9 @@ public class TelaLogin {
         this.labelTitulo = new Label("CineCap");
         labelTitulo.setStyle("-fx-text-fill: white; -fx-font-size: 42px;");
 
+        this.labelStatusOperacao = new Label("");
+        labelStatusOperacao.setStyle("-fx-text-fill: yellow; -fx-font-size: 20px;");
+
         this.loginLabel = new Label("Email:");
         loginLabel.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
         this.senhaLabel = new Label("Senha: ");
@@ -72,11 +78,18 @@ public class TelaLogin {
 
         
 
-        loginBotao.setOnAction(e -> acaoDeLogar());
+        loginBotao.setOnAction(e -> {
+            try {
+                acaoDeLogar();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         sairBotao.setOnAction(e -> sair());
 
         telaLogin.getChildren().addAll(labelTitulo, loginLabel, loginTextField, senhaLabel, senhaTextField,
-        loginBotao, sairBotao);
+        loginBotao, sairBotao, labelStatusOperacao);
         telaLogin.setAlignment(Pos.CENTER);
 
         cenaLogin = new Scene(telaLogin);
@@ -87,14 +100,28 @@ public class TelaLogin {
         this.aplicacao.estagioAtual().close();
     }
 
-    public void acaoDeLogar() {
+    public String campoSenha(){
+        return this.senhaTextField.getText();
+    }
+
+    public String campoLogin(){
+        return this.loginTextField.getText();
+    }
+
+    public Label getLabelStatusOperacao(){
+        return this.labelStatusOperacao;
+    }
+
+    public void acaoDeLogar() throws SQLException {
+        String email = this.campoLogin();
+        String senha = this.campoSenha();
+        if(this.aplicacao.getUsuarioController().Logar(email, senha)){
+            this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
+
+        }
 
         
-        if(this.loginTextField.getText().equals("admin@cinecap.com") && this.senhaTextField.getText().equals("admin")){
-            this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
-        }else{
-            
-        }
+        
 
     }
 

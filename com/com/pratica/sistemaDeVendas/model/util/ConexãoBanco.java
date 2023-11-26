@@ -1,4 +1,4 @@
-package com.pratica.sistemaDeVendas.model.util;
+package com.pratica.sistemadevendas.model.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
