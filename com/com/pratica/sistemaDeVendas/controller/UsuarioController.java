@@ -1,4 +1,5 @@
-package com.pratica.sistemaDeVendas.controller;
+
+package com.pratica.sistemadevendas.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,10 +10,10 @@ import java.io.ObjectOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.pratica.sistemaDeVendas.model.Administrador;
-import com.pratica.sistemaDeVendas.model.Usuario;
-import com.pratica.sistemaDeVendas.model.dao.UsuarioDAO;
-import com.pratica.sistemaDeVendas.view.Aplicacao;
+import com.pratica.sistemadevendas.model.Administrador;
+import com.pratica.sistemadevendas.model.Usuario;
+import com.pratica.sistemadevendas.model.dao.UsuarioDAO;
+import com.pratica.sistemadevendas.view.Aplicacao;
 
 public class UsuarioController {
     private UsuarioDAO usuarioDAO;

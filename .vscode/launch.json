@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AdminMenu",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.AdminMenu",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
+            "name": "Aplicacao",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
             "name": "Aplicacao",
             "request": "launch",
             "mainClass": "com.pratica.sistemaDeVendas.view.Aplicacao",

@@ -1,4 +1,4 @@
-package com.pratica.sistemaDeVendas.view;
+package com.pratica.sistemadevendas.view;
 
 import java.io.IOException;
 
