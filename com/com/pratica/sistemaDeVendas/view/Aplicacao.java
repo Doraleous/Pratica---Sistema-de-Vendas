@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.io.IOException;
 
-import com.pratica.sistemadevendas.controller.UsuarioController;
+import com.pratica.sistemaDeVendas.controller.UsuarioController;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,22 +19,23 @@ public class Aplicacao extends Application {
     private TelaLogin telaLogin; 
     private TelaOperacoesUsuario telaOperacoesUsuario2; 
     private UsuarioController usuarioController;
+    private TelaOperacoesLanchonete telaOperacoesLanchonete;
+
+    private TelaOperacoesFilme telaOperacoesFilme;
 
     public static void main(String[] args) {
         Application.launch(args);
 
     }
     
-    private TelaAdministrador telaAdministrador;
+    
     
 
-    private TelaLogin telaLogin; 
-
-    private TelaOperacoesUsuario telaOperacoesUsuario2;
     
-    private TelaOperacoesLanchonete telaOperacoesLanchonete;
 
-    private TelaOperacoesFilme telaOperacoesFilme;
+    
+    
+    
     
     
     public void start(Stage estagioPrimario) throws IOException {
@@ -91,10 +92,5 @@ public class Aplicacao extends Application {
     }
 
     
-    
-    public static void main(String[] args) {
-        Application.launch(args);
-
-    }
-
+   
 }

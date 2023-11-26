@@ -2,24 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
-import java.io.IOException;
+import com.pratica.sistemaDeVendas.controller.UsuarioController;
 
-import com.pratica.sistemadevendas.controller.UsuarioController;
-import com.pratica.sistemadevendas.model.Usuario;
-
-import javafx.application.Application;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 /**
  *
@@ -47,7 +39,7 @@ public class TelaLogin {
 
     private UsuarioController usuarioController;
 
-    public TelaLogin(Aplicacao aplicacao , UsuarioController usuarioController) {
+    public TelaLogin(Aplicacao aplicacao) {
         this.loginTextField = new TextField();
         loginTextField.setPrefWidth(300);
         loginTextField.setMaxWidth(400);

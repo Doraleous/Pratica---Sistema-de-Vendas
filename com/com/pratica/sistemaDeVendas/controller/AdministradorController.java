@@ -1,14 +1,14 @@
-package com.pratica.sistemadevendas.controller;
+package com.pratica.sistemaDeVendas.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.pratica.sistemadevendas.model.Administrador;
-import com.pratica.sistemadevendas.model.Filme;
-import com.pratica.sistemadevendas.model.Usuario;
-import com.pratica.sistemadevendas.model.UsuarioComum;
-import com.pratica.sistemadevendas.model.UsuarioCritico;
-import com.pratica.sistemadevendas.model.UsuarioEstudante;
+import com.pratica.sistemaDeVendas.model.Administrador;
+import com.pratica.sistemaDeVendas.model.Filme;
+import com.pratica.sistemaDeVendas.model.Usuario;
+import com.pratica.sistemaDeVendas.model.UsuarioComum;
+import com.pratica.sistemaDeVendas.model.UsuarioCritico;
+import com.pratica.sistemaDeVendas.model.UsuarioEstudante;
 
 public class AdministradorController {
     private ArrayList<Usuario> listaUsuarios;

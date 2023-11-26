@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 public class TelaOperacoesUsuario {
 
-    private UsuarioController usuarioController = new UsuarioController();
+    
 
     private UsuarioController usuarioController = new UsuarioController();
     private Label labelCPF = new Label("CPF");
@@ -123,8 +123,7 @@ public class TelaOperacoesUsuario {
         botaoCadastrarADM, botaoCadastrarCritico, botaoCadastrarUsuarioComum, botaoCadastrarEstudante);
 
         
-        caixaTextFields.getChildren().addAll(textFieldCPF, textFieldEmail, textFieldNome, textFieldSenha,
-        botaoCadastrarADM, botaoCadastrarCritico, botaoCadastrarUsuarioComum, botaoCadastrarEstudante);
+        
 
         
         caixaConteiner.setStyle("-fx-background-color: red;");

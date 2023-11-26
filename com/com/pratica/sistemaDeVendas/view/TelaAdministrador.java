@@ -2,25 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
-import com.pratica.sistemadevendas.controller.UsuarioController;
+import com.pratica.sistemaDeVendas.controller.UsuarioController;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -46,7 +38,7 @@ public class TelaAdministrador {
 
     private Aplicacao aplicacao;
 
-    public TelaAdministrador(Aplicacao aplicacao, UsuarioController usuarioController) {
+    public TelaAdministrador(Aplicacao aplicacao) {
         /*String bilheteria = "C:\\PraticaProjeto\\bilheteria.png";
         String engrenagem = "C:\\PraticaProjeto\\engrenagem.png";
         String pipoca = "C:\\PraticaProjeto\\pipoca.png";*/
@@ -91,7 +83,7 @@ public class TelaAdministrador {
     }
     
     public void sair() {
-        this.usuarioController.sair();
+        //this.usuarioController.sair();
         this.aplicacao.estagioAtual().close();
     }
 

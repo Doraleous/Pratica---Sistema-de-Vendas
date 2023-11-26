@@ -1,9 +1,15 @@
-package com.pratica.sistemadevendas.controller;
+package com.pratica.sistemaDeVendas.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.io.*;
-import com.pratica.sistemadevendas.model.Administrador;
-import com.pratica.sistemadevendas.model.Usuario;
+
+import com.pratica.sistemaDeVendas.model.Administrador;
+import com.pratica.sistemaDeVendas.model.Usuario;
 
 public class UsuarioController {
     private ArrayList<Usuario> usuarios;
@@ -48,7 +54,7 @@ public class UsuarioController {
     }
 
     public void salvaUsuarios() {
-        File listaDeUsuarios = new File(caminhoDoArquivo);
+        File listaDeUsuarios = new File(CAMINHO_DO_ARQUIVO_USUARIO);
 
         try ( ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(listaDeUsuarios, false))) {
             oos.writeObject(usuarios);
@@ -120,9 +126,6 @@ public class UsuarioController {
         }
     }
 
-    public ArrayList getUsuarios(){
-        System.out.println("entrando no getUsuarios");
-        return this.usuarios;
-    }
+    
 
 }
