@@ -53,21 +53,19 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    public boolean verificaSenha (String email, String senhaVerificar) throws SQLException{
+    public boolean verificaSenha(String email, String senhaVerificar) throws SQLException {
         String senhaRetornada;
-        String sql = "SELECT cinecap.usuario.senha from cinecap.usuario where cinecap.usuario.email = '(?)';";
-        try(Connection conexao = ConexãoBanco.conectar();
-            PreparedStatement statement = conexao.prepareStatement(sql);
-            ResultSet resultado = statement.executeQuery()){
-                
-                while(resultado.next()){
+        String sql = "SELECT cinecap.usuario.senha FROM cinecap.usuario WHERE cinecap.usuario.email = ?";
+        try (Connection conexao = ConexãoBanco.conectar();
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(1, email);
+            try (ResultSet resultado = statement.executeQuery()) {
+                while (resultado.next()) {
                     senhaRetornada = resultado.getString("senha");
                     return senhaVerificar.equals(senhaRetornada);
-                    
                 }
-                
-
-        }         
+            }
+        }
         return false;
     }
 
@@ -116,7 +114,7 @@ public class UsuarioDAO {
         String sql = "SELECT COUNT(*) FROM cinecap.usuario WHERE email = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setString(0, email);
+            statement.setString(1, email);
 
             try (ResultSet resultado = statement.executeQuery()) {
                 if (resultado.next()) {
@@ -132,18 +130,23 @@ public class UsuarioDAO {
     }
 
     public long buscarUsuario(String email) throws SQLException {
-        String sql = "SELECT cinecap.usuario.id FROM cinecap.usuario where email = ?";
+        String sql = "SELECT cinecap.usuario.id FROM cinecap.usuario WHERE email = ?";
         try (Connection conexao = ConexãoBanco.conectar();
-                PreparedStatement statement = conexao.prepareStatement(sql);) {
-            statement.setString(1, email);
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(0, email);
             try (ResultSet resultado = statement.executeQuery()) {
                 if (resultado.next()) {
                     long id = resultado.getLong(1);
                     return id;
+                } else {
+                    System.out.println("Nenhum resultado encontrado para o email: " + email);
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Adicione tratamento de exceção adequado conforme necessário
         }
-        return 0l;
+        return 0L;
     }
 
     public boolean deletarUsuario(String email) {
