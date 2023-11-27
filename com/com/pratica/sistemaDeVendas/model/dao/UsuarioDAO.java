@@ -59,7 +59,7 @@ public class UsuarioDAO {
         try(Connection conexao = ConexãoBanco.conectar();
             PreparedStatement statement = conexao.prepareStatement(sql);
             ResultSet resultado = statement.executeQuery()){
-                statement.setString(0, email);
+                
                 while(resultado.next()){
                     senhaRetornada = resultado.getString("senha");
                     return senhaVerificar.equals(senhaRetornada);
