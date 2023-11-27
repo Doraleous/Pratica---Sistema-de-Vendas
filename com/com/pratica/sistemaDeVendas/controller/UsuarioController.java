@@ -1,113 +1,88 @@
-package com.pratica.sistemaDeVendas.controller;
+package com.pratica.sistemadevendas.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.io.*;
-import java.util.List;
 
-import com.pratica.sistemaDeVendas.model.Administrador;
-import com.pratica.sistemaDeVendas.model.Usuario;
+import com.pratica.sistemadevendas.model.Administrador;
+import com.pratica.sistemadevendas.model.Usuario;
+import com.pratica.sistemadevendas.model.dao.UsuarioDAO;
+import com.pratica.sistemadevendas.view.Aplicacao;
 
 public class UsuarioController {
-    private ArrayList<Usuario> usuarios;
-    private final String CAMINHO_DO_ARQUIVO_USUARIO = System.getProperty("user.dir") +
-    File.separator +
-    "com" +
-    File.separator +
-    "com" +
-    File.separator +
-    "pratica" +
-    File.separator +
-    "sistemaDeVendas" +
-    File.separator +
-    "data"+
-    File.separator +
-    "usuarios.txt";
+    private UsuarioDAO usuarioDAO;
+    private Aplicacao aplicacao;
+    
+    public UsuarioController(Aplicacao aplicacao){
+        this.usuarioDAO = new UsuarioDAO();
+        this.aplicacao =  aplicacao;
 
-    public UsuarioController(){
-        System.out.println("entrando no UsuarioController");
-        usuarios = this.iniciaCadastro();
     }
+    /*)
+        && (this.aplicacao.getTelaLogin().campoLogin().contains("@"))
+        && (!this.aplicacao.getTelaLogin().equals(""))
+        && (this.usuarioDAO.usuarioExiste(email)) */
 
-    public void salvarUsuario() {
-        System.out.println("entrando no salvarUsuario");
-        File listaDeUsuarios = new File(CAMINHO_DO_ARQUIVO_USUARIO);
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream
-        (listaDeUsuarios, false))) {
-            oos.writeObject(usuarios);
-        } catch (IOException e){
-            e.printStackTrace();
+    public boolean Logar(String email, String senha) throws SQLException{
+        if((this.aplicacao.getTelaLogin().campoLogin().equals(""))){
+            this.aplicacao.getTelaLogin().getLabelStatusOperacao().setText("Campo Login Vazio");
+            return false;
+        }else if(!this.aplicacao.getTelaLogin().campoLogin().contains("@")){
+            this.aplicacao.getTelaLogin().getLabelStatusOperacao().setText("Login necessita ter @");
+            return false;
+
+        }else if(!this.aplicacao.getTelaLogin().campoLogin().contains(".")){
+            this.aplicacao.getTelaLogin().getLabelStatusOperacao().setText("Login necessita ter .");
+            return false;
+
+            
+        }else if(this.aplicacao.getTelaLogin().campoSenha().equals("")){
+            this.aplicacao.getTelaLogin().getLabelStatusOperacao().setText("Camp Senha Vazio");
+            return false;
+
+        }else if((!this.usuarioDAO.usuarioExiste(email))){
+            this.aplicacao.getTelaLogin().getLabelStatusOperacao().setText("Usuário não existe");
+            return false;
+
+        }else if(!this.usuarioDAO.verificaSenha(email, senha)){
+            this.aplicacao.getTelaLogin().getLabelStatusOperacao().setText("Credenciais não conferem");
+            return false;
+            
+        }else{
+            return true;
+
         }
+        
+
     }
 
-    private ArrayList<Usuario> iniciaCadastro() {
-        System.out.println("entrando no iniciaCadastro");
-        File listaUsuarios = new File(CAMINHO_DO_ARQUIVO_USUARIO);
-        if(listaUsuarios.exists()){
-            try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(listaUsuarios))) {
-                this.usuarios = (ArrayList<Usuario>) ois.readObject();
-                return usuarios;
-            } catch (IOException | ClassNotFoundException e){
-                e.printStackTrace();
-            }
+    public void cadastraAdministradorController(String CPF, String senha, String nome, String email) throws SQLException{
+        if(this.usuarioDAO.usuarioExiste(email) == true){
+            this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao().setText("Usuário já existe");
+
+        }else{
+            Usuario novoUsuario = new Usuario(CPF, senha, nome, email);
+            this.usuarioDAO.cadastrarUsuario(novoUsuario);
+            this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao().setText("Usuário cadastrado");
         }
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-        Administrador root = new Administrador("01986", "admin", "jairo", "admin@cinecap.com");
-        usuarios.add(root);
-        this.salvarUsuario();
-        for(Usuario usuario : usuarios){
-            System.out.println("nome: "+ usuario.getNome());
-        }
-        return usuarios;
+
+
     }
 
-    public boolean login(String email, String senha){
-        System.out.println("entrando no login");
-        Usuario usuario = buscarUsuario(email);
-        return usuario != null && senha.equals(usuario.getSenha());
-    }
-    public Usuario buscarUsuario(String email) {
-        System.out.println("entrando no buscarUsuario");
-        System.out.println(usuarios.size());
-        for (Usuario usuario : usuarios) {
-            System.out.println("user:" + usuario);
-            if(usuario.getEmail().equals(email)){
-                return usuario;
-            }
-        }
-        return null;
-    }
+    
 
-    /*public List<Usuario> listarUsuarios() {
-        System.out.println("entrando no listarUsuarios");
-        List<Usuario> usuarios = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(CAMINHO_DO_ARQUIVO_USUARIO))) {
-            Object obj;
-            while ((obj = ois.readObject()) != null) {
-                if (obj instanceof Usuario) {
-                    usuarios.add((Usuario) obj);
-                }
-            }
-        } catch (EOFException e) {
-            // Alcançou o final do arquivo
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return usuarios;
-    }*/
+    
 
-    public void sair(){
-        File listaDeUsuarios = new File(CAMINHO_DO_ARQUIVO_USUARIO);
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream
-        (listaDeUsuarios, false))) {
-            oos.writeObject(usuarios);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
+   
 
-    public ArrayList getUsuarios(){
-        System.out.println("entrando no getUsuarios");
-        return this.usuarios;
-    }
+
+    
+    
+    
 
 }

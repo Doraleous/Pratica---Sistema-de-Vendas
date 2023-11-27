@@ -2,21 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemaDeVendas.view;
+package com.pratica.sistemadevendas.view;
 
-import com.pratica.sistemaDeVendas.controller.UsuarioController;
-import com.pratica.sistemaDeVendas.model.Usuario;
-import java.io.IOException;
-import javafx.application.Application;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
+import java.sql.SQLException;
+
+import com.pratica.sistemadevendas.controller.UsuarioController;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -30,9 +27,14 @@ public class TelaLogin {
     private Label loginLabel;
     private Label senhaLabel;
     private Label labelTitulo;
+    private Label labelStatusOperacao;
 
     private Button loginBotao;
     private Button sairBotao;
+
+    private VBox telaLogin;
+
+    private Scene cenaLogin;
 
     
 
@@ -40,66 +42,91 @@ public class TelaLogin {
 
     private UsuarioController usuarioController;
 
-    public TelaLogin(Aplicacao aplicacao , UsuarioController usuarioController) {
+    public TelaLogin(Aplicacao aplicacao) {
         this.loginTextField = new TextField();
-        loginTextField.setPrefWidth(400);
+        loginTextField.setPrefWidth(300);
+        loginTextField.setMaxWidth(400);
+        loginTextField.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
 
         this.senhaTextField = new TextField();
-        senhaTextField.setPrefWidth(400);
+        senhaTextField.setPrefWidth(300);
+        senhaTextField.setMaxWidth(400);
+        senhaTextField.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
+
         this.labelTitulo = new Label("CineCap");
-        labelTitulo.setStyle("-fx-text-fill: white; -fx-font-size: 24px;");
+        labelTitulo.setStyle("-fx-text-fill: white; -fx-font-size: 42px;");
+
+        this.labelStatusOperacao = new Label("");
+        labelStatusOperacao.setStyle("-fx-text-fill: yellow; -fx-font-size: 20px;");
 
         this.loginLabel = new Label("Email:");
+        loginLabel.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
         this.senhaLabel = new Label("Senha: ");
+        senhaLabel.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
 
         this.loginBotao = new Button("Login");
         this.sairBotao = new Button("Sair");
+
+        telaLogin = new VBox();
+        telaLogin.setSpacing(50);
+        telaLogin.setStyle("-fx-background-color: red;");
+        
 
         
 
         this.aplicacao = aplicacao;
 
-        //this.usuarioController = new UsuarioController();
+        
 
-        loginBotao.setOnAction(e -> acaoDeLogar());
+        loginBotao.setOnAction(e -> {
+            try {
+                acaoDeLogar();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         sairBotao.setOnAction(e -> sair());
+
+        telaLogin.getChildren().addAll(labelTitulo, loginLabel, loginTextField, senhaLabel, senhaTextField,
+        loginBotao, sairBotao, labelStatusOperacao);
+        telaLogin.setAlignment(Pos.CENTER);
+
+        cenaLogin = new Scene(telaLogin);
     }
 
     public void sair() {
-        this.usuarioController.sair();
+        //this.usuarioController.sair();
         this.aplicacao.estagioAtual().close();
     }
 
-    public void acaoDeLogar() {
+    public String campoSenha(){
+        return this.senhaTextField.getText();
+    }
 
-        if (this.aplicacao.getUsuarioController().login(loginTextField.getText(), senhaTextField.getText()) == true) {
-            if (this.aplicacao.getUsuarioController().buscarUsuario(loginTextField.getText()) instanceof Usuario) {
-                //TelaAdministrador telaADM = new TelaAdministrador(aplicacao);
-                //Scene cenaADM = telaADM.telaMenuAdministrador();
-                this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
-            }
-        } else {
-            System.out.println("A senha tá errada");
+    public String campoLogin(){
+        return this.loginTextField.getText();
+    }
+
+    public Label getLabelStatusOperacao(){
+        return this.labelStatusOperacao;
+    }
+
+    public void acaoDeLogar() throws SQLException {
+        String email = this.campoLogin();
+        String senha = this.campoSenha();
+        if(this.aplicacao.getUsuarioController().Logar(email, senha)){
+            this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
+
         }
+
+        
+        
 
     }
 
     public Scene telaLogin() {
-        GridPane paneLogin = new GridPane();
-        paneLogin.setPadding(new Insets(11.5, 12.5, 13.5, 14.5));
-        paneLogin.setHgap(5.5);
-        paneLogin.setVgap(5.5);
-        paneLogin.setStyle("-fx-background-color: red;");
-
-        paneLogin.add(labelTitulo, 0, 0);
-        paneLogin.add(loginLabel, 0, 1);
-        paneLogin.add(loginTextField, 1, 1);
-        paneLogin.add(senhaLabel, 0, 2);
-        paneLogin.add(senhaTextField, 1, 2);
-        paneLogin.add(loginBotao, 0, 3);
-        paneLogin.add(sairBotao, 0, 4);
-
-        Scene cenaLogin = new Scene(paneLogin, 600, 350);
+        
         return cenaLogin;
 
     }

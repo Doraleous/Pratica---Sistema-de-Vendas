@@ -1,0 +1,26 @@
+body{
+    background-color: #ff4040;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section a{
+    margin-top: 1rem;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    padding: 5px 10px 5px 10px;
+    background-color: white;
+    border-radius: 15px;
+}
+
+nav h1{
+    color: white;
+}

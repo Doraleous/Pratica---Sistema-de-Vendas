@@ -2,22 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemaDeVendas.view;
+package com.pratica.sistemadevendas.view;
 
-import com.pratica.sistemaDeVendas.controller.UsuarioController;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import com.pratica.sistemadevendas.controller.UsuarioController;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -31,11 +26,19 @@ public class TelaAdministrador {
     private Button botaoLoja;
     private Button botaoUsuarios;
     private Button botaoSair;
+    private HBox caixaDeBotoes = new HBox(40);
+    private HBox caixaSair = new HBox();
+    private VBox paneADM = new VBox();
+    private Scene cenaADM;
+
+
+
     private UsuarioController usuarioController;
+
 
     private Aplicacao aplicacao;
 
-    public TelaAdministrador(Aplicacao aplicacao, UsuarioController usuarioController) {
+    public TelaAdministrador(Aplicacao aplicacao) {
         /*String bilheteria = "C:\\PraticaProjeto\\bilheteria.png";
         String engrenagem = "C:\\PraticaProjeto\\engrenagem.png";
         String pipoca = "C:\\PraticaProjeto\\pipoca.png";*/
@@ -44,48 +47,62 @@ public class TelaAdministrador {
         this.botaoUsuarios = new Button("Usuarios");
         this.botaoSair = new Button("Sair");
         this.aplicacao = aplicacao;
-        this.usuarioController = usuarioController;
 
-        botaoUsuarios.setOnAction(e -> {
-            System.out.println("clicado");
-            irParaTelaDeUsuariosCRUD();
-        });
+        botaoUsuarios.setOnAction(e ->          
+            irParaTelaDeUsuariosCRUD()
+        );
+
+        botaoLoja.setOnAction(e -> irParaTelaDeLanchoneteCLUD());
+
+        botaoFilmes.setOnAction(e -> irParaFilmeCLUD());
         
         botaoSair.setOnAction(e -> sair());
+
+        caixaDeBotoes.getChildren().addAll(botaoFilmes, botaoLoja, botaoUsuarios);
+        caixaSair.getChildren().addAll(botaoSair);
+
+        paneADM.getChildren().addAll(caixaDeBotoes, caixaSair);
+        paneADM.setStyle("-fx-background-color: red;");
+        cenaADM = new Scene(paneADM, 600, 220);
         
 
+    }
+
+    public void irParaFilmeCLUD(){
+        this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesFilme().telaOperacoesFilme());
     }
 
     public void irParaTelaDeUsuariosCRUD(){
-        System.out.println("meu corpo");
-        //TelaAdministrador telaADM = new TelaAdministrador(this.aplicacao);
-        //Scene cenaUsuarioCRUD = this.telaOperaCoesUsuario();
+        
         this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesUsuario().telaOperaCoesUsuario());
 
     }
+
+    public void irParaTelaDeLanchoneteCLUD(){
+        this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesLanchonete().telaOperacoesLanchonete());
+    }
     
     public void sair() {
-        this.usuarioController.sair();
+        //this.usuarioController.sair();
         this.aplicacao.estagioAtual().close();
     }
 
     public Scene telaMenuAdministrador() {
 
-        HBox caixaDeBotoes = new HBox(40);
         
-        caixaDeBotoes.getChildren().addAll(botaoFilmes, botaoLoja, botaoUsuarios);
+        
+        
         //caixaDeBotoes.setAlignment(Pos.CENTER);
 
-        HBox caixaSair = new HBox();
-        caixaSair.getChildren().addAll(botaoSair);
+        
+        
         //caixaSair.setAlignment(Pos.BOTTOM_LEFT);
         //alteracao
 
-        VBox paneADM = new VBox();
-        paneADM.getChildren().addAll(caixaDeBotoes, caixaSair);
-        paneADM.setStyle("-fx-background-color: red;");
+        
+        
 
-        Scene cenaADM = new Scene(paneADM, 600, 220);
+        
         return cenaADM;
     }
     
@@ -110,7 +127,10 @@ public class TelaAdministrador {
 
     
     
+    
+    
 
+    
     
 
 }

@@ -1,13 +1,15 @@
 package com.pratica.sistemadevendas.view;
 
-import java.sql.SQLException;
+import java.io.IOException;
 
 import com.pratica.sistemadevendas.controller.UsuarioController;
 import com.pratica.sistemadevendas.model.Administrador;
+import com.pratica.sistemadevendas.model.Usuario;
 import com.pratica.sistemadevendas.model.UsuarioComum;
 import com.pratica.sistemadevendas.model.UsuarioCritico;
 import com.pratica.sistemadevendas.model.UsuarioEstudante;
 
+import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,22 +18,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.Stage;
 
-public class TelaOperacoesUsuario {
-
-    
-
+public class TestesJanelas extends Application {
     
     private Label labelCPF = new Label("CPF");
     private Label labelSenha = new Label("Senha");
     private Label labelNome = new Label("Nome");
     private Label labelEmail = new Label("Email");
+    private Label labelStatusOperacao = new Label("Status");
     private Button botaoCadastrarADM = new Button("Cadastrar Admin");
     private Button botaoCadastrarCritico = new Button("Cadastrar Crítico");
     private Button botaoCadastrarUsuarioComum = new Button("Cadastrar Cliente");
     private Button botaoCadastrarEstudante = new Button("Cadastrar Estudante");
-    private Button botaoSair = new Button ("Voltar");
+    private Button botaoSair = new Button ("Sair");
     private Button botaoDeletar = new Button("Deletar");
     private Button botaoBuscar = new Button("Buscar");
     private TextField textFieldCPF = new TextField();
@@ -41,18 +40,11 @@ public class TelaOperacoesUsuario {
     private VBox caixaTextFields = new VBox(10);
     private HBox caixaConteiner = new HBox();
     private Stage estagioAtual = new Stage();
-    private Label labelStatusOperacao = new Label("Status");
     private VBox caixaLabelsBotoes = new VBox(10);
-    private Scene cenaOperacoesUsuario;
 
-    private Aplicacao aplicacao;
-
-    public TelaOperacoesUsuario(Aplicacao aplicacao){
-        this.aplicacao = aplicacao;
-
+    public void start(Stage estagioPrimario) throws IOException{
         
 
-        
         
         labelCPF.setPrefHeight(50);
         labelCPF.setPrefWidth(100);
@@ -63,7 +55,6 @@ public class TelaOperacoesUsuario {
         labelNome.setPrefHeight(50);
         labelNome.setPrefWidth(100);
         
-        
         labelEmail.setPrefHeight(50);
         labelEmail.setPrefWidth(100);
 
@@ -73,19 +64,13 @@ public class TelaOperacoesUsuario {
         botaoSair.setPrefWidth(100);
 
         
-        botaoSair.setOnAction(e -> sair());
-
-        
-        
-        botaoSair.setPrefWidth(100);
-
-        
-        botaoSair.setOnAction(e -> sair());
+       
 
         
         botaoDeletar.setPrefWidth(100);
         
         botaoBuscar.setPrefWidth(100);
+
         labelStatusOperacao.setPrefWidth(100);
 
         caixaLabelsBotoes.setPadding(new Insets(10.5, 2, 10.5, 2));
@@ -94,7 +79,6 @@ public class TelaOperacoesUsuario {
         caixaLabelsBotoes.getChildren().addAll(labelCPF, labelSenha, 
         labelNome, labelEmail, botaoDeletar, botaoBuscar, botaoSair, labelStatusOperacao);
        
-        
         
 
         
@@ -110,16 +94,8 @@ public class TelaOperacoesUsuario {
         textFieldEmail.setPrefHeight(50);
         textFieldEmail.setPrefWidth(300);
 
-       
+        
         botaoCadastrarADM.setPrefWidth(200);
-        botaoCadastrarADM.setOnAction(e -> {
-            try {
-                cadastraADMView();
-            } catch (SQLException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-        });
         
         botaoCadastrarCritico.setPrefWidth(200);
        
@@ -133,44 +109,21 @@ public class TelaOperacoesUsuario {
         botaoCadastrarADM, botaoCadastrarCritico, botaoCadastrarUsuarioComum, botaoCadastrarEstudante);
 
         
-        
-
-        
         caixaConteiner.setStyle("-fx-background-color: red;");
 
-        caixaConteiner.getChildren().addAll(caixaLabelsBotoes, caixaTextFields);
+        caixaConteiner.getChildren().addAll(caixaLabelsBotoes, caixaTextFields);     
 
-        cenaOperacoesUsuario = new Scene(caixaConteiner);
 
-    }
-
-    public Scene telaOperaCoesUsuario(){     
-        
-        
-
-        return cenaOperacoesUsuario;
-        
-    }
-
-    public Label getLabelStatusOperacao(){
-        return this.labelStatusOperacao;
-    }
-
-    public void cadastraADMView() throws SQLException{
-        String CPF = this.textFieldCPF.getText();
-        String senha = this.textFieldSenha.getText();
-        String nome = this.textFieldNome.getText();
-        String email = this.textFieldEmail.getText();
-
-        this.aplicacao.getUsuarioController().cadastraAdministradorController(CPF, senha, nome, email);
+        Scene operacoesUsuarioTeste = new Scene(caixaConteiner);
+        estagioAtual.setScene(operacoesUsuarioTeste);
+        estagioAtual.show();
 
     }
 
     
 
-
-    public void sair(){
-        this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
+    public static void main(String[] args) {
+        Application.launch(args);
 
     }
     
