@@ -36,8 +36,6 @@ public class TelaLogin {
 
     private Scene cenaLogin;
 
-    
-
     private Aplicacao aplicacao;
 
     private UsuarioController usuarioController;
@@ -70,13 +68,8 @@ public class TelaLogin {
         telaLogin = new VBox();
         telaLogin.setSpacing(50);
         telaLogin.setStyle("-fx-background-color: red;");
-        
-
-        
 
         this.aplicacao = aplicacao;
-
-        
 
         loginBotao.setOnAction(e -> {
             try {
@@ -89,44 +82,63 @@ public class TelaLogin {
         sairBotao.setOnAction(e -> sair());
 
         telaLogin.getChildren().addAll(labelTitulo, loginLabel, loginTextField, senhaLabel, senhaTextField,
-        loginBotao, sairBotao, labelStatusOperacao);
+                loginBotao, sairBotao, labelStatusOperacao);
         telaLogin.setAlignment(Pos.CENTER);
 
         cenaLogin = new Scene(telaLogin);
     }
 
     public void sair() {
-        //this.usuarioController.sair();
+        // this.usuarioController.sair();
         this.aplicacao.estagioAtual().close();
     }
 
-    public String campoSenha(){
+    public String campoSenha() {
         return this.senhaTextField.getText();
     }
 
-    public String campoLogin(){
+    public String campoLogin() {
         return this.loginTextField.getText();
     }
 
-    public Label getLabelStatusOperacao(){
+    public Label getLabelStatusOperacao() {
         return this.labelStatusOperacao;
     }
 
     public void acaoDeLogar() throws SQLException {
         String email = this.campoLogin();
         String senha = this.campoSenha();
-        if(this.aplicacao.getUsuarioController().Logar(email, senha)){
-            this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
+        String tipoDeUsuario = this.aplicacao.getUsuarioController().Logar(email, senha);
 
+        switch (tipoDeUsuario) {
+            case "Administrador":
+                this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
+                break;
+
+            case "Usuário Comum":
+                break;
+
+            case "Usuário Crítico":
+                break;
+
+            case "Usuário Estudante":
+                break;
+
+            default:
+                break;
         }
-
-        
-        
+        /*
+         * if(this.aplicacao.getUsuarioController().Logar(email, senha)){
+         * this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().
+         * telaMenuAdministrador());
+         * 
+         * }
+         */
 
     }
 
     public Scene telaLogin() {
-        
+
         return cenaLogin;
 
     }

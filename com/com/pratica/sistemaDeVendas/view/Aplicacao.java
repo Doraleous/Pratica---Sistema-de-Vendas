@@ -23,6 +23,7 @@ public class Aplicacao extends Application {
     private TelaOperacoesFilmesCLUD telaOperacoesFilmesCLUD;
     private TelaOperacoesSala telaOperacoesSala;
     private TelaOperacoesSessao telaOperacoeSessao;
+    private TelaUsuario telaUsuario;
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -78,16 +79,20 @@ public class Aplicacao extends Application {
         return this.telaOperacoesFilme;
     }
 
-    public TelaOperacoesFilmesCLUD getTelaOperacoesFilmesCLUD(){
+    public TelaOperacoesFilmesCLUD getTelaOperacoesFilmesCLUD() {
         return this.telaOperacoesFilmesCLUD;
     }
 
-    public TelaOperacoesSala gettTelaOperacoesSala(){
+    public TelaOperacoesSala gettTelaOperacoesSala() {
         return this.telaOperacoesSala;
     }
 
-    public TelaOperacoesSessao getTelaOperacoesSessao(){
+    public TelaOperacoesSessao getTelaOperacoesSessao() {
         return this.telaOperacoeSessao;
+    }
+
+    public TelaUsuario getTelaUsuario() {
+        return this.telaUsuario;
     }
 
     public UsuarioController getUsuarioController() {

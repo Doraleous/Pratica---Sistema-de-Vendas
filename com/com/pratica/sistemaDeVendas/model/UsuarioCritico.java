@@ -5,15 +5,16 @@
 package com.pratica.sistemadevendas.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
  * @author emart
  */
 public class UsuarioCritico extends UsuarioComum implements Serializable {
-    
-    public UsuarioCritico(String CPF, String senha, String nome, String email) {
-        super(CPF, senha, nome, email);
+
+    public UsuarioCritico(String CPF, String senha, String nome, String email, Date dataDeNascimento) {
+        super(CPF, senha, nome, email, dataDeNascimento);
     }
-    
+
 }
