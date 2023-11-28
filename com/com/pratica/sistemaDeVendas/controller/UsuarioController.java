@@ -42,7 +42,7 @@ public class UsuarioController {
 
             
         }else if(this.aplicacao.getTelaLogin().campoSenha().equals("")){
-            this.aplicacao.getTelaLogin().getLabelStatusOperacao().setText("Camp Senha Vazio");
+            this.aplicacao.getTelaLogin().getLabelStatusOperacao().setText("Campo Senha Vazio");
             return false;
 
         }else if((!this.usuarioDAO.usuarioExiste(email))){

@@ -1,30 +1,38 @@
 package com.pratica.sistemadevendas.view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class TelaOperacoesLanchonete {
-    private Label labelNomeLanche = new Label ("Nome");
-    private TextField textFieldNomeLanche = new TextField("");
-    private Button botaoCadastraLanche = new Button("Cadastrar Produto");
-    private Button botaoDeletaLanche = new Button("Deletar Produto");
-    private Button botaoListarLanche = new Button("Listar Produto");
-    private Button botaoAtualizarLanche = new Button("Atualizar Produto");
-    private Button botaoVoltar = new Button("Voltar");
+    
+    private Label nomeProdutoLabel;
+    private TextField nomeProdutoTextField;
+    private Label valorProdutoLabel;
+    private TextField valorProdutoTextField;
+    private HBox caixaNomeEValorProdutos;
 
-    private Label labelPrecoLanche = new Label ("Preço");
-    private TextField textFieldPrecoLanche = new TextField();
+    private Button cadastrarProdutos;
+    private Button deletarProdutos;
+    private HBox caixaCadastrarDeletar;
 
-    private Label labelStatusOperacao = new Label("Status");
+    private Button listarProdutos;
+    private Button atualizarProdutos;
+    private HBox caixaListarAtualizar;
 
-    private HBox caixaConteiner = new HBox();
-    private VBox caixaLabelsBotoes = new VBox();
-    private VBox caixaTextFields = new VBox();
+    private Label statusOperacaoLabel;
+    private HBox caixaStatusOperacao;
+
+    private Button botaoVoltar;
+    private HBox caixaBotaoVoltar;
+
+    private VBox caixaConteiner;
 
     private Scene telaOperacoesLanchonete;
 
@@ -33,40 +41,55 @@ public class TelaOperacoesLanchonete {
     public TelaOperacoesLanchonete(Aplicacao aplicacao){
         this.aplicacao = aplicacao;
 
-        labelNomeLanche.setPrefHeight(50);
-        labelNomeLanche.setPrefWidth(100);
+        nomeProdutoLabel = new Label("Produto:");
+        nomeProdutoTextField = new TextField();
+        nomeProdutoTextField.setPrefWidth(200);
+        valorProdutoLabel = new Label("Preço:");
+        valorProdutoTextField = new TextField();
+        valorProdutoTextField.setPrefWidth(200);
+        caixaNomeEValorProdutos = new HBox();
+        caixaNomeEValorProdutos.setSpacing(6);
+        caixaNomeEValorProdutos.setAlignment(Pos.CENTER);
+        caixaNomeEValorProdutos.getChildren().addAll(nomeProdutoLabel, nomeProdutoTextField, valorProdutoLabel,
+        valorProdutoTextField);
 
-        labelPrecoLanche.setPrefHeight(50);
-        labelPrecoLanche.setPrefWidth(100);
+        cadastrarProdutos = new Button("Cadastrar Produto");
+        cadastrarProdutos.setPrefWidth(200);
+        deletarProdutos = new Button("Deletar Produto");
+        deletarProdutos.setPrefWidth(200);
+        caixaCadastrarDeletar = new HBox();
+        caixaCadastrarDeletar.setSpacing(6);
+        caixaCadastrarDeletar.setAlignment(Pos.CENTER);
+        caixaCadastrarDeletar.getChildren().addAll(cadastrarProdutos, deletarProdutos);
 
-        labelStatusOperacao.setPrefHeight(50);
-        labelStatusOperacao.setPrefWidth(100);
+        listarProdutos = new Button("Listar Produto");
+        listarProdutos.setPrefWidth(200);
+        atualizarProdutos = new Button("Atualizar Produto");
+        atualizarProdutos.setPrefWidth(200);
+        caixaListarAtualizar = new HBox();
+        caixaListarAtualizar.setSpacing(6);
+        caixaListarAtualizar.setAlignment(Pos.CENTER);
+        caixaListarAtualizar.getChildren().addAll(listarProdutos, atualizarProdutos);
 
-        botaoVoltar.setPrefWidth(100);
+        statusOperacaoLabel = new Label("Status");
+        statusOperacaoLabel.setStyle("-fx-text-fill: yellow; -fx-font-size: 40px;");
+        caixaStatusOperacao = new HBox();
+        caixaStatusOperacao.getChildren().addAll(statusOperacaoLabel);
+
+        botaoVoltar = new Button("Voltar");
         botaoVoltar.setOnAction(e -> voltar());
+        botaoVoltar.setPrefWidth(100);
+        caixaBotaoVoltar = new HBox();
+        caixaBotaoVoltar.setAlignment(Pos.CENTER);
+        caixaBotaoVoltar.getChildren().addAll(botaoVoltar);
 
-        caixaLabelsBotoes.getChildren().addAll(labelNomeLanche, labelPrecoLanche, botaoVoltar, labelStatusOperacao);
-
-        textFieldNomeLanche.setPrefWidth(300);
-        textFieldNomeLanche.setPrefHeight(50);
-
-        textFieldPrecoLanche.setPrefWidth(300);
-        textFieldPrecoLanche.setPrefHeight(50);
-
-        botaoCadastraLanche.setPrefWidth(200);
-        botaoListarLanche.setPrefWidth(200);        
-        botaoDeletaLanche.setPrefWidth(200);
-        botaoListarLanche.setPrefWidth(200);
-        
-        caixaTextFields.setPadding(new Insets(10.5, 2, 10.5, 2));
-        caixaTextFields.getChildren().addAll(textFieldNomeLanche, textFieldPrecoLanche, botaoCadastraLanche,
-        botaoListarLanche, botaoDeletaLanche, botaoAtualizarLanche);
-
-
+        caixaConteiner = new VBox();
         caixaConteiner.setStyle("-fx-background-color: red;");
-        caixaConteiner.setSpacing(10);
-        caixaConteiner.getChildren().addAll(caixaLabelsBotoes, caixaTextFields);
-
+        caixaConteiner.setSpacing(100);
+        caixaConteiner.setAlignment(Pos.CENTER);
+        caixaConteiner.getChildren().addAll(caixaNomeEValorProdutos, caixaCadastrarDeletar, caixaListarAtualizar,
+        caixaStatusOperacao, caixaBotaoVoltar);
+                
         telaOperacoesLanchonete = new Scene(caixaConteiner);
     }
 

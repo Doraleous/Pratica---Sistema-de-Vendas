@@ -20,6 +20,9 @@ public class Aplicacao extends Application {
     private TelaOperacoesUsuario telaOperacoesUsuario2;
     private UsuarioController usuarioController;
     private TelaOperacoesLanchonete telaOperacoesLanchonete;
+    private TelaOperacoesFilmesCLUD telaOperacoesFilmesCLUD;
+    private TelaOperacoesSala telaOperacoesSala;
+    private TelaOperacoesSessao telaOperacoeSessao;
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -35,14 +38,17 @@ public class Aplicacao extends Application {
         estagioAtual = new Stage();
         estagioAtual.initStyle(StageStyle.UNDECORATED);
         estagioAtual.setTitle("Cinecap - Logar Usuário");
-        estagioAtual.setWidth(700);
-        estagioAtual.setHeight(700);
+        estagioAtual.setWidth(800);
+        estagioAtual.setHeight(800);
 
         telaAdministrador = new TelaAdministrador(this);
         telaLogin = new TelaLogin(this);
         telaOperacoesUsuario2 = new TelaOperacoesUsuario(this);
         telaOperacoesLanchonete = new TelaOperacoesLanchonete(this);
         telaOperacoesFilme = new TelaOperacoesFilme(this);
+        telaOperacoesFilmesCLUD = new TelaOperacoesFilmesCLUD(this);
+        telaOperacoesSala = new TelaOperacoesSala(this);
+        telaOperacoeSessao = new TelaOperacoesSessao(this);
 
         usuarioController = new UsuarioController(this);
 
@@ -70,6 +76,18 @@ public class Aplicacao extends Application {
 
     public TelaOperacoesFilme getTelaOperacoesFilme() {
         return this.telaOperacoesFilme;
+    }
+
+    public TelaOperacoesFilmesCLUD getTelaOperacoesFilmesCLUD(){
+        return this.telaOperacoesFilmesCLUD;
+    }
+
+    public TelaOperacoesSala gettTelaOperacoesSala(){
+        return this.telaOperacoesSala;
+    }
+
+    public TelaOperacoesSessao getTelaOperacoesSessao(){
+        return this.telaOperacoeSessao;
     }
 
     public UsuarioController getUsuarioController() {
