@@ -9,7 +9,7 @@
             "name": "Aplicacao",
             "request": "launch",
             "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",
-            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
         },
         {
             "type": "java",

@@ -28,6 +28,7 @@ public class UsuarioComumDAO {
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setLong(1, idNovoUsuario);
+            statement.execute();
             return "Usuario Comum Cadastrado com Sucesso.";
         } catch (SQLException e) {
             return ("Erro ao  cadastrar Usuário Comum.");

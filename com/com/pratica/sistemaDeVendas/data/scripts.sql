@@ -124,3 +124,30 @@ ALTER TABLE cinecap.filme
   
 ALTER TABLE cinecap.filme
   ALTER COLUMN notaMedia SET STATISTICS 0;
+
+-- atualização dia 29/11 Diego
+CREATE TABLE cinecap.notas_filme (
+  id BIGSERIAL NOT NULL,
+  id_fillme BIGINT NOT NULL,
+  nota NUMERIC(10,2) NOT NULL,
+  PRIMARY KEY(id)
+) ;
+
+ALTER TABLE cinecap.notas_filme
+  ALTER COLUMN id SET STATISTICS 0;
+
+ALTER TABLE cinecap.notas_filme
+  ALTER COLUMN id_fillme SET STATISTICS 0;
+
+ALTER TABLE cinecap.notas_filme
+  ALTER COLUMN nota SET STATISTICS 0;
+
+ALTER TABLE cinecap.notas_filme
+  ADD CONSTRAINT notas_filme_fk FOREIGN KEY (id_fillme)
+    REFERENCES cinecap.filme(id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    NOT DEFERRABLE;
+
+ALTER TABLE cinecap.filme
+  RENAME COLUMN notamedia TO nota_media;
