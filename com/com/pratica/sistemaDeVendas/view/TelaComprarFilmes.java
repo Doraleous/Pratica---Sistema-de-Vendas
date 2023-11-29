@@ -8,9 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-public class TelaComprarFilmes extends Application {
+
+public class TelaComprarFilmes {
 
     private GridPane caixaFilmesEBotoesComprar;
 
@@ -23,12 +23,14 @@ public class TelaComprarFilmes extends Application {
 
     public Aplicacao aplicacao;
 
-    public TelaComprarFilmes() {
+    public TelaComprarFilmes(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
 
         int linha, colunaFilme = 0, colunaBotaoComprar = 1;
 
         caixaFilmesEBotoesComprar = new GridPane();
+        caixaFilmesEBotoesComprar.setHgap(60);
+        caixaFilmesEBotoesComprar.setVgap(20);
 
         for (linha = 0; linha < 5; linha++) {
             Label labelNomeFilme = new Label("Pornôzão do Diegão" + linha);
@@ -50,6 +52,8 @@ public class TelaComprarFilmes extends Application {
         caixaConteiner = new VBox();
         caixaConteiner.getChildren().addAll(caixaFilmesEBotoesComprar, caixaBotaoVoltar);
         caixaConteiner.setAlignment(Pos.CENTER);
+        caixaConteiner.setStyle("-fx-background-color: red;");
+
 
         telaComprarFilmes = new Scene(caixaConteiner);
 
@@ -59,18 +63,7 @@ public class TelaComprarFilmes extends Application {
         return this.telaComprarFilmes;
     }
 
-    public void start(Stage estagio) {
-        estagio = new Stage();
-        estagio.setWidth(800);
-        estagio.setHeight(800);
+    
 
-        estagio.setScene(this.telaComprarFilmes());
-        estagio.show();
-    }
-
-    public static void main(String[] args) {
-        Application.launch(args);
-
-    }
-
+    
 }

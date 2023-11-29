@@ -26,6 +26,7 @@ public class TelaUsuario {
 
         botaoFilmes = new Button("Filmes");
         botaoFilmes.setPrefWidth(300);
+        botaoFilmes.setOnAction(e -> irParaTelaCompraFilmes());
         botaoLoja = new Button("Loja");
         botaoLoja.setPrefWidth(300);
         caixaFilmesLoja = new HBox();
@@ -47,12 +48,16 @@ public class TelaUsuario {
         telaUsuario = new Scene(caixaConteiner);
     }
 
-    public Scene telaOperacoesSala() {
+    public Scene telaUsuario() {
         return this.telaUsuario;
 
     }
 
     public void sair() {
         this.aplicacao.estagioAtual().close();
+    }
+
+    public void irParaTelaCompraFilmes(){
+        this.aplicacao.mudaCena(this.aplicacao.getTelaComprarFilmes().telaComprarFilmes());
     }
 }

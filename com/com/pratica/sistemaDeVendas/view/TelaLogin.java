@@ -116,6 +116,7 @@ public class TelaLogin {
                 break;
 
             case "Usuário Comum":
+                this.aplicacao.mudaCena(this.aplicacao.getTelaUsuario().telaUsuario());
                 break;
 
             case "Usuário Crítico":
@@ -127,13 +128,7 @@ public class TelaLogin {
             default:
                 break;
         }
-        /*
-         * if(this.aplicacao.getUsuarioController().Logar(email, senha)){
-         * this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().
-         * telaMenuAdministrador());
-         * 
-         * }
-         */
+        
 
     }
 

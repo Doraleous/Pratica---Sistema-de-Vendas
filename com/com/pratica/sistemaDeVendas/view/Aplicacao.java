@@ -24,6 +24,8 @@ public class Aplicacao extends Application {
     private TelaOperacoesSala telaOperacoesSala;
     private TelaOperacoesSessao telaOperacoeSessao;
     private TelaUsuario telaUsuario;
+    private TelaComprarFilmes telaComprarFilmes;
+    
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -50,6 +52,8 @@ public class Aplicacao extends Application {
         telaOperacoesFilmesCLUD = new TelaOperacoesFilmesCLUD(this);
         telaOperacoesSala = new TelaOperacoesSala(this);
         telaOperacoeSessao = new TelaOperacoesSessao(this);
+        telaUsuario = new TelaUsuario(this);
+        telaComprarFilmes = new TelaComprarFilmes(this);
 
         usuarioController = new UsuarioController(this);
 
@@ -93,6 +97,10 @@ public class Aplicacao extends Application {
 
     public TelaUsuario getTelaUsuario() {
         return this.telaUsuario;
+    }
+
+    public TelaComprarFilmes getTelaComprarFilmes(){
+        return this.telaComprarFilmes;
     }
 
     public UsuarioController getUsuarioController() {
