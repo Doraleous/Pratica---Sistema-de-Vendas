@@ -23,7 +23,7 @@ public class TelaComprarFilmes extends Application {
 
     public Aplicacao aplicacao;
 
-    public TelaComprarFilmes(Aplicacao aplicacao) {
+    public TelaComprarFilmes() {
         this.aplicacao = aplicacao;
 
         int linha, colunaFilme = 0, colunaBotaoComprar = 1;
@@ -64,7 +64,7 @@ public class TelaComprarFilmes extends Application {
         estagio.setWidth(800);
         estagio.setHeight(800);
 
-        estagio.setScene(this.telaComprarFilmes);
+        estagio.setScene(this.telaComprarFilmes());
         estagio.show();
     }
 
