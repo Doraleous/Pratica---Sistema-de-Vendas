@@ -26,15 +26,19 @@ public class TelaUsuario {
 
         botaoFilmes = new Button("Filmes");
         botaoFilmes.setPrefWidth(300);
+        botaoFilmes.setStyle("-fx-border-color: #00008B; -fx-border-width: 4px;");
+        botaoFilmes.setOnAction(e -> irParaTelaCompraFilmes());
         botaoLoja = new Button("Loja");
         botaoLoja.setPrefWidth(300);
+        botaoLoja.setStyle("-fx-border-color: #00008B; -fx-border-width: 4px;");
         caixaFilmesLoja = new HBox();
         caixaFilmesLoja.setSpacing(50);
         caixaFilmesLoja.setAlignment(Pos.CENTER);
         caixaFilmesLoja.getChildren().addAll(botaoFilmes, botaoLoja);
 
         botaoSair = new Button("Sair");
-        botaoSair.setPrefWidth(300);
+        botaoSair.setPrefWidth(200);
+        botaoSair.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
         botaoSair.setOnAction(e -> sair());
         caixaBotaoSair = new HBox();
         caixaBotaoSair.setAlignment(Pos.CENTER);
@@ -42,17 +46,22 @@ public class TelaUsuario {
 
         caixaConteiner = new VBox();
         caixaConteiner.setAlignment(Pos.CENTER);
+        caixaConteiner.setStyle("-fx-background-color: red;");
         caixaConteiner.getChildren().addAll(caixaFilmesLoja, caixaBotaoSair);
 
         telaUsuario = new Scene(caixaConteiner);
     }
 
-    public Scene telaOperacoesSala() {
+    public Scene telaUsuario() {
         return this.telaUsuario;
 
     }
 
     public void sair() {
         this.aplicacao.estagioAtual().close();
+    }
+
+    public void irParaTelaCompraFilmes(){
+        this.aplicacao.mudaCena(this.aplicacao.getTelaComprarFilmes().telaComprarFilmes());
     }
 }

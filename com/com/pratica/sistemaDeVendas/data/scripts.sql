@@ -105,3 +105,22 @@ VALUES (1);
 
 ALTER TABLE cinecap.usuario
   RENAME COLUMN "dataDeNascimento" TO data_nascimento;
+
+  -- atualização dia 29/11 Diógenes
+
+  CREATE TABLE IF NOT EXISTS cinecap.filme (
+	id BIGSERIAL NOT NULL,
+    titulo VARCHAR(40),
+    notaMedia REAL,
+    PRIMARY KEY (id)
+
+);
+
+ALTER TABLE cinecap.filme
+  ALTER COLUMN id SET STATISTICS 0;
+  
+ALTER TABLE cinecap.filme
+  ALTER COLUMN titulo SET STATISTICS 0;
+  
+ALTER TABLE cinecap.filme
+  ALTER COLUMN notaMedia SET STATISTICS 0;

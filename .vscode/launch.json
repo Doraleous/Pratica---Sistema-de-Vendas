@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "testev",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.testev",
+            "projectName": "Pratica---Sistema-de-Vendas_73b0e8c8"
+        },
+        {
+            "type": "java",
+            "name": "TelaComprarFilmes",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.TelaComprarFilmes",
+            "projectName": "Pratica---Sistema-de-Vendas_73b0e8c8"
+        },
+        {
+            "type": "java",
             "name": "TelaComprarFilmes",
             "request": "launch",
             "mainClass": "com.pratica.sistemadevendas.view.TelaComprarFilmes",
