@@ -1,5 +1,10 @@
 package com.pratica.sistemadevendas.view;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.pratica.sistemadevendas.controller.FilmeController;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,8 +19,12 @@ public class TelaComprarFilmes {
 
     private GridPane caixaFilmesEBotoesComprar;
 
+    private FilmeController filmeController;
+
     private Button botaoVoltar;
     private HBox caixaBotaoVoltar;
+
+    private Label estamosFechados;
 
     private VBox caixaConteiner;
 
@@ -23,40 +32,59 @@ public class TelaComprarFilmes {
 
     public Aplicacao aplicacao;
 
-    public TelaComprarFilmes(Aplicacao aplicacao) {
+    public TelaComprarFilmes(Aplicacao aplicacao) throws SQLException {
         this.aplicacao = aplicacao;
+        this.filmeController = new FilmeController(this.aplicacao);
+        ArrayList<String> listaDeFilmes = filmeController.verificaListaDeFilmes();
+        if(listaDeFilmes != null){
 
-        int linha, colunaFilme = 0, colunaBotaoComprar = 1;
+            int linha = 0, colunaFilme = 0, colunaBotaoComprar = 1;
 
-        caixaFilmesEBotoesComprar = new GridPane();
-        caixaFilmesEBotoesComprar.setHgap(60);
-        caixaFilmesEBotoesComprar.setVgap(20);
+            caixaFilmesEBotoesComprar = new GridPane();
+            caixaFilmesEBotoesComprar.setHgap(60);
+            caixaFilmesEBotoesComprar.setVgap(20);
 
-        for (linha = 0; linha < 5; linha++) {
-            Label labelNomeFilme = new Label("Pornôzão do Diegão" + linha);
-            Button comprar = new Button("Comprar");
+            for (String tituloFilme : listaDeFilmes) {
+                Label labelNomeFilme = new Label(tituloFilme);
+                Button comprar = new Button("Comprar");
 
-            caixaFilmesEBotoesComprar.add(labelNomeFilme, colunaFilme, linha);
-            caixaFilmesEBotoesComprar.add(comprar, colunaBotaoComprar, linha);
+                caixaFilmesEBotoesComprar.add(labelNomeFilme, colunaFilme, linha);
+                caixaFilmesEBotoesComprar.add(comprar, colunaBotaoComprar, linha);
+                linha++;
 
+            }
+
+            caixaFilmesEBotoesComprar.setAlignment(Pos.CENTER);
+
+            botaoVoltar = new Button("Voltar");
+            botaoVoltar.setPrefWidth(200);
+            botaoVoltar.setOnAction(e -> voltar());
+            caixaBotaoVoltar = new HBox();
+            caixaBotaoVoltar.getChildren().addAll(botaoVoltar);
+            caixaBotaoVoltar.setAlignment(Pos.CENTER);
+
+            caixaConteiner = new VBox();
+            caixaConteiner.getChildren().addAll(caixaFilmesEBotoesComprar, caixaBotaoVoltar);
+            caixaConteiner.setAlignment(Pos.CENTER);
+            caixaConteiner.setStyle("-fx-background-color: red;");
+
+        }else{
+            estamosFechados = new Label("Estamos fechados, obrigado pela paciência!");
+            caixaConteiner.getChildren().add(estamosFechados);
+            caixaConteiner.setAlignment(Pos.CENTER);
         }
 
-        caixaFilmesEBotoesComprar.setAlignment(Pos.CENTER);
-
-        botaoVoltar = new Button("Voltar");
-        botaoVoltar.setPrefWidth(200);
-        caixaBotaoVoltar = new HBox();
-        caixaBotaoVoltar.getChildren().addAll(botaoVoltar);
-        caixaBotaoVoltar.setAlignment(Pos.CENTER);
-
-        caixaConteiner = new VBox();
-        caixaConteiner.getChildren().addAll(caixaFilmesEBotoesComprar, caixaBotaoVoltar);
-        caixaConteiner.setAlignment(Pos.CENTER);
-        caixaConteiner.setStyle("-fx-background-color: red;");
+            
+            
+        
 
 
         telaComprarFilmes = new Scene(caixaConteiner);
 
+    }
+
+    public void voltar(){
+        this.aplicacao.mudaCena(this.aplicacao.getTelaUsuario().telaUsuario());
     }
 
     public Scene telaComprarFilmes() {

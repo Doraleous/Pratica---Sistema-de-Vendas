@@ -5,6 +5,7 @@
 package com.pratica.sistemadevendas.view;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.pratica.sistemadevendas.controller.UsuarioController;
 
@@ -34,7 +35,7 @@ public class Aplicacao extends Application {
 
     }
 
-    public void start(Stage estagioPrimario) throws IOException {
+    public void start(Stage estagioPrimario) throws IOException, SQLException {
         
         estagioAtual = new Stage();
         
