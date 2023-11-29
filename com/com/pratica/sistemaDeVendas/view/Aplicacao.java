@@ -7,6 +7,8 @@ package com.pratica.sistemadevendas.view;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import com.pratica.sistemadevendas.controller.AdministradorController;
+import com.pratica.sistemadevendas.controller.UsuarioComumController;
 import com.pratica.sistemadevendas.controller.UsuarioController;
 
 import javafx.application.Application;
@@ -26,7 +28,8 @@ public class Aplicacao extends Application {
     private TelaOperacoesSessao telaOperacoeSessao;
     private TelaUsuario telaUsuario;
     private TelaComprarFilmes telaComprarFilmes;
-    
+    private UsuarioComumController usuarioComumController;
+    private AdministradorController administradorController;
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -36,9 +39,9 @@ public class Aplicacao extends Application {
     }
 
     public void start(Stage estagioPrimario) throws IOException, SQLException {
-        
+
         estagioAtual = new Stage();
-        
+
         estagioAtual = new Stage();
         estagioAtual.initStyle(StageStyle.UNDECORATED);
         estagioAtual.setTitle("Cinecap - Logar Usuário");
@@ -55,6 +58,8 @@ public class Aplicacao extends Application {
         telaOperacoeSessao = new TelaOperacoesSessao(this);
         telaUsuario = new TelaUsuario(this);
         telaComprarFilmes = new TelaComprarFilmes(this);
+        usuarioComumController = new UsuarioComumController(this);
+        administradorController = new AdministradorController(this);
 
         usuarioController = new UsuarioController(this);
 
@@ -100,12 +105,20 @@ public class Aplicacao extends Application {
         return this.telaUsuario;
     }
 
-    public TelaComprarFilmes getTelaComprarFilmes(){
+    public TelaComprarFilmes getTelaComprarFilmes() {
         return this.telaComprarFilmes;
     }
 
     public UsuarioController getUsuarioController() {
         return this.usuarioController;
+    }
+
+    public UsuarioComumController getUsuarioComumController() {
+        return this.usuarioComumController;
+    }
+
+    public AdministradorController getAdministradorController() {
+        return this.administradorController;
     }
 
     public void mudaCena(Scene novaCena) {

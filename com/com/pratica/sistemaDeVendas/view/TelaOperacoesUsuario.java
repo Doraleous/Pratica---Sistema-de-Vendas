@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Stage;
 
-public class TelaOperacoesUsuario {  
+public class TelaOperacoesUsuario {
 
     private Label emailLabel;
     private TextField emailTextField;
@@ -57,12 +57,11 @@ public class TelaOperacoesUsuario {
 
     private Scene telaOperacoesUsuario;
 
-
     private Aplicacao aplicacao;
 
-    public TelaOperacoesUsuario(Aplicacao aplicacao){
-        this.aplicacao = aplicacao; 
-        
+    public TelaOperacoesUsuario(Aplicacao aplicacao) {
+        this.aplicacao = aplicacao;
+
         emailLabel = new Label("Email:");
         emailTextField = new TextField();
         emailTextField.setPrefWidth(200);
@@ -90,7 +89,7 @@ public class TelaOperacoesUsuario {
         caixaDataDeNascimentoEStatus = new HBox();
         caixaDataDeNascimentoEStatus.setAlignment(Pos.CENTER);
         caixaDataDeNascimentoEStatus.getChildren().addAll(dataDeNascimentoLabel, dataDeNascimentoTextField,
-        statusOperacaoLabel);
+                statusOperacaoLabel);
 
         cadastrarAdministrador = new Button("Cadastrar Administrador");
         cadastrarAdministrador.setPrefWidth(200);
@@ -129,41 +128,60 @@ public class TelaOperacoesUsuario {
         caixaConteiner.setSpacing(100);
         caixaConteiner.setAlignment(Pos.CENTER);
         caixaConteiner.getChildren().addAll(caixaEmailENome, caixaSenhaECPF, caixaDataDeNascimentoEStatus,
-        caixaCadastraAdministradorECritico, caixaCadastraClienteEstudante, caixaCLUDEVoltar);
+                caixaCadastraAdministradorECritico, caixaCadastraClienteEstudante, caixaCLUDEVoltar);
 
         telaOperacoesUsuario = new Scene(caixaConteiner);
 
-
     }
 
-    public Scene telaOperaCoesUsuario(){     
-        
-        
+    public Scene telaOperaCoesUsuario() {
 
         return telaOperacoesUsuario;
-        
+
     }
 
-    public Label getLabelStatusOperacao(){
+    public Label getLabelStatusOperacao() {
         return this.statusOperacaoLabel;
     }
 
-    /*public void cadastraADMController() throws SQLException{
-        String CPF = this.textFieldCPF.getText();
-        String senha = this.textFieldSenha.getText();
-        String nome = this.textFieldNome.getText();
-        String email = this.textFieldEmail.getText();
+    /*
+     * public void cadastraADMController() throws SQLException{
+     * String CPF = this.textFieldCPF.getText();
+     * String senha = this.textFieldSenha.getText();
+     * String nome = this.textFieldNome.getText();
+     * String email = this.textFieldEmail.getText();
+     * 
+     * this.aplicacao.getUsuarioController().cadastraAdministradorController(CPF,
+     * senha, nome, email);
+     * 
+     * }
+     */
 
-        this.aplicacao.getUsuarioController().cadastraAdministradorController(CPF, senha, nome, email);
+    // emailTextField nomeTextField senhaTextField cpTextField statusOperacaoLabel
 
-    }*/
+    public TextField getEmailTextField() {
+        return this.emailTextField;
+    }
 
-    
+    public TextField getnomeTextField() {
+        return this.nomeTextField;
+    }
 
+    public TextField getsenhaTextField() {
+        return this.senhaTextField;
+    }
 
-    public void voltar(){
+    public TextField getcpTextField() {
+        return this.cpTextField;
+    }
+
+    public Label statusOperacaoLabel() {
+        return this.statusOperacaoLabel();
+    }
+
+    public void voltar() {
         this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
 
     }
-    
+
 }

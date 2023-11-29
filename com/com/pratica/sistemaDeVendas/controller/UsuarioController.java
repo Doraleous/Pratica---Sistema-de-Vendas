@@ -57,11 +57,11 @@ public class UsuarioController {
 
         } else {
             long idUsuario = this.usuarioDAO.buscarUsuario(email);
-            AdministradorController administradorController = new AdministradorController();
+            AdministradorController administradorController = new AdministradorController(this.aplicacao);
             if (administradorController.isAdministrador(idUsuario)) {
                 return "Administrador";
             }
-            UsuarioComumController usuarioComumController = new UsuarioComumController();
+            UsuarioComumController usuarioComumController = new UsuarioComumController(this.aplicacao);
             if (usuarioComumController.isUsuarioComum(idUsuario)) {
                 return "Usuário Comum";
             }

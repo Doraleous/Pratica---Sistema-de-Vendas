@@ -24,6 +24,7 @@ public class TelaAdministrador {
 
     private Button botaoFilmes;
     private Button botaoLoja;
+    private Button botaoDeslogar;
     private Button botaoUsuarios;
     private Button botaoSair;
     private HBox caixaDeBotoes = new HBox(40);
@@ -31,106 +32,65 @@ public class TelaAdministrador {
     private VBox paneADM = new VBox();
     private Scene cenaADM;
 
-
-
     private UsuarioController usuarioController;
-
 
     private Aplicacao aplicacao;
 
     public TelaAdministrador(Aplicacao aplicacao) {
-        /*String bilheteria = "C:\\PraticaProjeto\\bilheteria.png";
-        String engrenagem = "C:\\PraticaProjeto\\engrenagem.png";
-        String pipoca = "C:\\PraticaProjeto\\pipoca.png";*/
+
         this.botaoFilmes = new Button("Bilheteria");
         this.botaoLoja = new Button("Loja");
         this.botaoUsuarios = new Button("Usuarios");
         this.botaoSair = new Button("Sair");
+        this.botaoDeslogar = new Button("Deslogar");
         this.aplicacao = aplicacao;
 
-        botaoUsuarios.setOnAction(e ->          
-            irParaTelaDeUsuariosCRUD()
-        );
+        botaoUsuarios.setOnAction(e -> irParaTelaDeUsuariosCRUD());
 
         botaoLoja.setOnAction(e -> irParaTelaDeLanchoneteCLUD());
 
         botaoFilmes.setOnAction(e -> irParaFilmeCLUD());
-        
+
         botaoSair.setOnAction(e -> sair());
 
+        botaoDeslogar.setOnAction(e -> deslogar());
+
         caixaDeBotoes.getChildren().addAll(botaoFilmes, botaoLoja, botaoUsuarios);
-        caixaSair.getChildren().addAll(botaoSair);
+        caixaDeBotoes.setSpacing(50);
+        caixaSair.getChildren().addAll(botaoSair, botaoDeslogar);
+        caixaSair.setSpacing(90);
 
         paneADM.getChildren().addAll(caixaDeBotoes, caixaSair);
         paneADM.setStyle("-fx-background-color: red;");
         cenaADM = new Scene(paneADM, 600, 220);
-        
 
     }
 
-    public void irParaFilmeCLUD(){
+    public void irParaFilmeCLUD() {
         this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesFilme().telaOperacoesFilme());
     }
 
-    public void irParaTelaDeUsuariosCRUD(){
-        
+    public void irParaTelaDeUsuariosCRUD() {
+
         this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesUsuario().telaOperaCoesUsuario());
 
     }
 
-    public void irParaTelaDeLanchoneteCLUD(){
+    public void irParaTelaDeLanchoneteCLUD() {
         this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesLanchonete().telaOperacoesLanchonete());
     }
-    
+
     public void sair() {
-        //this.usuarioController.sair();
+
         this.aplicacao.estagioAtual().close();
     }
 
+    public void deslogar() {
+        this.aplicacao.mudaCena(this.aplicacao.getTelaLogin().telaLogin());
+    }
+
     public Scene telaMenuAdministrador() {
-
-        
-        
-        
-        //caixaDeBotoes.setAlignment(Pos.CENTER);
-
-        
-        
-        //caixaSair.setAlignment(Pos.BOTTOM_LEFT);
-        //alteracao
-
-        
-        
-
-        
         return cenaADM;
     }
-    
-    public Button criarBotaoComImagem(String caminhoDaImagem){
-        
-        Button botao = new Button();
-        
-        Image imagem = new Image(getClass().getResourceAsStream(caminhoDaImagem));
-        
-        ImageView imageView = new ImageView(imagem);
-        
-        imageView.setFitWidth(50);
-        imageView.setFitHeight(50);
-        
-        botao.setGraphic(imageView);
-        
-        botao.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
-        
-        return botao;
-        
-    }
-
-    
-    
-    
-    
-
-    
-    
 
 }
