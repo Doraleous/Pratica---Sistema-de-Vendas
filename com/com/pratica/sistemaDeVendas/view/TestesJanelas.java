@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TestesJanelas extends Application {
-    private UsuarioController usuarioController = new UsuarioController();
+    
     private Label labelCPF = new Label("CPF");
     private Label labelSenha = new Label("Senha");
     private Label labelNome = new Label("Nome");

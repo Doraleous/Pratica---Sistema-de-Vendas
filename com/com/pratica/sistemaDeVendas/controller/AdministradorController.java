@@ -1,5 +1,6 @@
 package com.pratica.sistemadevendas.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,7 +10,13 @@ import com.pratica.sistemadevendas.model.Usuario;
 import com.pratica.sistemadevendas.model.UsuarioComum;
 import com.pratica.sistemadevendas.model.UsuarioCritico;
 import com.pratica.sistemadevendas.model.UsuarioEstudante;
+import com.pratica.sistemadevendas.model.dao.AdministradorDAO;
 
 public class AdministradorController {
-    
+
+    public boolean isAdministrador(long idUsuario) throws SQLException {
+        AdministradorDAO administradorDAO = new AdministradorDAO();
+        return administradorDAO.isAdministrador(idUsuario);
+    }
+
 }

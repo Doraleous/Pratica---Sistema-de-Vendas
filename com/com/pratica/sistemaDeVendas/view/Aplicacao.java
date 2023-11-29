@@ -15,79 +15,98 @@ import javafx.stage.StageStyle;
 
 public class Aplicacao extends Application {
     private Stage estagioAtual;
-    private TelaAdministrador telaAdministrador; 
-    private TelaLogin telaLogin; 
-    private TelaOperacoesUsuario telaOperacoesUsuario2; 
+    private TelaAdministrador telaAdministrador;
+    private TelaLogin telaLogin;
+    private TelaOperacoesUsuario telaOperacoesUsuario2;
     private UsuarioController usuarioController;
     private TelaOperacoesLanchonete telaOperacoesLanchonete;
-    
+    private TelaOperacoesFilmesCLUD telaOperacoesFilmesCLUD;
+    private TelaOperacoesSala telaOperacoesSala;
+    private TelaOperacoesSessao telaOperacoeSessao;
+    private TelaUsuario telaUsuario;
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
     public static void main(String[] args) {
         Application.launch(args);
 
-    }    
-    
+    }
+
     public void start(Stage estagioPrimario) throws IOException {
-        //this.estagioAtual = estagioPrimario;
+        // this.estagioAtual = estagioPrimario;
         estagioAtual = new Stage();
-        //this.estagioAtual = estagioPrimario;
+        // this.estagioAtual = estagioPrimario;
         estagioAtual = new Stage();
         estagioAtual.initStyle(StageStyle.UNDECORATED);
         estagioAtual.setTitle("Cinecap - Logar Usuário");
-        estagioAtual.setWidth(700);
-        estagioAtual.setHeight(700);
+        estagioAtual.setWidth(800);
+        estagioAtual.setHeight(800);
 
         telaAdministrador = new TelaAdministrador(this);
         telaLogin = new TelaLogin(this);
         telaOperacoesUsuario2 = new TelaOperacoesUsuario(this);
         telaOperacoesLanchonete = new TelaOperacoesLanchonete(this);
         telaOperacoesFilme = new TelaOperacoesFilme(this);
+        telaOperacoesFilmesCLUD = new TelaOperacoesFilmesCLUD(this);
+        telaOperacoesSala = new TelaOperacoesSala(this);
+        telaOperacoeSessao = new TelaOperacoesSessao(this);
 
-        usuarioController = new UsuarioController();
-        
-        
+        usuarioController = new UsuarioController(this);
+
         estagioAtual.setScene(this.telaLogin.telaLogin());
         estagioAtual.show();
-        
+
     }
 
-    public TelaAdministrador getTelaAdministrador(){
+    public TelaAdministrador getTelaAdministrador() {
         return this.telaAdministrador;
     }
 
-    public TelaLogin getTelaLogin(){
+    public TelaLogin getTelaLogin() {
         return this.telaLogin;
     }
 
-    public TelaOperacoesUsuario getTelaOperacoesUsuario(){
+    public TelaOperacoesUsuario getTelaOperacoesUsuario() {
         return this.telaOperacoesUsuario2;
 
     }
 
-    public TelaOperacoesLanchonete getTelaOperacoesLanchonete(){
+    public TelaOperacoesLanchonete getTelaOperacoesLanchonete() {
         return this.telaOperacoesLanchonete;
     }
 
-    public TelaOperacoesFilme getTelaOperacoesFilme(){
+    public TelaOperacoesFilme getTelaOperacoesFilme() {
         return this.telaOperacoesFilme;
     }
 
-    public UsuarioController getUsuarioController(){
+    public TelaOperacoesFilmesCLUD getTelaOperacoesFilmesCLUD() {
+        return this.telaOperacoesFilmesCLUD;
+    }
+
+    public TelaOperacoesSala gettTelaOperacoesSala() {
+        return this.telaOperacoesSala;
+    }
+
+    public TelaOperacoesSessao getTelaOperacoesSessao() {
+        return this.telaOperacoeSessao;
+    }
+
+    public TelaUsuario getTelaUsuario() {
+        return this.telaUsuario;
+    }
+
+    public UsuarioController getUsuarioController() {
         return this.usuarioController;
     }
-    
-    public void mudaCena(Scene novaCena){
+
+    public void mudaCena(Scene novaCena) {
         this.estagioAtual.setScene(novaCena);
         this.estagioAtual.show();
-        
+
     }
-    
-    public Stage estagioAtual(){
+
+    public Stage estagioAtual() {
         return this.estagioAtual;
     }
 
-    
-   
 }

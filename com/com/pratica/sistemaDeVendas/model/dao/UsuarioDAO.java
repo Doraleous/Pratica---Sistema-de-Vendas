@@ -22,6 +22,7 @@ public class UsuarioDAO {
             statement.setString(4, usuario.getNome());
             java.sql.Date dataNascimento = (java.sql.Date) usuario.getDataDeNascimento();
             statement.setDate(5, dataNascimento);
+            statement.execute();
             return "usuario Cadastrado com sucesso.";
         } catch (SQLException e) {
             // Lidar com exceções, logar ou tratar de alguma forma
@@ -50,6 +51,22 @@ public class UsuarioDAO {
             System.out.println("Erro ao listar usuários: " + e.getMessage());
         }
         return usuarios;
+    }
+
+    public boolean verificaSenha(String email, String senhaVerificar) throws SQLException {
+        String senhaRetornada;
+        String sql = "SELECT cinecap.usuario.senha FROM cinecap.usuario WHERE cinecap.usuario.email = ?";
+        try (Connection conexao = ConexãoBanco.conectar();
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(1, email);
+            try (ResultSet resultado = statement.executeQuery()) {
+                while (resultado.next()) {
+                    senhaRetornada = resultado.getString("senha");
+                    return senhaVerificar.equals(senhaRetornada);
+                }
+            }
+        }
+        return false;
     }
 
     public boolean atualizarUsuario(String cpf,
@@ -113,18 +130,23 @@ public class UsuarioDAO {
     }
 
     public long buscarUsuario(String email) throws SQLException {
-        String sql = "SELECT cinecap.usuario.id FROM cinecap.usuario where email = ?";
+        String sql = "SELECT cinecap.usuario.id FROM cinecap.usuario WHERE email = ?";
         try (Connection conexao = ConexãoBanco.conectar();
-                PreparedStatement statement = conexao.prepareStatement(sql);) {
-            statement.setString(1, email);
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(0, email);
             try (ResultSet resultado = statement.executeQuery()) {
                 if (resultado.next()) {
                     long id = resultado.getLong(1);
                     return id;
+                } else {
+                    System.out.println("Nenhum resultado encontrado para o email: " + email);
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Adicione tratamento de exceção adequado conforme necessário
         }
-        return 0l;
+        return 0L;
     }
 
     public boolean deletarUsuario(String email) {
