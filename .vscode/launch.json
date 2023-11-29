@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Aplicacao",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
             "name": "testev",
             "request": "launch",
             "mainClass": "com.pratica.sistemadevendas.view.testev",

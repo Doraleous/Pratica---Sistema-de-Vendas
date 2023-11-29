@@ -1,4 +1,4 @@
-package com.pratica.sistemaDeVendas.controller;
+package com.pratica.sistemadevendas.controller;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,0 +1,47 @@
+
+package com.pratica.sistemadevendas.view;
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+public class CompraPoltronasCinema{
+    private static final int NUMERO_POLTRONAS = 5; // Número de poltronas na sala de cinema
+
+    public  CompraPoltronasCinema (Aplicacao aplicacao) {
+        Stage primaryStage = new Stage;
+
+        primaryStage.setTitle("Compra de Poltronas - Sala de Cinema");
+
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(10);
+        grid.setHgap(10);
+
+        // Adiciona botões representando as poltronas na grade
+        for (int i = 0; i < NUMERO_POLTRONAS; i++) {
+            Button poltronaButton = new Button("Poltrona " + (i + 1));
+            poltronaButton.setMinSize(80, 80);
+
+            // Adiciona ação ao clicar na poltrona
+            poltronaButton.setOnAction(e -> comprarPoltrona((Button) e.getSource()));
+
+            // Adiciona a poltrona ao grid
+            grid.add(poltronaButton, i % 3, i / 3);
+        }
+
+        Scene scene = new Scene(grid, 400, 300);
+        primaryStage.setScene(scene);
+
+        primaryStage.show();
+    }
+
+    private void comprarPoltrona(Button poltronaButton) {
+        // Lógica para comprar a poltrona
+        System.out.println("Poltrona comprada: " + poltronaButton.getText());
+        poltronaButton.setDisable(true);
+    }
+}
