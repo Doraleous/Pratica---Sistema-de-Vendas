@@ -47,8 +47,7 @@ public class UsuarioComumController {
         return false;
     }
 
-    // cpf senha nome email datanascimento //continuar depois, chamar o cadastro de
-    // usuário comum e usuário
+    
     public void cadastraUsuarioComum(UsuarioComum novoUsuarioComum) {
         novoUsuarioComum = new UsuarioComum(this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
                 this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
@@ -57,6 +56,7 @@ public class UsuarioComumController {
         if (this.aplicacao.getUsuarioComumController().controlaCadastroUsuarioComum() &&
                 !this.aplicacao.getAdministradorController()
                         .usuarioExiste(this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText())) {
+                            
 
         }
 
