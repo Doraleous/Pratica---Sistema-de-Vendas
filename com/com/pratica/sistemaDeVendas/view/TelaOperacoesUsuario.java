@@ -2,6 +2,7 @@ package com.pratica.sistemadevendas.view;
 
 import java.sql.SQLException;
 
+import com.pratica.sistemadevendas.controller.AdministradorController;
 import com.pratica.sistemadevendas.controller.UsuarioController;
 import com.pratica.sistemadevendas.model.Administrador;
 import com.pratica.sistemadevendas.model.UsuarioComum;
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Stage;
@@ -55,6 +57,8 @@ public class TelaOperacoesUsuario {
 
     private VBox caixaConteiner;
 
+    private AdministradorController administradorController;
+
     private Scene telaOperacoesUsuario;
 
     private Aplicacao aplicacao;
@@ -85,7 +89,8 @@ public class TelaOperacoesUsuario {
         dataDeNascimentoLabel = new Label("Data de nascimento:");
         dataDeNascimentoTextField = new TextField();
         dataDeNascimentoTextField.setPrefWidth(200);
-        statusOperacaoLabel = new Label("Status");
+        statusOperacaoLabel = new Label("");
+        statusOperacaoLabel.setFont(new Font(30));
         caixaDataDeNascimentoEStatus = new HBox();
         caixaDataDeNascimentoEStatus.setAlignment(Pos.CENTER);
         caixaDataDeNascimentoEStatus.getChildren().addAll(dataDeNascimentoLabel, dataDeNascimentoTextField,
@@ -93,6 +98,14 @@ public class TelaOperacoesUsuario {
 
         cadastrarAdministrador = new Button("Cadastrar Administrador");
         cadastrarAdministrador.setPrefWidth(200);
+        cadastrarAdministrador.setOnAction(e -> {
+            try {
+                this.administradorController.cadastrarUsuario("Administrador");
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         cadastrarCritico = new Button("Cadastrar Crítico");
         cadastrarCritico.setPrefWidth(200);
         caixaCadastraAdministradorECritico = new HBox();
@@ -100,9 +113,17 @@ public class TelaOperacoesUsuario {
         caixaCadastraAdministradorECritico.setAlignment(Pos.CENTER);
         caixaCadastraAdministradorECritico.getChildren().addAll(cadastrarAdministrador, cadastrarCritico);
 
-        cadastrarCliente = new Button("Cadastrar Sala XD");
+        cadastrarCliente = new Button("Cadastrar Usuário");
         cadastrarCliente.setPrefWidth(200);
-        cadastrarEstudante = new Button("Cadastrar Sala XD3D");
+        cadastrarCliente.setOnAction(e -> {
+            try {
+                this.administradorController.cadastrarUsuario("Comum");
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
+        cadastrarEstudante = new Button("Cadastrar Estudante");
         cadastrarEstudante.setPrefWidth(200);
         caixaCadastraClienteEstudante = new HBox();
         caixaCadastraClienteEstudante.setSpacing(30);
@@ -130,6 +151,8 @@ public class TelaOperacoesUsuario {
         caixaConteiner.getChildren().addAll(caixaEmailENome, caixaSenhaECPF, caixaDataDeNascimentoEStatus,
                 caixaCadastraAdministradorECritico, caixaCadastraClienteEstudante, caixaCLUDEVoltar);
 
+        administradorController = new AdministradorController(this.aplicacao);
+
         telaOperacoesUsuario = new Scene(caixaConteiner);
 
     }
@@ -143,21 +166,6 @@ public class TelaOperacoesUsuario {
     public Label getLabelStatusOperacao() {
         return this.statusOperacaoLabel;
     }
-
-    /*
-     * public void cadastraADMController() throws SQLException{
-     * String CPF = this.textFieldCPF.getText();
-     * String senha = this.textFieldSenha.getText();
-     * String nome = this.textFieldNome.getText();
-     * String email = this.textFieldEmail.getText();
-     * 
-     * this.aplicacao.getUsuarioController().cadastraAdministradorController(CPF,
-     * senha, nome, email);
-     * 
-     * }
-     */
-
-    // emailTextField nomeTextField senhaTextField cpTextField statusOperacaoLabel
 
     public TextField getEmailTextField() {
         return this.emailTextField;

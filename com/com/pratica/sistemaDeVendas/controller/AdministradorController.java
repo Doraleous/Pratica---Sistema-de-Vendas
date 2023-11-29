@@ -28,7 +28,34 @@ public class AdministradorController {
         return administradorDAO.isAdministrador(idUsuario);
     }
 
-    public boolean cadastrarUsuario() {
+    public boolean cadastrarUsuario(String tipo) throws SQLException {
+        switch (tipo) {
+            case "Comum":
+                UsuarioComumController usuarioComumController = new UsuarioComumController(this.aplicacao);
+                if (usuarioComumController.controlaCadastroUsuarioComum()) {
+                    UsuarioComum novoUsuarioComum = new UsuarioComum(
+                            this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(), null);
+                    usuarioComumController.cadastraUsuarioComum(novoUsuarioComum);
+                }
+
+                break;
+            case "Administrador":
+                System.out.println("cadastrando Administrador");
+
+                break;
+            case "Estudante":
+
+                break;
+            case "Crítico":
+
+                break;
+
+            default:
+                return false;
+        }
         return false;
     }
 

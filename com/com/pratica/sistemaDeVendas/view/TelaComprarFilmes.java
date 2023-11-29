@@ -14,7 +14,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-
 public class TelaComprarFilmes {
 
     private GridPane caixaFilmesEBotoesComprar;
@@ -36,7 +35,7 @@ public class TelaComprarFilmes {
         this.aplicacao = aplicacao;
         this.filmeController = new FilmeController(this.aplicacao);
         ArrayList<String> listaDeFilmes = filmeController.verificaListaDeFilmes();
-        if(listaDeFilmes != null){
+        if (listaDeFilmes != null) {
 
             int linha = 0, colunaFilme = 0, colunaBotaoComprar = 1;
 
@@ -68,22 +67,18 @@ public class TelaComprarFilmes {
             caixaConteiner.setAlignment(Pos.CENTER);
             caixaConteiner.setStyle("-fx-background-color: red;");
 
-        }else{
+        } else {
             estamosFechados = new Label("Estamos fechados, obrigado pela paciência!");
+            caixaConteiner = new VBox();
             caixaConteiner.getChildren().add(estamosFechados);
             caixaConteiner.setAlignment(Pos.CENTER);
         }
-
-            
-            
-        
-
 
         telaComprarFilmes = new Scene(caixaConteiner);
 
     }
 
-    public void voltar(){
+    public void voltar() {
         this.aplicacao.mudaCena(this.aplicacao.getTelaUsuario().telaUsuario());
     }
 
@@ -91,7 +86,4 @@ public class TelaComprarFilmes {
         return this.telaComprarFilmes;
     }
 
-    
-
-    
 }
