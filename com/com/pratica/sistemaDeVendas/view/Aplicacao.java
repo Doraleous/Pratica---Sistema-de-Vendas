@@ -35,9 +35,9 @@ public class Aplicacao extends Application {
     }
 
     public void start(Stage estagioPrimario) throws IOException {
-        // this.estagioAtual = estagioPrimario;
+        
         estagioAtual = new Stage();
-        // this.estagioAtual = estagioPrimario;
+        
         estagioAtual = new Stage();
         estagioAtual.initStyle(StageStyle.UNDECORATED);
         estagioAtual.setTitle("Cinecap - Logar Usuário");
