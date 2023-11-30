@@ -3,7 +3,9 @@ package com.pratica.sistemadevendas.controller;
 import com.pratica.sistemadevendas.model.Sala;
 import com.pratica.sistemadevendas.model.dao.SalaDAO;
 
+import java.lang.reflect.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SalaController {
@@ -18,7 +20,7 @@ public class SalaController {
         salaDAO.cadastrarSala(sala);
     }
 
-    public List<String> listarSalas() throws SQLException {
+    public ArrayList<Sala> listarSalas() throws SQLException {
         return salaDAO.listarSalas();
     }
 
