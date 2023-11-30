@@ -9,6 +9,8 @@ public class Lanche {
         this.preco = preco;
     }
 
+    //gets e sets
+
     public String getNome() {
         return nome;
     }
