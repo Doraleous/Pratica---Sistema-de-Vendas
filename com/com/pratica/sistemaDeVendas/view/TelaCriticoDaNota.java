@@ -1,3 +1,5 @@
+package com.pratica.sistemadevendas.view;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,7 +12,7 @@ import javafx.stage.Stage;
 public class TelaDeCriticoDarNota extends VBox {
 
     private ObservableList<Filme> listaFilmes = FXCollections.observableArrayList();
-    private Application aplicacao; 
+    private Application aplicacao;
 
     public TelaDeCriticoDarNota(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
@@ -19,7 +21,6 @@ public class TelaDeCriticoDarNota extends VBox {
         listaFilmes.add(new Filme("Filme 1"));
         listaFilmes.add(new Filme("Filme 2"));
         listaFilmes.add(new Filme("Filme 3"));
-
 
         ListView<Filme> listViewFilmes = new ListView<>(listaFilmes);
         listViewFilmes.setCellFactory(param -> new ListCell<>() {
@@ -67,5 +68,4 @@ public class TelaDeCriticoDarNota extends VBox {
         getChildren().addAll(listViewFilmes, sliderNota, btnDarNota, btnVoltar);
     }
 
-    
 }

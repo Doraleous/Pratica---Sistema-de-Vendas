@@ -31,6 +31,8 @@ public class TelaComprarFilmes {
 
     public Aplicacao aplicacao;
 
+    private String tituloFilme;
+
     public TelaComprarFilmes(Aplicacao aplicacao) throws SQLException {
         this.aplicacao = aplicacao;
         this.filmeController = new FilmeController(this.aplicacao);
@@ -45,12 +47,11 @@ public class TelaComprarFilmes {
 
             for (String tituloFilme : listaDeFilmes) {
                 Label labelNomeFilme = new Label(tituloFilme);
-                Button comprar = new Button("Comprar");
+                Button comprar = new Button("Comprar");//
 
                 caixaFilmesEBotoesComprar.add(labelNomeFilme, colunaFilme, linha);
                 caixaFilmesEBotoesComprar.add(comprar, colunaBotaoComprar, linha);
                 linha++;
-
             }
 
             caixaFilmesEBotoesComprar.setAlignment(Pos.CENTER);

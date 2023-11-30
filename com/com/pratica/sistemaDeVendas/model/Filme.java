@@ -12,29 +12,31 @@ import java.util.ArrayList;
  * @author emart
  */
 public class Filme implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private Long id;
     private String titulo;
     private double notaMedia;
     private ArrayList<Double> notas;
-    
-    public Filme (String titulo){
+
+    public Filme(String titulo) {
         this.titulo = titulo;
     }
 
-    public String toString(){
+    public String toString() {
         this.calculaNotaMedia();
         return "titulo: " + this.titulo + "nota media: " + this.notaMedia;
     }
 
     private void calculaNotaMedia() {
         double somaNota = 0;
-        if(notas.size()<=0){
+        if (notas.size() <= 0) {
             this.notaMedia = 0;
             return;
         }
         for (double nota : this.notas) {
             somaNota += nota;
         }
-        this.notaMedia = somaNota/this.notas.size();
+        this.notaMedia = somaNota / this.notas.size();
     }
 
     /**
@@ -77,6 +79,20 @@ public class Filme implements Serializable {
      */
     public void setNotas(ArrayList<Double> notas) {
         this.notas = notas;
+    }
+
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

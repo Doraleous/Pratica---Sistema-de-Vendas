@@ -1,6 +1,8 @@
 
 package com.pratica.sistemadevendas.view;
 
+import com.pratica.sistemadevendas.model.Sala;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -27,7 +29,7 @@ public class CompraPoltronasCinema extends GridPane {
         setVgap(10);
 
         for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 17; j++) {
+            for (int j = 0; j < 19; j++) {
                 PoltronaButton poltronaButton = new PoltronaButton(sala.getPoltrona(i, j));
                 add(poltronaButton, j, i);
             }

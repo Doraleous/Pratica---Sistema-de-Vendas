@@ -13,7 +13,7 @@ import com.pratica.sistemadevendas.model.UsuarioComum;
 import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class UsuarioComumDAO {
-    public String cadastrarUsuarioComum(UsuarioComum usuarioComum) throws SQLException {
+    public static String cadastrarUsuarioComum(UsuarioComum usuarioComum) throws SQLException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = new Usuario();
         usuario.setCPF(usuarioComum.getCPF());
@@ -31,14 +31,14 @@ public class UsuarioComumDAO {
             statement.execute();
             return "Usuario Comum Cadastrado com Sucesso.";
         } catch (SQLException e) {
-            return ("Erro ao  cadastrar Usuário Comum.");
+            return ("Erro ao cadastrar Usuário Comum.");
         }
     }
 
     public ArrayList<UsuarioComum> listarUsuariosComuns() throws SQLException {
         ArrayList<UsuarioComum> usuariosComuns = new ArrayList<>();
         String sql = "SELECT cinecap.usuario.id, cinecap.usuario.cpf, cinecap.usuario.senha, cinecap.usuario.nome, " +
-                "cinecap.usuario.email, cinecap.usuario.data_nascimento FROM cinecap.administrador inner join cinecap.usuario on"
+                "cinecap.usuario.email, cinecap.usuario.data_nascimento FROM cinecap.usuario_comum inner join cinecap.usuario on"
                 +
                 "cinecap.usuario.id = cinecap.cinecap.usuario_comum.id";
         try (Connection conexao = ConexãoBanco.conectar();
@@ -65,7 +65,7 @@ public class UsuarioComumDAO {
         boolean existe = usuarioDAO.usuarioExiste(email);
         if (existe) {
             long idUsuario = usuarioDAO.buscarUsuario(email);
-            String sql = "SELECT COUNT(*) FROM cinecap.cinecap.usuario_comum WHERE id = ?";
+            String sql = "SELECT COUNT(*) FROM cinecap.usuario_comum WHERE id = ?";
             try (Connection conexao = ConexãoBanco.conectar();
                     PreparedStatement statement = conexao.prepareStatement(sql)) {
                 statement.setLong(1, idUsuario);
@@ -106,7 +106,7 @@ public class UsuarioComumDAO {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         long idUsuario = usuarioDAO.buscarUsuario(email);
         if (idUsuario != 0l) {
-            String sql = "SELECT cinecap.cinecap.usuario_comum.id FROM cinecap.cinecap.usuario_comum where id = ?";
+            String sql = "SELECT cinecap.usuario_comum.id FROM cinecap.usuario_comum where id = ?";
             try (Connection conexao = ConexãoBanco.conectar();
                     PreparedStatement statement = conexao.prepareStatement(sql)) {
                 statement.setLong(1, idUsuario);

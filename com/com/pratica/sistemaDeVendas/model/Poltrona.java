@@ -1,3 +1,5 @@
+package com.pratica.sistemadevendas.model;
+
 public class Poltrona {
     // Atributos
     private int numero;
