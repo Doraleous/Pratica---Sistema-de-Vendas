@@ -46,7 +46,9 @@ public class TelaAdministrador {
         this.botaoUsuarios = new Button("Usuarios");
         botaoUsuarios.setPrefWidth(200);
         this.botaoSair = new Button("Sair");
+        botaoSair.setPrefWidth(150);
         this.botaoDeslogar = new Button("Deslogar");
+        botaoDeslogar.setPrefWidth(150);
         this.aplicacao = aplicacao;
 
         botaoUsuarios.setOnAction(e -> irParaTelaDeUsuariosCRUD());
