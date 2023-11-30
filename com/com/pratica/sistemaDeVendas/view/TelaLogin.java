@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -22,7 +23,7 @@ import javafx.scene.layout.VBox;
 public class TelaLogin {
 
     private TextField loginTextField;
-    private TextField senhaTextField;
+    private PasswordField senhaTextField;
 
     private Label loginLabel;
     private Label senhaLabel;
@@ -46,7 +47,7 @@ public class TelaLogin {
         loginTextField.setMaxWidth(400);
         loginTextField.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
 
-        this.senhaTextField = new TextField();
+        this.senhaTextField = new PasswordField();
         senhaTextField.setPrefWidth(300);
         senhaTextField.setMaxWidth(400);
         senhaTextField.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
@@ -99,6 +100,15 @@ public class TelaLogin {
 
     public String campoLogin() {
         return this.loginTextField.getText();
+    }
+
+    public TextField loginTextField(){
+        return this.loginTextField;
+    }
+
+    public PasswordField senhaTextField(){
+        return this.senhaTextField;
+        
     }
 
     public Label getLabelStatusOperacao() {

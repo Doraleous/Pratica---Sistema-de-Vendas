@@ -25,10 +25,13 @@ public class FilmeController {
 
     private FilmeDAO filmeDAO;
     private Aplicacao aplicacao;
+    private AdministradorController admController;
 
     public FilmeController(Aplicacao aplicacao) {
         filmeDAO = new FilmeDAO();
+        
         this.aplicacao = aplicacao;
+        this.admController = this.aplicacao.getAdministradorController();
     }
 
     public ArrayList<String> verificaListaDeFilmes() throws SQLException {
@@ -38,6 +41,16 @@ public class FilmeController {
         } else {
             return null;
         }
+    }
+    public void retiraFilmeDeCartaz(String tituloDoFilme) throws SQLException{
+        System.out.println("passei no filme controller");
+        String tituloFilme = tituloDoFilme;
+        this.filmeDAO.retiraFilmeDeCartaz(tituloFilme);
+        this.aplicacao.getTelaOperacoesFilmesCLUD().statusOperacao().setText("Filme retirado de cartaz");
+    }
+
+    public void deletaFilme(String titulo) throws SQLException{
+        this.filmeDAO.deletarFilme(titulo);
     }
 
     public void cadastraFilme() throws SQLException {
@@ -52,6 +65,7 @@ public class FilmeController {
         } else {
             Filme novoFilme = new Filme(this.aplicacao.getTelaOperacoesFilmesCLUD().cadastrarFilme());
             this.filmeDAO.cadastrarFilme(novoFilme);
+            this.aplicacao.getTelaOperacoesFilmesCLUD().statusOperacao().setText("Filme cadastrado com suceso");
 
         }
     }

@@ -1,33 +1,26 @@
 package com.pratica.sistemadevendas.model;
 
-public class Poltrona {
-    // Atributos
+import java.io.Serializable;
+
+public class Poltrona implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
     private int numero;
-    private String tipo;
     private boolean disponibilidade;
 
-    // Construtor
-    public Poltrona(int numero, String tipo, boolean disponibilidade) {
+    
+    public Poltrona(int numero, boolean disponibilidade) {
         this.numero = numero;
-        this.tipo = tipo;
         this.disponibilidade = disponibilidade;
     }
 
-    // Getters e Setters
     public int getNumero() {
         return numero;
     }
 
     public void setNumero(int numero) {
         this.numero = numero;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public boolean isDisponibilidade() {
@@ -38,10 +31,17 @@ public class Poltrona {
         this.disponibilidade = disponibilidade;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     // Método para exibir informações da poltrona
     public void exibirInformacoes() {
         System.out.println("Poltrona número: " + numero);
-        System.out.println("Tipo: " + tipo);
         System.out.println("Disponibilidade: " + (disponibilidade ? "Disponível" : "Indisponível"));
     }
 }

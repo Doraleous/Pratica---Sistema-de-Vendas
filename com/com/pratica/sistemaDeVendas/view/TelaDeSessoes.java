@@ -22,18 +22,12 @@ import com.pratica.sistemadevendas.model.Sessao;
 public class TelaDeSessoes {
 
     private GridPane caixaSessoesEBotoes;
-
     private Button botaoVoltar;
     private HBox caixaBotaoVoltar;
-
-    private Label estamosFechados;
-
+    private Label semSessao;
     private VBox caixaConteiner;
-
     private Scene telaDeSessoes;
-
     public Aplicacao aplicacao;
-
     private String horarioSessao;
 
     public TelaDeSessoes(Aplicacao aplicacao) throws SQLException {
@@ -87,9 +81,9 @@ public class TelaDeSessoes {
             caixaConteiner.setStyle("-fx-background-color: lightgreen;");
 
         } else {
-            estamosFechados = new Label("Não há sessões disponíveis no momento.");
+            semSessao = new Label("Não há sessões disponíveis no momento.");
             caixaConteiner = new VBox();
-            caixaConteiner.getChildren().add(estamosFechados);
+            caixaConteiner.getChildren().add(semSessao);
             caixaConteiner.setAlignment(Pos.CENTER);
         }
 
