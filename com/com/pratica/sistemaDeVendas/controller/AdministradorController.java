@@ -17,9 +17,11 @@ import com.pratica.sistemadevendas.view.Aplicacao;
 public class AdministradorController {
 
     private Aplicacao aplicacao;
+    private AdministradorDAO administradorDAO;
 
     public AdministradorController(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
+        administradorDAO = new AdministradorDAO();
 
     }
 
@@ -43,7 +45,15 @@ public class AdministradorController {
 
                 break;
             case "Administrador":
-                System.out.println("cadastrando Administrador");
+                AdministradorController administradorController = new AdministradorController(this.aplicacao);
+                if (administradorController.controlaCadastroAdministrador()) {
+                    Administrador novoAdministrador = new Administrador(
+                            this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(), null);
+                    administradorController.cadastraAdministrador(novoAdministrador);
+                }
 
                 break;
             case "Estudante":
@@ -66,6 +76,51 @@ public class AdministradorController {
     public boolean usuarioExiste(String email) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         return usuarioDAO.usuarioExiste(email);
+    }
+
+    public boolean controlaCadastroAdministrador(){
+        if ((this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText().trim().equals("") ||
+                this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText() == null)
+                || (this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText().trim().equals("") ||
+                        this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText() == null)
+                || (this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText().trim().equals("") ||
+                        this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText() == null)
+                || (this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText().trim().equals("") ||
+                        this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText() == null)) {
+            this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao()
+                    .setText("Todos os campos devem ser preenchidos");
+            return false;
+
+        } else if (!this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText().contains("@")
+                || (!this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText().contains("."))) {
+            this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao()
+                    .setText("Email deve conter @ e .");
+
+        } else {
+            return true;
+        }
+        return false;
+    }
+
+    public void cadastraAdministrador(Administrador administrador) throws SQLException{
+        administrador = new Administrador(this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
+                this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
+                this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
+                this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(), null);
+        if (!this.aplicacao.getAdministradorController()
+                .usuarioExiste(this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText())) {
+            // usuarioDAO.cadastrarUsuario(novoUsuarioComum);
+            administradorDAO.cadastrarAdministrador(administrador);
+            this.aplicacao.getTelaOperacoesUsuario().getcpTextField().setText("");
+            this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().setText("");
+            this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().setText("");
+            this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().setText("");
+            this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao().setText("Usuário cadastrado com sucesso");
+
+        } else {
+            this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao()
+                    .setText("Usuário já existe");
+        }
     }
 
 }

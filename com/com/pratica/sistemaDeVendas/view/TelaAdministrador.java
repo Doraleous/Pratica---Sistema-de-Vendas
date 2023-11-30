@@ -6,6 +6,7 @@ package com.pratica.sistemadevendas.view;
 
 import com.pratica.sistemadevendas.controller.UsuarioController;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -39,10 +40,15 @@ public class TelaAdministrador {
     public TelaAdministrador(Aplicacao aplicacao) {
 
         this.botaoFilmes = new Button("Bilheteria");
+        botaoFilmes.setPrefWidth(200);
         this.botaoLoja = new Button("Loja");
+        botaoLoja.setPrefWidth(200);
         this.botaoUsuarios = new Button("Usuarios");
+        botaoUsuarios.setPrefWidth(200);
         this.botaoSair = new Button("Sair");
+        botaoSair.setPrefWidth(150);
         this.botaoDeslogar = new Button("Deslogar");
+        botaoDeslogar.setPrefWidth(150);
         this.aplicacao = aplicacao;
 
         botaoUsuarios.setOnAction(e -> irParaTelaDeUsuariosCRUD());
@@ -61,6 +67,7 @@ public class TelaAdministrador {
         caixaSair.setSpacing(90);
 
         paneADM.getChildren().addAll(caixaDeBotoes, caixaSair);
+        paneADM.setAlignment(Pos.CENTER);
         paneADM.setStyle("-fx-background-color: red;");
         cenaADM = new Scene(paneADM, 600, 220);
 
