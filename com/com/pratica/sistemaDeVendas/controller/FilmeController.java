@@ -52,6 +52,7 @@ public class FilmeController {
         } else {
             Filme novoFilme = new Filme(this.aplicacao.getTelaOperacoesFilmesCLUD().cadastrarFilme());
             this.filmeDAO.cadastrarFilme(novoFilme);
+            this.aplicacao.getTelaOperacoesFilmesCLUD().statusOperacao().setText("Filme cadastrado com suceso");
 
         }
     }

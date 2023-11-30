@@ -93,7 +93,10 @@ public class TelaAdministrador {
     }
 
     public void deslogar() {
+        this.aplicacao.getTelaLogin().loginTextField().setText("");
+        this.aplicacao.getTelaLogin().senhaTextField().setText("");
         this.aplicacao.mudaCena(this.aplicacao.getTelaLogin().telaLogin());
+        
     }
 
     public Scene telaMenuAdministrador() {

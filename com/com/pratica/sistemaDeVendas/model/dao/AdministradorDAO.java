@@ -27,6 +27,7 @@ public class AdministradorDAO {
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setLong(1, idNovoUsuario);
+            statement.execute();
             return "Usuario Administrador Cadastrado com sucesso.";
         } catch (SQLException e) {
             return ("Erro ao cadastrar Usuário Administrador");
