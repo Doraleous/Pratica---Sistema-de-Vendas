@@ -51,24 +51,13 @@ public class UsuarioComumController {
         return false;
     }
 
-<<<<<<< HEAD
-    
-    public void cadastraUsuarioComum(UsuarioComum novoUsuarioComum) {
-=======
     // cpf senha nome email datanascimento //continuar depois, chamar o cadastro de
     // usuário comum e usuário
     public void cadastraUsuarioComum(UsuarioComum novoUsuarioComum) throws SQLException {
->>>>>>> 7ee781ac2227f93bde7bff53cdf54d667af9ad3b
         novoUsuarioComum = new UsuarioComum(this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
                 this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
                 this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
                 this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(), null);
-<<<<<<< HEAD
-        if (this.aplicacao.getUsuarioComumController().controlaCadastroUsuarioComum() &&
-                !this.aplicacao.getAdministradorController()
-                        .usuarioExiste(this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText())) {
-                            
-=======
         if (!this.aplicacao.getAdministradorController()
                 .usuarioExiste(this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText())) {
             // usuarioDAO.cadastrarUsuario(novoUsuarioComum);
@@ -78,7 +67,6 @@ public class UsuarioComumController {
             this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().setText("");
             this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().setText("");
             this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao().setText("Usuário cadastrado com sucesso");
->>>>>>> 7ee781ac2227f93bde7bff53cdf54d667af9ad3b
 
         } else {
             this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao()
