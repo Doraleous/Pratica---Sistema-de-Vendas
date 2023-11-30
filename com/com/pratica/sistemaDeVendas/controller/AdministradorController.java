@@ -58,17 +58,17 @@ public class AdministradorController {
                 break;
             case "Estudante":
                 UsuarioEstudanteController usuarioEstudanteContoller = new UsuarioEstudanteController(this.aplicacao);
-                /*
-                 * if (usuarioEstudanteContoller.controlaCadastroEstudante()) {
-                 * Administrador novoEstudante = new Administrador(
-                 * this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
-                 * this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
-                 * this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
-                 * this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(),
-                 * null);
-                 * usuarioEstudanteContoller.cadastraAdministrador(novoEstudante);
-                 * }
-                 */
+
+                if (usuarioEstudanteContoller.controlaCadastroEstudante()) {
+                    UsuarioEstudante novoEstudante = new UsuarioEstudante(
+                            this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(),
+                            null);
+                    usuarioEstudanteContoller.cadastrarUsuarioEstudante(novoEstudante);
+                }
+
                 break;
             case "Crítico":
 

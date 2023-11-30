@@ -22,7 +22,7 @@ public class UsuarioEstudanteDAO {
                 usuarioEstudante.getDataDeNascimento());
         UsuarioComumDAO.cadastrarUsuarioComum(UsuarioComum);
         long idNovoUsuario = usuarioComumDAO.buscarUsuarioComum(usuarioEstudante.getEmail());
-        String sql = "INSERT INTO cinecap.usuario_comum (id) VALUES (?)";
+        String sql = "INSERT INTO cinecap.usuario_estudante (id) VALUES (?)";
 
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {

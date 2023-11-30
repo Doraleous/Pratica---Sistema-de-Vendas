@@ -120,15 +120,16 @@ public class TelaLogin {
                 break;
 
             case "Usuário Crítico":
+                this.aplicacao.mudaCena(this.aplicacao.getTelaUsuario().telaUsuario());
                 break;
 
             case "Usuário Estudante":
+                this.aplicacao.mudaCena(this.aplicacao.getTelaUsuario().telaUsuario());
                 break;
 
             default:
                 break;
         }
-        
 
     }
 
