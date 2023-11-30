@@ -1,6 +1,9 @@
-package com.pratica.sistemaDeVendas.controller;
+package com.pratica.sistemadevendas.controller;
 
 import java.util.ArrayList;
+
+import com.pratica.sistemadevendas.model.Lanche;
+import com.pratica.sistemadevendas.model.dao.LancheDAO;
 
 public class LancheController {
     private final LancheDAO lancheDAO;

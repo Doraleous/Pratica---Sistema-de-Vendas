@@ -1,7 +1,11 @@
-package com.pratica.sistemaDeVendas.model.dao;
+package com.pratica.sistemadevendas.model.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+
+import com.pratica.sistemadevendas.model.Lanche;
+
+import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class LancheDAO {
     private final String URL = "jdbc:mysql://seu_servidor:porta/seu_banco";
@@ -9,9 +13,9 @@ public class LancheDAO {
     private final String SENHA = "sua_senha";
 
     public String cadastrarLanche(Lanche lanche) {
-        try (Connection connection = DriverManager.getConnection(URL, USUARIO, SENHA)) {
-            String query = "INSERT INTO lanche (nome, preco) VALUES (?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (Connection conexao = ConexãoBanco.conectar()) {
+            String sql = "INSERT INTO lanche (nome, preco) VALUES (?, ?)";
+            try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setString(1, lanche.getNome());
                 preparedStatement.setDouble(2, lanche.getPreco());
                 preparedStatement.executeUpdate();
@@ -28,12 +32,11 @@ public class LancheDAO {
         try (Connection connection = DriverManager.getConnection(URL, USUARIO, SENHA)) {
             String query = "SELECT * FROM lanche";
             try (Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(query)) {
+                    ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
-                    Lanche lanche = new Lanche();
-                    lanche.setId(resultSet.getInt("id"));
-                    lanche.setNome(resultSet.getString("nome"));
-                    lanche.setPreco(resultSet.getDouble("preco"));
+                    String nome = resultSet.getString("nome");
+                    double preco = resultSet.getDouble("preco");
+                    Lanche lanche = new Lanche(nome, preco);
                     lanches.add(lanche);
                 }
             }
@@ -102,4 +105,3 @@ public class LancheDAO {
         }
     }
 }
-

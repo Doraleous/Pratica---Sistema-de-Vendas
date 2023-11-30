@@ -302,3 +302,20 @@ ALTER TABLE cinecap.historico_filmes
 --dia 30/11 - Diógenes
 ALTER TABLE cinecap.filme
   DROP CONSTRAINT filme_em_cartaz_key RESTRICT;
+
+-- dia 30/11 - Valeriano
+CREATE TABLE cinecap.lanche (
+  id BIGSERIAL NOT NULL,
+  nome VARCHAR(20) NOT NULL,
+  preco NUMERIC(20,2) NOT NULL,
+  PRIMARY KEY(id)
+) ;
+
+ALTER TABLE cinecap.lanche
+  ALTER COLUMN id SET STATISTICS 0;
+
+ALTER TABLE cinecap.lanche
+  ALTER COLUMN nome SET STATISTICS 0;
+
+ALTER TABLE cinecap.lanche
+  ALTER COLUMN preco SET STATISTICS 0;

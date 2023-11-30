@@ -1,6 +1,9 @@
 package com.pratica.sistemadevendas.model;
 
-public class Lanche {
+import java.io.Serializable;
+
+public class Lanche implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String nome;
     private double preco;
     private int id;
@@ -8,10 +11,9 @@ public class Lanche {
     public Lanche(String nome, double preco) {
         this.nome = nome;
         this.preco = preco;
-        
     }
 
-    //gets e sets
+    // gets e sets
 
     public String getNome() {
         return nome;
@@ -20,7 +22,6 @@ public class Lanche {
     public double getPreco() {
         return preco;
     }
-    
 
     public void setNome(String novoNome) {
         this.nome = novoNome;
@@ -29,9 +30,19 @@ public class Lanche {
     public void setPreco(double novoPreco) {
         this.preco = novoPreco;
     }
-    
+
+    /**
+     * @return int return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
-
-
-
-

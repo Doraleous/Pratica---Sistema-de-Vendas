@@ -1,4 +1,7 @@
-package com.pratica.sistemaDeVendas.view;
+package com.pratica.sistemadevendas.view;
+
+import com.pratica.sistemadevendas.controller.LancheController;
+import com.pratica.sistemadevendas.model.Lanche;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -29,7 +32,8 @@ public class TelaLanchoneteUsuario extends Application {
         quantidadeTextField.setPromptText("Quantidade");
 
         Button comprarButton = new Button("Comprar");
-        comprarButton.setOnAction(event -> comprarLanche(lanchesListView.getSelectionModel().getSelectedItem(), quantidadeTextField.getText()));
+        comprarButton.setOnAction(event -> comprarLanche(lanchesListView.getSelectionModel().getSelectedItem(),
+                quantidadeTextField.getText()));
 
         // Layout
         VBox vbox = new VBox(10);
@@ -56,7 +60,8 @@ public class TelaLanchoneteUsuario extends Application {
             if (lanche != null && quantidade > 0) {
                 // Aqui você pode adicionar a lógica para realizar a compra
                 // Por exemplo, atualizar o banco de dados com a compra
-                System.out.println("Compra realizada: " + quantidade + "x " + lanche.getNome() + " por R$" + lanche.getPreco());
+                System.out.println(
+                        "Compra realizada: " + quantidade + "x " + lanche.getNome() + " por R$" + lanche.getPreco());
             } else {
                 System.out.println("Selecione um lanche e insira uma quantidade válida.");
             }
