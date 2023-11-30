@@ -27,7 +27,7 @@ public class FilmeDAO {
     public ArrayList<String> filmesDisponiveisCompra() throws SQLException {
         ArrayList<String> listaDeFilmes = new ArrayList<>();
 
-        String sql = "SELECT cinecap.filme.titulo FROM cinecap.filme";
+        String sql = "SELECT cinecap.filme.titulo FROM cinecap.filme WHERE cinecap.filme.em_cartaz = true";
 
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
@@ -38,6 +38,26 @@ public class FilmeDAO {
 
         }
         return listaDeFilmes;
+    }
+
+    
+
+    public String retiraFilmeDeCartaz(String titulo) throws SQLException{
+        String sql = "UPDATE cinecap.filme SET em_cartaz = false WHERE cinecap.filme.titulo = (?)";
+        System.out.println("filmedao 1");
+        try(Connection conexao = ConexãoBanco.conectar();
+            PreparedStatement statement = conexao.prepareStatement(sql);){
+            statement.setString(1, titulo);
+            statement.executeUpdate();
+            System.out.println("filmedao 2");
+            return "Filme retirado de cartaz";
+            
+        }catch (SQLException E){
+            E.printStackTrace();
+
+        }
+        return null;
+            
     }
 
     public boolean atualizarFilme(String titulo) throws SQLException {
@@ -88,7 +108,7 @@ public class FilmeDAO {
         return 0;
     }
 
-    private boolean deletarFilme(String titulo) throws SQLException {
+    public boolean deletarFilme(String titulo) throws SQLException {
         boolean encontrado = this.filmeExiste(titulo);
         if (encontrado) {
             String sql = "DELETE FROM cinecap.filme where titulo = ?";

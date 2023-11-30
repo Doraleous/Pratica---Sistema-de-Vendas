@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import com.pratica.sistemadevendas.controller.AdministradorController;
+import com.pratica.sistemadevendas.controller.FilmeController;
 import com.pratica.sistemadevendas.controller.UsuarioComumController;
 import com.pratica.sistemadevendas.controller.UsuarioController;
 
@@ -30,6 +31,7 @@ public class Aplicacao extends Application {
     private TelaComprarFilmes telaComprarFilmes;
     private UsuarioComumController usuarioComumController;
     private AdministradorController administradorController;
+    private FilmeController filmeController;
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -60,6 +62,7 @@ public class Aplicacao extends Application {
         telaComprarFilmes = new TelaComprarFilmes(this);
         usuarioComumController = new UsuarioComumController(this);
         administradorController = new AdministradorController(this);
+        this.filmeController = new FilmeController(this);
 
         usuarioController = new UsuarioController(this);
 

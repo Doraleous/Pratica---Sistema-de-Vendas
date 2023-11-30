@@ -30,6 +30,19 @@ public class AdministradorController {
         return administradorDAO.isAdministrador(idUsuario);
     }
 
+    public void retiraFilmeDeCartaz() throws SQLException{
+        String tituloDoFilme = this.aplicacao.getTelaOperacoesFilmesCLUD().getTituloTextField().getText();
+        FilmeController filmeController = new FilmeController(this.aplicacao);
+        filmeController.retiraFilmeDeCartaz(tituloDoFilme);
+        
+    }
+
+    public void deletaFilme() throws SQLException {
+        String tituloDoFilme = this.aplicacao.getTelaOperacoesFilmesCLUD().getTituloTextField().getText();
+        FilmeController filmeController = new FilmeController(this.aplicacao);
+        filmeController.deletaFilme(tituloDoFilme);
+    }
+
     public boolean cadastrarUsuario(String tipo) throws SQLException {
         switch (tipo) {
             case "Comum":
