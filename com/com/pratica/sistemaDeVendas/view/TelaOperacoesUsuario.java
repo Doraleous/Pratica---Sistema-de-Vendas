@@ -108,6 +108,14 @@ public class TelaOperacoesUsuario {
         });
         cadastrarCritico = new Button("Cadastrar Crítico");
         cadastrarCritico.setPrefWidth(200);
+        cadastrarCritico.setOnAction(e -> {
+            try {
+                this.administradorController.cadastrarUsuario("Crítico");
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         caixaCadastraAdministradorECritico = new HBox();
         caixaCadastraAdministradorECritico.setSpacing(30);
         caixaCadastraAdministradorECritico.setAlignment(Pos.CENTER);

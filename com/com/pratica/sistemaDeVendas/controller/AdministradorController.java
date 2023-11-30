@@ -57,20 +57,31 @@ public class AdministradorController {
 
                 break;
             case "Estudante":
-                UsuarioEstudanteController usuarioEstudanteContoller = new UsuarioEstudanteController(this.aplicacao);
+                UsuarioEstudanteController usuarioEstudanteController = new UsuarioEstudanteController(this.aplicacao);
 
-                if (usuarioEstudanteContoller.controlaCadastroEstudante()) {
+                if (usuarioEstudanteController.controlaCadastroEstudante()) {
                     UsuarioEstudante novoEstudante = new UsuarioEstudante(
                             this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
                             this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
                             this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
                             this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(),
                             null);
-                    usuarioEstudanteContoller.cadastrarUsuarioEstudante(novoEstudante);
+                    usuarioEstudanteController.cadastrarUsuarioEstudante(novoEstudante);
                 }
 
                 break;
             case "Crítico":
+                UsuarioCriticoController usuariocriticoController = new UsuarioCriticoController(this.aplicacao);
+
+                if (usuariocriticoController.controlaCadastroCritico()) {
+                    UsuarioCritico novoCritico = new UsuarioCritico(
+                            this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
+                            this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(),
+                            null);
+                    usuariocriticoController.cadastrarUsuarioCritico(novoCritico);
+                }
 
                 break;
 
