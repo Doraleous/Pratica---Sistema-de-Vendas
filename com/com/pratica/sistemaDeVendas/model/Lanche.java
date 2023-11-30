@@ -3,10 +3,12 @@ package com.pratica.sistemadevendas.model;
 public class Lanche {
     private String nome;
     private double preco;
+    private int id;
 
-    public Lanche(String nome, double preco) {
+    public Lanche(String nome, double preco, int id) {
         this.nome = nome;
         this.preco = preco;
+        this.id = id;
     }
 
     //gets e sets
@@ -18,6 +20,9 @@ public class Lanche {
     public double getPreco() {
         return preco;
     }
+    public int getId(){
+        return id;
+    }
 
     public void setNome(String novoNome) {
         this.nome = novoNome;
@@ -25,6 +30,9 @@ public class Lanche {
 
     public void setPreco(double novoPreco) {
         this.preco = novoPreco;
+    }
+    public void setId(int novoId){
+        this.id = novoId;
     }
 }
 
