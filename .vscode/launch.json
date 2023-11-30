@@ -6,6 +6,41 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AdminMenu",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.AdminMenu",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
+            "name": "teste",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.teste",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
+            "name": "TestesJanelas2",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.TestesJanelas2",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
+            "name": "TestesJanelas",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.TestesJanelas",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
+            "name": "Aplicacao",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
             "name": "Aplicacao",
             "request": "launch",
             "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",

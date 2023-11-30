@@ -7,41 +7,62 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 
-public class CompraPoltronasCinema{
-    private static final int NUMERO_POLTRONAS = 5; // Número de poltronas na sala de cinema
+public class CompraPoltronasCinema extends GridPane {
+    private Sala sala;
+    private Application aplicacao;
 
-    public  CompraPoltronasCinema (Aplicacao aplicacao) {
-        Stage primaryStage = new Stage;
-
-        primaryStage.setTitle("Compra de Poltronas - Sala de Cinema");
-
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(10);
-        grid.setHgap(10);
-
-        // Adiciona botões representando as poltronas na grade
-        for (int i = 0; i < NUMERO_POLTRONAS; i++) {
-            Button poltronaButton = new Button("Poltrona " + (i + 1));
-            poltronaButton.setMinSize(80, 80);
-
-            // Adiciona ação ao clicar na poltrona
-            poltronaButton.setOnAction(e -> comprarPoltrona((Button) e.getSource()));
-
-            // Adiciona a poltrona ao grid
-            grid.add(poltronaButton, i % 3, i / 3);
-        }
-
-        Scene scene = new Scene(grid, 400, 300);
-        primaryStage.setScene(scene);
-
-        primaryStage.show();
+    public CompraPoltronasCinema(Sala sala, Aplicacao aplicacao) {
+        this.sala = sala;
+        this.aplicacao = aplicacao;
+        criarGridPane();
     }
 
-    private void comprarPoltrona(Button poltronaButton) {
-        // Lógica para comprar a poltrona
-        System.out.println("Poltrona comprada: " + poltronaButton.getText());
-        poltronaButton.setDisable(true);
+    private void criarGridPane() {
+        setPadding(new Insets(10));
+        setHgap(10);
+        setVgap(10);
+
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 17; j++) {
+                PoltronaButton poltronaButton = new PoltronaButton(sala.getPoltrona(i, j));
+                add(poltronaButton, j, i);
+            }
+        }
+
+        Button btnConfirmar = new Button("Confirmar");
+        btnConfirmar.setOnAction(e -> onConfirmar());
+        add(btnConfirmar, 0, 13);
+
+        Button btnCancelar = new Button("Cancelar");
+        btnCancelar.setOnAction(e -> onCancelar());
+        add(btnCancelar, 1, 13);
+    }
+
+    private class PoltronaButton extends Button {
+        private Poltrona poltrona;
+
+        PoltronaButton(Poltrona poltrona) {
+            this.poltrona = poltrona;
+            setText(Integer.toString(poltrona.getNumero()));
+            setOnAction(e -> reservarOuLiberarPoltrona());
+            atualizarEstilo();
+        }
+
+        private void reservarOuLiberarPoltrona() {
+            poltrona.setDisponibilidade(!poltrona.isDisponibilidade());
+            atualizarEstilo();
+        }
+
+        private void atualizarEstilo() {
+            if (poltrona.isDisponibilidade()) {
+                setStyle("-fx-background-color: lightgreen;");
+            } else {
+                setStyle("-fx-background-color: lightcoral;");
+            }
+        }
     }
 }

@@ -1,0 +1,40 @@
+
+
+public class Sala {
+    private Poltrona[][] poltronas;
+    private Sessao sessao;
+
+    public Sala() {
+        this.poltronas = new Poltrona[13][19];
+
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 19; j++) {
+                this.poltronas[i][j] = new Poltrona((i * 19) + j + 1, "Padrão", true);
+            }
+        }
+    }
+
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
+    }
+
+    public Poltrona getPoltrona(int linha, int coluna) {
+        return poltronas[linha][coluna];
+    }
+
+    // Método para exibir informações da sala
+    /*public void exibirInformacoesDaSala() {
+        System.out.println("Estado Atual da Sala:");
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 19; j++) {
+                poltronas[i][j].exibirInformacoes();
+                System.out.println("------------------------");
+            }
+        }
+    }*/
+}
+
