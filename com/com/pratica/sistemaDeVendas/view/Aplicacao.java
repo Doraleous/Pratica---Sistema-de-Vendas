@@ -5,7 +5,11 @@
 package com.pratica.sistemadevendas.view;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import com.pratica.sistemadevendas.controller.AdministradorController;
+import com.pratica.sistemadevendas.controller.FilmeController;
+import com.pratica.sistemadevendas.controller.UsuarioComumController;
 import com.pratica.sistemadevendas.controller.UsuarioController;
 
 import javafx.application.Application;
@@ -20,6 +24,16 @@ public class Aplicacao extends Application {
     private TelaOperacoesUsuario telaOperacoesUsuario2;
     private UsuarioController usuarioController;
     private TelaOperacoesLanchonete telaOperacoesLanchonete;
+    private TelaOperacoesFilmesCLUD telaOperacoesFilmesCLUD;
+    private TelaOperacoesSala telaOperacoesSala;
+    private TelaOperacoesSessao telaOperacoeSessao;
+    private TelaUsuario telaUsuario;
+    private TelaComprarFilmes telaComprarFilmes;
+    private UsuarioComumController usuarioComumController;
+    private AdministradorController administradorController;
+    private FilmeController filmeController;
+    private TelaDeSessoes telaSessoes;
+    
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -28,21 +42,31 @@ public class Aplicacao extends Application {
 
     }
 
-    public void start(Stage estagioPrimario) throws IOException {
-        // this.estagioAtual = estagioPrimario;
+    public void start(Stage estagioPrimario) throws IOException, SQLException {
+
         estagioAtual = new Stage();
-        // this.estagioAtual = estagioPrimario;
+
         estagioAtual = new Stage();
         estagioAtual.initStyle(StageStyle.UNDECORATED);
         estagioAtual.setTitle("Cinecap - Logar Usuário");
-        estagioAtual.setWidth(700);
-        estagioAtual.setHeight(700);
+        estagioAtual.setWidth(800);
+        estagioAtual.setHeight(800);
 
         telaAdministrador = new TelaAdministrador(this);
         telaLogin = new TelaLogin(this);
         telaOperacoesUsuario2 = new TelaOperacoesUsuario(this);
         telaOperacoesLanchonete = new TelaOperacoesLanchonete(this);
         telaOperacoesFilme = new TelaOperacoesFilme(this);
+        telaOperacoesFilmesCLUD = new TelaOperacoesFilmesCLUD(this);
+        telaOperacoesSala = new TelaOperacoesSala(this);
+        telaOperacoeSessao = new TelaOperacoesSessao(this);
+        telaUsuario = new TelaUsuario(this);
+        telaComprarFilmes = new TelaComprarFilmes(this);
+        usuarioComumController = new UsuarioComumController(this);
+        administradorController = new AdministradorController(this);
+        this.filmeController = new FilmeController(this);
+        this.telaSessoes = new TelaDeSessoes(this);
+        
 
         usuarioController = new UsuarioController(this);
 
@@ -72,8 +96,37 @@ public class Aplicacao extends Application {
         return this.telaOperacoesFilme;
     }
 
+    public TelaOperacoesFilmesCLUD getTelaOperacoesFilmesCLUD() {
+        return this.telaOperacoesFilmesCLUD;
+    }
+
+    public TelaOperacoesSala gettTelaOperacoesSala() {
+        return this.telaOperacoesSala;
+    }
+
+    public TelaOperacoesSessao getTelaOperacoesSessao() {
+        return this.telaOperacoeSessao;
+    }
+
+    public TelaUsuario getTelaUsuario() {
+        return this.telaUsuario;
+    }
+
+    public TelaComprarFilmes getTelaComprarFilmes() {
+        return this.telaComprarFilmes;
+    }
+    
+
     public UsuarioController getUsuarioController() {
         return this.usuarioController;
+    }
+
+    public UsuarioComumController getUsuarioComumController() {
+        return this.usuarioComumController;
+    }
+
+    public AdministradorController getAdministradorController() {
+        return this.administradorController;
     }
 
     public void mudaCena(Scene novaCena) {
@@ -81,6 +134,12 @@ public class Aplicacao extends Application {
         this.estagioAtual.show();
 
     }
+
+    public TelaDeSessoes getTelaDeSessoes(){
+        return this.telaSessoes;
+    }
+
+    
 
     public Stage estagioAtual() {
         return this.estagioAtual;

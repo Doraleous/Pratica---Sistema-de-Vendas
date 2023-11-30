@@ -6,6 +6,48 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TelaDeSessoes",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.TelaDeSessoes",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        },
+        {
+            "type": "java",
+            "name": "AdminMenu",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.AdminMenu",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
+            "name": "teste",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.teste",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
+            "name": "TestesJanelas2",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.TestesJanelas2",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
+            "name": "TestesJanelas",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.TestesJanelas",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
+            "name": "Aplicacao",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",
+            "projectName": "Pratica---Sistema-de-Vendas_9f28cdfd"
+        },
+        {
+            "type": "java",
             "name": "Aplicacao",
             "request": "launch",
             "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",
@@ -19,6 +61,34 @@
             "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",
             "projectName": "Pratica---Sistema-de-Vendas_d55c5198",
             "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "testev",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.testev",
+            "projectName": "Pratica---Sistema-de-Vendas_73b0e8c8"
+        },
+        {
+            "type": "java",
+            "name": "TelaComprarFilmes",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.TelaComprarFilmes",
+            "projectName": "Pratica---Sistema-de-Vendas_73b0e8c8"
+        },
+        {
+            "type": "java",
+            "name": "TelaComprarFilmes",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.TelaComprarFilmes",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        },
+        {
+            "type": "java",
+            "name": "Aplicacao",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",
+            "projectName": "Pratica---Sistema-de-Vendas_73b0e8c8"
         },
         {
             "type": "java",

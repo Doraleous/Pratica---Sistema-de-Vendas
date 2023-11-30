@@ -133,7 +133,7 @@ public class UsuarioDAO {
         String sql = "SELECT cinecap.usuario.id FROM cinecap.usuario WHERE email = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setString(0, email);
+            statement.setString(1, email);
             try (ResultSet resultado = statement.executeQuery()) {
                 if (resultado.next()) {
                     long id = resultado.getLong(1);

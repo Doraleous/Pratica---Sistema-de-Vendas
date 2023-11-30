@@ -1,33 +1,22 @@
 package com.pratica.sistemadevendas.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import com.pratica.sistemadevendas.model.Filme;
-import com.pratica.sistemadevendas.model.Usuario;
-import com.pratica.sistemadevendas.model.UsuarioComum;
-import com.pratica.sistemadevendas.model.dao.UsuarioComumDAO;
-import com.pratica.sistemadevendas.model.dao.UsuarioDAO;
+import com.pratica.sistemadevendas.model.Administrador;
+import com.pratica.sistemadevendas.model.UsuarioEstudante;
+import com.pratica.sistemadevendas.model.dao.UsuarioEstudanteDAO;
 import com.pratica.sistemadevendas.view.Aplicacao;
 
-public class UsuarioComumController {
+public class UsuarioEstudanteController {
     private Aplicacao aplicacao;
-    private UsuarioComumDAO usuarioComumDAO;
-    private UsuarioDAO usuarioDAO;
+    private UsuarioEstudanteDAO usuarioEstudanteDAO;
 
-    public UsuarioComumController(Aplicacao aplicacao) {
+    public UsuarioEstudanteController(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
-        usuarioDAO = new UsuarioDAO();
-        usuarioComumDAO = new UsuarioComumDAO();
-
+        usuarioEstudanteDAO = new UsuarioEstudanteDAO();
     }
 
-    public boolean isUsuarioComum(long idUsuario) throws SQLException {
-        UsuarioComumDAO usuarioComumDAO = new UsuarioComumDAO();
-        return usuarioComumDAO.isUsuarioComum(idUsuario);
-    }
-
-    public boolean controlaCadastroUsuarioComum() {
+    public boolean controlaCadastroEstudante() {
         if ((this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText().trim().equals("") ||
                 this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText() == null)
                 || (this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText().trim().equals("") ||
@@ -51,17 +40,15 @@ public class UsuarioComumController {
         return false;
     }
 
-    // cpf senha nome email datanascimento //continuar depois, chamar o cadastro de
-    // usuário comum e usuário
-    public void cadastraUsuarioComum(UsuarioComum novoUsuarioComum) throws SQLException {
-        novoUsuarioComum = new UsuarioComum(this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
+    public void cadastrarUsuarioEstudante(UsuarioEstudante usuarioEstudante) throws SQLException {
+        usuarioEstudante = new UsuarioEstudante(this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
                 this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
                 this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
                 this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(), null);
         if (!this.aplicacao.getAdministradorController()
                 .usuarioExiste(this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText())) {
             // usuarioDAO.cadastrarUsuario(novoUsuarioComum);
-            usuarioComumDAO.cadastrarUsuarioComum(novoUsuarioComum);
+            usuarioEstudanteDAO.cadastrarUsuarioEstudante(usuarioEstudante);
             this.aplicacao.getTelaOperacoesUsuario().getcpTextField().setText("");
             this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().setText("");
             this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().setText("");
@@ -72,7 +59,5 @@ public class UsuarioComumController {
             this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao()
                     .setText("Usuário já existe");
         }
-
     }
-
 }

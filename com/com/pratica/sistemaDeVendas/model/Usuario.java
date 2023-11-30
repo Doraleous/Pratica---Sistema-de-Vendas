@@ -21,20 +21,25 @@ public class Usuario implements Serializable {
     private String email;
     private String senha;
 
-    public Usuario(String CPF, String senha, String nome, String email) {
+    public Usuario(String CPF, String senha, String nome, String email, Date dataDeNascimento) {
         this.CPF = CPF;
         this.senha = senha;
         this.nome = nome;
-        this.email= email;
+        this.email = email;
+        this.dataDeNascimento = dataDeNascimento;
     }
 
-    public Usuario (){
-        
+    public Usuario() {
+
     }
 
     public String toString() {
-        return "CPF: " + this.CPF + " Nome: " + this.nome +  " E-mail: " + this.email + /*this.dataNascimentoToString() +*/ " Senha: " + this.senha;
+        return "CPF: " + this.CPF + " Nome: " + this.nome + " E-mail: " + this.email + /*
+                                                                                        * this.dataNascimentoToString()
+                                                                                        * +
+                                                                                        */ " Senha: " + this.senha;
     }
+
     /**
      * @return String return the CPF
      */
@@ -119,11 +124,15 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    /*public String dataNascimentoToString(){
-        int dia = this.getDataDeNascimento().getDay();
-        int mes = this.getDataDeNascimento().getMonth()+1; // somo mais 1 por que o Date salva os meses de 0 a 11
-        int ano = this.getDataDeNascimento().getYear()+1900; // somo mais 1900 por que o Date salva os anos subtraindo 1900
-        return " Data= "+ dia + "/" + mes + "/" + ano;
-    }*/
+    /*
+     * public String dataNascimentoToString(){
+     * int dia = this.getDataDeNascimento().getDay();
+     * int mes = this.getDataDeNascimento().getMonth()+1; // somo mais 1 por que o
+     * Date salva os meses de 0 a 11
+     * int ano = this.getDataDeNascimento().getYear()+1900; // somo mais 1900 por
+     * que o Date salva os anos subtraindo 1900
+     * return " Data= "+ dia + "/" + mes + "/" + ano;
+     * }
+     */
 
 }
