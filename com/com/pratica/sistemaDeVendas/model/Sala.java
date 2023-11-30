@@ -1,6 +1,11 @@
 package com.pratica.sistemadevendas.model;
 
-public class Sala {
+import java.io.Serializable;
+
+public class Sala implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
     private Poltrona[][] poltronas;
     private Sessao[] sessoes;
     private String nomeSala;
@@ -14,7 +19,7 @@ public class Sala {
 
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 19; j++) {
-                this.poltronas[i][j] = new Poltrona((i * 19) + j + 1, "Padrão", true);
+                this.poltronas[i][j] = new Poltrona((i * 19) + j + 1, true);
             }
         }
     }
@@ -45,6 +50,14 @@ public class Sala {
 
     public void setTipoSala(String tipoSala) {
         this.tipoSala = tipoSala;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Poltrona getPoltrona(int linha, int coluna) {

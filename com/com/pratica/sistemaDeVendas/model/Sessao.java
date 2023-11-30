@@ -1,8 +1,11 @@
 package com.pratica.sistemadevendas.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Sessao {
+public class Sessao implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private Long id;
     private Date dataInicio;
     private Filme filmeEmCartaz;
 
@@ -24,6 +27,14 @@ public class Sessao {
 
     public Filme getFilmeEmCartaz() {
         return filmeEmCartaz;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setFilmeEmCartaz(Filme filmeEmCartaz) {
