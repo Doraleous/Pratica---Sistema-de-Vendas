@@ -57,7 +57,18 @@ public class AdministradorController {
 
                 break;
             case "Estudante":
-
+                UsuarioEstudanteController usuarioEstudanteContoller = new UsuarioEstudanteController(this.aplicacao);
+                /*
+                 * if (usuarioEstudanteContoller.controlaCadastroEstudante()) {
+                 * Administrador novoEstudante = new Administrador(
+                 * this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
+                 * this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
+                 * this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),
+                 * this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText(),
+                 * null);
+                 * usuarioEstudanteContoller.cadastraAdministrador(novoEstudante);
+                 * }
+                 */
                 break;
             case "Crítico":
 
@@ -69,8 +80,9 @@ public class AdministradorController {
         return false;
     }
 
-    public boolean cadastrarFilme(String titulo) {
-        return false;
+    public void cadastrarFilme(String titulo) throws SQLException {
+        FilmeController filmeController = new FilmeController(this.aplicacao);
+        filmeController.cadastraFilme();
     }
 
     public boolean usuarioExiste(String email) {
@@ -78,7 +90,7 @@ public class AdministradorController {
         return usuarioDAO.usuarioExiste(email);
     }
 
-    public boolean controlaCadastroAdministrador(){
+    public boolean controlaCadastroAdministrador() {
         if ((this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText().trim().equals("") ||
                 this.aplicacao.getTelaOperacoesUsuario().getEmailTextField().getText() == null)
                 || (this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText().trim().equals("") ||
@@ -102,7 +114,7 @@ public class AdministradorController {
         return false;
     }
 
-    public void cadastraAdministrador(Administrador administrador) throws SQLException{
+    public void cadastraAdministrador(Administrador administrador) throws SQLException {
         administrador = new Administrador(this.aplicacao.getTelaOperacoesUsuario().getcpTextField().getText(),
                 this.aplicacao.getTelaOperacoesUsuario().getsenhaTextField().getText(),
                 this.aplicacao.getTelaOperacoesUsuario().getnomeTextField().getText(),

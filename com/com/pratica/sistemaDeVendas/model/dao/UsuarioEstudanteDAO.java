@@ -39,7 +39,7 @@ public class UsuarioEstudanteDAO {
         String sql = "SELECT cinecap.usuario.id, cinecap.usuario.cpf, cinecap.usuario.senha, cinecap.usuario.nome, " +
                 "cinecap.usuario.email, cinecap.usuario.data_nascimento FROM cinecap.usuario_estudante inner join cinecap.usuario on"
                 +
-                "cinecap.usuario.id = cinecap.cinecap.usuario_estudante.id";
+                "cinecap.usuario.id = cinecap.usuario_estudante.id";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql);
                 ResultSet resultado = statement.executeQuery()) {
@@ -83,8 +83,63 @@ public class UsuarioEstudanteDAO {
         return false;
     }
 
-    public Long buscarUsuarioEstudante() throws SQLException {
-        // UsuarioComumDAO
+    public boolean isUsuarioEstudante(Long usuarioId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM cinecap.usuario_estudante WHERE id = ?";
+        try (Connection conexao = ConexãoBanco.conectar();
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setLong(1, usuarioId);
+            try (ResultSet resultado = statement.executeQuery()) {
+                if (resultado.next()) {
+                    int count = resultado.getInt(1);
+                    return count > 0;
+                }
+            } catch (SQLException e) {
+                // Lidar com exceções, logar ou tratar de alguma forma
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public Long buscarUsuarioEstudante(String email) throws SQLException {
+        UsuarioComumDAO usuarioComumDAO = new UsuarioComumDAO();
+        long idUsuario = usuarioComumDAO.buscarUsuarioComum(email);
+        if (idUsuario != 0l) {
+            String sql = "SELECT cinecap.usuario_estudante.id FROM cinecap.usuario_estudante WHERE id = ?";
+            try (Connection conexao = ConexãoBanco.conectar();
+                    PreparedStatement statement = conexao.prepareStatement(sql)) {
+                statement.setLong(1, idUsuario);
+                try (ResultSet resultado = statement.executeQuery()) {
+                    if (resultado.next()) {
+                        long id = resultado.getLong(1);
+                        return id;
+                    }
+                }
+            }
+        }
         return 0L;
+    }
+
+    public boolean deletarUSuarioEstudante(String email) throws SQLException {
+        UsuarioComumDAO usuarioComumDAO = new UsuarioComumDAO();
+        boolean encontrado = usuarioComumDAO.usuarioComumExiste(email);
+        if (encontrado) {
+            Long idAdmin = this.buscarUsuarioEstudante(email);
+            if (idAdmin != 01) {
+                String sql = "DELETE FROM cinecap.usuario_estudante WHERE id = ?";
+                try (Connection conexao = ConexãoBanco.conectar();
+                        PreparedStatement statement = conexao.prepareStatement(sql)) {
+                    statement.setLong(1, idAdmin);
+                    int linhasAfetadas = statement.executeUpdate();
+                    if (linhasAfetadas > 0) {
+                        usuarioComumDAO.deletarUsuarioComum(email);
+                    }
+                    return linhasAfetadas > 0;
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
     }
 }

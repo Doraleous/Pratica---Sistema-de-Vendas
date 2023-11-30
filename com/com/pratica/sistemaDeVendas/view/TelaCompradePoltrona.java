@@ -12,12 +12,13 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import com.pratica.sistemadevendas.model.Poltrona;
 
-public class CompraPoltronasCinema extends GridPane {
+public class TelaCompradePoltrona extends GridPane {
     private Sala sala;
     private Application aplicacao;
 
-    public CompraPoltronasCinema(Sala sala, Aplicacao aplicacao) {
+    public TelaCompradePoltrona(Sala sala, Aplicacao aplicacao) {
         this.sala = sala;
         this.aplicacao = aplicacao;
         criarGridPane();
@@ -66,5 +67,18 @@ public class CompraPoltronasCinema extends GridPane {
                 setStyle("-fx-background-color: lightcoral;");
             }
         }
+
+        private void onConfirmar() {
+
+        }
     }
+
+    private Object onConfirmar() {
+        return null;
+    }
+
+    private Object onCancelar() {
+        return null;
+    }
+
 }

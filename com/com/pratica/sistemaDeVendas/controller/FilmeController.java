@@ -25,22 +25,35 @@ public class FilmeController {
 
     private FilmeDAO filmeDAO;
     private Aplicacao aplicacao;
-    
-    public FilmeController(Aplicacao aplicacao){
+
+    public FilmeController(Aplicacao aplicacao) {
         filmeDAO = new FilmeDAO();
         this.aplicacao = aplicacao;
     }
 
-    public ArrayList<String> verificaListaDeFilmes() throws SQLException{
+    public ArrayList<String> verificaListaDeFilmes() throws SQLException {
         ArrayList<String> ListaVerificada = filmeDAO.filmesDisponiveisCompra();
-        if(!ListaVerificada.isEmpty()){
+        if (!ListaVerificada.isEmpty()) {
             return ListaVerificada;
-        }else{
+        } else {
             return null;
         }
     }
-   
-    
-    
-    
+
+    public void cadastraFilme() throws SQLException {
+
+        if ((this.aplicacao.getTelaOperacoesFilmesCLUD().cadastrarFilme().equals("")) ||
+                (this.aplicacao.getTelaOperacoesFilmesCLUD().cadastrarFilme() == null)) {
+            this.aplicacao.getTelaOperacoesFilmesCLUD().statusOperacao().setText("Título deve ser preenchido");
+
+        } else if (this.filmeDAO.filmeExiste(this.aplicacao.getTelaOperacoesFilmesCLUD().cadastrarFilme())) {
+            this.aplicacao.getTelaOperacoesFilmesCLUD().statusOperacao().setText("Filme já existe");
+
+        } else {
+            Filme novoFilme = new Filme(this.aplicacao.getTelaOperacoesFilmesCLUD().cadastrarFilme());
+            this.filmeDAO.cadastrarFilme(novoFilme);
+
+        }
+    }
+
 }

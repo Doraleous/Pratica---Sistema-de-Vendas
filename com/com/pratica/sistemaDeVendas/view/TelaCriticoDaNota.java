@@ -8,64 +8,81 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.pratica.sistemadevendas.model.Filme;
+import com.pratica.sistemadevendas.model.Poltrona;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
-public class TelaDeCriticoDarNota extends VBox {
+public class TelaCriticoDaNota {
 
-    private ObservableList<Filme> listaFilmes = FXCollections.observableArrayList();
-    private Application aplicacao;
+    private GridPane caixaFilmesEBotoesAvaliar;
 
-    public TelaDeCriticoDarNota(Aplicacao aplicacao) {
+    private Button botaoVoltar;
+    private HBox caixaBotaoVoltar;
+
+    private TextField campoNota;
+
+    private VBox caixaConteiner;
+
+    private Scene telaCriticoDaNota;
+    private Aplicacao aplicacao;
+
+    public TelaCriticoDaNota(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
 
-        // Adicionar filmes à lista Buscar filmes*
-        listaFilmes.add(new Filme("Filme 1"));
-        listaFilmes.add(new Filme("Filme 2"));
-        listaFilmes.add(new Filme("Filme 3"));
+        int linha = 0, colunaFilme = 0, colunaBotaoAvaliar = 1;
 
-        ListView<Filme> listViewFilmes = new ListView<>(listaFilmes);
-        listViewFilmes.setCellFactory(param -> new ListCell<>() {
-            @Override
-            protected void updateItem(Filme filme, boolean empty) {
-                super.updateItem(filme, empty);
-                if (empty || filme == null) {
-                    setText(null);
-                } else {
-                    setText(filme.getTitulo());
-                }
-            }
-        });
+        caixaFilmesEBotoesAvaliar = new GridPane();
+        caixaFilmesEBotoesAvaliar.setHgap(60);
+        caixaFilmesEBotoesAvaliar.setVgap(20);
 
-        Slider sliderNota = new Slider(0, 10, 5);
-        sliderNota.setShowTickMarks(true);
-        sliderNota.setShowTickLabels(true);
+        String[] listaDeFilmes = { "Filme 1", "Filme 2", "Filme 3" };
 
-        Button btnDarNota = new Button("Dar Nota");
-        btnDarNota.setOnAction(e -> {
-            Filme selectedFilme = listViewFilmes.getSelectionModel().getSelectedItem();
-            if (selectedFilme != null) {
-                double nota = sliderNota.getValue();
-                selectedFilme.adicionarNota(nota);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Nota Adicionada");
-                alert.setHeaderText(null);
-                alert.setContentText("Nota " + nota + " adicionada para " + selectedFilme.getTitulo());
-                alert.showAndWait();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Selecione um Filme");
-                alert.setHeaderText(null);
-                alert.setContentText("Por favor, selecione um filme antes de dar uma nota.");
-                alert.showAndWait();
-            }
-        });
+        for (String tituloFilme : listaDeFilmes) {
+            Label labelNomeFilme = new Label(tituloFilme);
+            campoNota = new TextField();
+            Button avaliar = new Button("Avaliar");
 
-        Button btnVoltar = new Button("Voltar");
-        btnVoltar.setOnAction(e -> voltarParaOutraTela());
+            caixaFilmesEBotoesAvaliar.add(labelNomeFilme, colunaFilme, linha);
+            caixaFilmesEBotoesAvaliar.add(campoNota, colunaBotaoAvaliar, linha);
+            caixaFilmesEBotoesAvaliar.add(avaliar, colunaBotaoAvaliar + 1, linha);
+            avaliar.setOnAction(e -> avaliarFilme(tituloFilme)); // Definir ação do botão
+            linha++;
+        }
 
-        // Layout da tela
-        setSpacing(10);
-        setPadding(new Insets(10));
-        getChildren().addAll(listViewFilmes, sliderNota, btnDarNota, btnVoltar);
+        caixaFilmesEBotoesAvaliar.setAlignment(Pos.CENTER);
+
+        botaoVoltar = new Button("Voltar");
+        botaoVoltar.setPrefWidth(200);
+        botaoVoltar.setOnAction(e -> voltar());
+        caixaBotaoVoltar = new HBox();
+        caixaBotaoVoltar.getChildren().addAll(botaoVoltar);
+        caixaBotaoVoltar.setAlignment(Pos.CENTER);
+
+        caixaConteiner = new VBox();
+        caixaConteiner.getChildren().addAll(caixaFilmesEBotoesAvaliar, caixaBotaoVoltar);
+        caixaConteiner.setAlignment(Pos.CENTER);
+        caixaConteiner.setStyle("-fx-background-color: lightblue;"); // Cor de fundo diferente
+
+        telaCriticoDaNota = new Scene(caixaConteiner);
     }
 
+    private void avaliarFilme(String tituloFilme) {
+        double nota = Double.parseDouble(campoNota.getText());
+        System.out.println("Filme: " + tituloFilme + ", Nota: " + nota);
+    }
+
+    private void voltar() {
+
+    }
+
+    public Scene telaCriticoDaNota() {
+        return this.telaCriticoDaNota;
+    }
 }

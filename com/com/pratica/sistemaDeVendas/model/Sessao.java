@@ -4,13 +4,14 @@ import java.util.Date;
 
 public class Sessao {
     private Date dataInicio;
-    private Date dataFim;
     private Filme filmeEmCartaz;
 
-    public Sessao(Date dataInicio, Date dataFim, Filme filmeEmCartaz) {
+    public Sessao(Date dataInicio, Filme filmeEmCartaz) {
         this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
         this.filmeEmCartaz = filmeEmCartaz;
+    }
+
+    public Sessao(String string, Filme filme) {
     }
 
     public Date getDataInicio() {
@@ -19,14 +20,6 @@ public class Sessao {
 
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
-    }
-
-    public Date getDataFim() {
-        return dataFim;
-    }
-
-    public void setDataFim(Date dataFim) {
-        this.dataFim = dataFim;
     }
 
     public Filme getFilmeEmCartaz() {

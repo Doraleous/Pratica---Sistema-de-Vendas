@@ -5,42 +5,41 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.pratica.sistemadevendas.model.UsuarioComum;
+import com.pratica.sistemadevendas.model.UsuarioCritico;
+import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 import java.util.Date;
 
-import com.pratica.sistemadevendas.model.Administrador;
-import com.pratica.sistemadevendas.model.Usuario;
-import com.pratica.sistemadevendas.model.UsuarioComum;
-import com.pratica.sistemadevendas.model.util.ConexãoBanco;
-
-public class UsuarioComumDAO {
-    public static String cadastrarUsuarioComum(UsuarioComum usuarioComum) throws SQLException {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = new Usuario();
-        usuario.setCPF(usuarioComum.getCPF());
-        usuario.setSenha(usuarioComum.getSenha());
-        usuario.setEmail(usuarioComum.getEmail());
-        usuario.setNome(usuarioComum.getNome());
-        usuario.setDataDeNascimento(usuarioComum.getDataDeNascimento());
-        usuarioDAO.cadastrarUsuario(usuario);
-        long idNovoUsuario = usuarioDAO.buscarUsuario(usuarioComum.getEmail());
+public class UsuarioCriticoDAO {
+    public String cadastrarUsuarioCritico(UsuarioCritico usuarioCritico) throws SQLException {
+        UsuarioComumDAO usuarioComumDAO = new UsuarioComumDAO();
+        UsuarioComum UsuarioComum = new UsuarioComum(
+                usuarioCritico.getCPF(),
+                usuarioCritico.getSenha(),
+                usuarioCritico.getNome(),
+                usuarioCritico.getEmail(),
+                usuarioCritico.getDataDeNascimento());
+        UsuarioComumDAO.cadastrarUsuarioComum(UsuarioComum);
+        long idNovoUsuario = usuarioComumDAO.buscarUsuarioComum(usuarioCritico.getEmail());
         String sql = "INSERT INTO cinecap.usuario_comum (id) VALUES (?)";
 
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setLong(1, idNovoUsuario);
             statement.execute();
-            return "Usuario Comum Cadastrado com Sucesso.";
+            return "Usuario Critico Cadastrado com Sucesso.";
         } catch (SQLException e) {
-            return ("Erro ao cadastrar Usuário Comum.");
+            return ("Erro ao Cadastrar Usuário Critico");
         }
     }
 
-    public ArrayList<UsuarioComum> listarUsuariosComuns() throws SQLException {
-        ArrayList<UsuarioComum> usuariosComuns = new ArrayList<>();
+    public ArrayList<UsuarioCritico> listarUsuariosCriticos() throws SQLException {
+        ArrayList<UsuarioCritico> usuariosCriticos = new ArrayList<>();
         String sql = "SELECT cinecap.usuario.id, cinecap.usuario.cpf, cinecap.usuario.senha, cinecap.usuario.nome, " +
-                "cinecap.usuario.email, cinecap.usuario.data_nascimento FROM cinecap.usuario_comum inner join cinecap.usuario on"
+                "cinecap.usuario.email, cinecap.usuario.data_nascimento FROM cinecap.usuario_critico inner join cinecap.usuario on"
                 +
-                "cinecap.usuario.id = cinecap.usuario_comum.id";
+                "cinecap.usuario.id = cinecap.usuario_critico.id";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql);
                 ResultSet resultado = statement.executeQuery()) {
@@ -51,21 +50,21 @@ public class UsuarioComumDAO {
                 String email = resultado.getString("email");
                 String senha = resultado.getString("senha");
                 Date dataDeNascimento = (java.util.Date) resultado.getDate("data_nascimento");
-                UsuarioComum usuarioComum = new UsuarioComum(cpf, senha, nome, email, dataDeNascimento);
-                usuariosComuns.add(usuarioComum);
+                UsuarioCritico usuarioCritico = new UsuarioCritico(cpf, senha, nome, email, dataDeNascimento);
+                usuariosCriticos.add(usuarioCritico);
             }
         } catch (SQLException e) {
             System.out.println("Erro ao listar usuários: " + e.getMessage());
         }
-        return usuariosComuns;
+        return usuariosCriticos;
     }
 
-    public boolean usuarioComumExiste(String email) throws SQLException {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        boolean existe = usuarioDAO.usuarioExiste(email);
+    public boolean usuarioCriticoExiste(String email) throws SQLException {
+        UsuarioComumDAO usuarioComumDAO = new UsuarioComumDAO();
+        boolean existe = usuarioComumDAO.usuarioComumExiste(email);
         if (existe) {
-            long idUsuario = usuarioDAO.buscarUsuario(email);
-            String sql = "SELECT COUNT(*) FROM cinecap.usuario_comum WHERE id = ?";
+            long idUsuario = usuarioComumDAO.buscarUsuarioComum(email);
+            String sql = "SELECT COUNT(*) FROM cinecap.usuario_critico WHERE id = ?";
             try (Connection conexao = ConexãoBanco.conectar();
                     PreparedStatement statement = conexao.prepareStatement(sql)) {
                 statement.setLong(1, idUsuario);
@@ -84,8 +83,8 @@ public class UsuarioComumDAO {
         return false;
     }
 
-    public boolean isUsuarioComum(long usuarioId) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM cinecap.usuario_comum WHERE id = ?";
+    public boolean isUsuarioCritico(Long usuarioId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM cinecap.usuario_critico WHERE id = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setLong(1, usuarioId);
@@ -102,11 +101,11 @@ public class UsuarioComumDAO {
         return false;
     }
 
-    public long buscarUsuarioComum(String email) throws SQLException {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        long idUsuario = usuarioDAO.buscarUsuario(email);
+    public Long buscarUsuarioCritico(String email) throws SQLException {
+        UsuarioComumDAO usuarioComumDAO = new UsuarioComumDAO();
+        long idUsuario = usuarioComumDAO.buscarUsuarioComum(email);
         if (idUsuario != 0l) {
-            String sql = "SELECT cinecap.usuario_comum.id FROM cinecap.usuario_comum where id = ?";
+            String sql = "SELECT cinecap.usuario_critico.id FROM cinecap.usuario_critico WHERE id = ?";
             try (Connection conexao = ConexãoBanco.conectar();
                     PreparedStatement statement = conexao.prepareStatement(sql)) {
                 statement.setLong(1, idUsuario);
@@ -118,31 +117,29 @@ public class UsuarioComumDAO {
                 }
             }
         }
-        return 0l;
+        return 0L;
     }
 
-    public boolean deletarUsuarioComum(String email) throws SQLException {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        boolean encontrado = usuarioDAO.usuarioExiste(email);
+    public boolean deletarUSuarioCritico(String email) throws SQLException {
+        UsuarioComumDAO usuarioComumDAO = new UsuarioComumDAO();
+        boolean encontrado = usuarioComumDAO.usuarioComumExiste(email);
         if (encontrado) {
-            long idAdmin = this.buscarUsuarioComum(email);
-            if (idAdmin != 0l) {
-                String sql = "DELETE FROM cinecap.usuario_comum WHERE id = ?";
+            Long idAdmin = this.buscarUsuarioCritico(email);
+            if (idAdmin != 01) {
+                String sql = "DELETE FROM cinecap.usuario_critico WHERE id = ?";
                 try (Connection conexao = ConexãoBanco.conectar();
                         PreparedStatement statement = conexao.prepareStatement(sql)) {
                     statement.setLong(1, idAdmin);
                     int linhasAfetadas = statement.executeUpdate();
                     if (linhasAfetadas > 0) {
-                        usuarioDAO.deletarUsuario(email);
+                        usuarioComumDAO.deletarUsuarioComum(email);
                     }
                     return linhasAfetadas > 0;
                 } catch (SQLException e) {
-                    // Lidar com exceções, logar ou tratar de alguma forma
                     e.printStackTrace();
                 }
             }
         }
         return false;
     }
-
 }
