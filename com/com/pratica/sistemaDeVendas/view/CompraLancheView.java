@@ -3,6 +3,9 @@ package com.pratica.sistemadevendas.view;
 import java.util.List;
 import java.util.Scanner;
 
+import com.pratica.sistemadevendas.controller.CompraLancheController;
+import com.pratica.sistemadevendas.model.Lanche;
+
 public class CompraLancheView {
     public void exibirMenu(List<Lanche> lanches) {
         System.out.println("Menu de Lanches:");
@@ -13,9 +16,10 @@ public class CompraLancheView {
     }
 
     public int solicitarLanche() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Escolha o nÃºmero do lanche desejado: ");
-        return scanner.nextInt();
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Escolha o nÃºmero do lanche desejado: ");
+            return scanner.nextInt();
+        }
     }
 
     public void exibirTotal(double total) {

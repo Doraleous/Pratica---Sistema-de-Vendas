@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.pratica.sistemadevendas.model.CarrinhoDeCompras;
+import com.pratica.sistemadevendas.model.Lanche;
 import com.pratica.sistemadevendas.view.CompraLancheView;
 
 public class CompraLancheController {
@@ -45,15 +47,15 @@ public class CompraLancheController {
         if (escolha >= 1 && escolha <= menu.size()) {
             Lanche lancheEscolhido = menu.get(escolha - 1);
 
-            Scanner scanner = new Scanner(System.in);
+            try (Scanner scanner = new Scanner(System.in)) {
+                System.out.print("Novo nome para o lanche: ");
+                String novoNome = scanner.nextLine();
+                lancheEscolhido.setNome(novoNome);
 
-            System.out.print("Novo nome para o lanche: ");
-            String novoNome = scanner.nextLine();
-            lancheEscolhido.setNome(novoNome);
-
-            System.out.print("Novo preço para o lanche: ");
-            double novoPreco = scanner.nextDouble();
-            lancheEscolhido.setPreco(novoPreco);
+                System.out.print("Novo preço para o lanche: ");
+                double novoPreco = scanner.nextDouble();
+                lancheEscolhido.setPreco(novoPreco);
+            }
 
             view.exibirMenu(menu);
             System.out.println("Lanche modificado com sucesso!");
