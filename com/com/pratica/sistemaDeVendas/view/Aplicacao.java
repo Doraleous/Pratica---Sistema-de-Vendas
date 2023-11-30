@@ -32,6 +32,8 @@ public class Aplicacao extends Application {
     private UsuarioComumController usuarioComumController;
     private AdministradorController administradorController;
     private FilmeController filmeController;
+    private TelaDeSessoes telaSessoes;
+    
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -63,6 +65,8 @@ public class Aplicacao extends Application {
         usuarioComumController = new UsuarioComumController(this);
         administradorController = new AdministradorController(this);
         this.filmeController = new FilmeController(this);
+        this.telaSessoes = new TelaDeSessoes(this);
+        
 
         usuarioController = new UsuarioController(this);
 
@@ -111,6 +115,7 @@ public class Aplicacao extends Application {
     public TelaComprarFilmes getTelaComprarFilmes() {
         return this.telaComprarFilmes;
     }
+    
 
     public UsuarioController getUsuarioController() {
         return this.usuarioController;
@@ -129,6 +134,12 @@ public class Aplicacao extends Application {
         this.estagioAtual.show();
 
     }
+
+    public TelaDeSessoes getTelaDeSessoes(){
+        return this.telaSessoes;
+    }
+
+    
 
     public Stage estagioAtual() {
         return this.estagioAtual;
