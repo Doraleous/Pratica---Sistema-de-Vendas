@@ -20,9 +20,7 @@ public class Lanche {
     public double getPreco() {
         return preco;
     }
-    public int getId(){
-        return id;
-    }
+    
 
     public void setNome(String novoNome) {
         this.nome = novoNome;
@@ -31,9 +29,7 @@ public class Lanche {
     public void setPreco(double novoPreco) {
         this.preco = novoPreco;
     }
-    public void setId(int novoId){
-        this.id = novoId;
-    }
+    
 }
 
 

@@ -1,15 +1,17 @@
 package com.pratica.sistemaDeVendas.view;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Main extends Application {
-
-    private int count = 0;
+public class TelaLanchoneteUsuario extends Application {
+    private final LancheController lancheController = new LancheController();
+    private final ObservableList<Lanche> lanchesObservableList = FXCollections.observableArrayList();
 
     public static void main(String[] args) {
         launch(args);
@@ -17,32 +19,49 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Cinecap");
+        primaryStage.setTitle("Compra de Lanches");
 
-        Button btnComprar = new Button("Comprar");
-        Button btnVoltar = new Button("Voltar");
-        Button btnSair = new Button("Sair");
+        // Criar elementos da interface gráfica
+        ListView<Lanche> lanchesListView = new ListView<>();
+        lanchesListView.setItems(lanchesObservableList);
 
-        Button btnAumentar = new Button("+");
-        Button btnDiminuir = new Button("-");
+        TextField quantidadeTextField = new TextField();
+        quantidadeTextField.setPromptText("Quantidade");
 
-        Label lblCount = new Label("Quantidade: " + count);
+        Button comprarButton = new Button("Comprar");
+        comprarButton.setOnAction(event -> comprarLanche(lanchesListView.getSelectionModel().getSelectedItem(), quantidadeTextField.getText()));
 
-        btnAumentar.setOnAction(e -> {
-            count++;
-            lblCount.setText("Quantidade: " + count);
-        });
+        // Layout
+        VBox vbox = new VBox(10);
+        vbox.setPadding(new Insets(10, 10, 10, 10));
+        vbox.getChildren().addAll(lanchesListView, quantidadeTextField, comprarButton);
 
-        btnDiminuir.setOnAction(e -> {
-            if (count > 0) {
-                count--;
-                lblCount.setText("Quantidade: " + count);
-            }
-        });
+        // Carregar lanches no início
+        carregarLanches();
 
-        VBox vbox = new VBox(btnComprar, btnVoltar, btnSair, btnAumentar, btnDiminuir, lblCount);
-        Scene scene = new Scene(vbox, 300, 200);
+        // Criar cena e exibir a janela
+        Scene scene = new Scene(vbox, 300, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void carregarLanches() {
+        // Carregar lanches do banco de dados ou de onde você preferir
+        lanchesObservableList.addAll(lancheController.listarLanches());
+    }
+
+    private void comprarLanche(Lanche lanche, String quantidadeStr) {
+        try {
+            int quantidade = Integer.parseInt(quantidadeStr);
+            if (lanche != null && quantidade > 0) {
+                // Aqui você pode adicionar a lógica para realizar a compra
+                // Por exemplo, atualizar o banco de dados com a compra
+                System.out.println("Compra realizada: " + quantidade + "x " + lanche.getNome() + " por R$" + lanche.getPreco());
+            } else {
+                System.out.println("Selecione um lanche e insira uma quantidade válida.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Insira uma quantidade válida.");
+        }
     }
 }
