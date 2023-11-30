@@ -5,10 +5,10 @@ public class Lanche {
     private double preco;
     private int id;
 
-    public Lanche(String nome, double preco, int id) {
+    public Lanche(String nome, double preco) {
         this.nome = nome;
         this.preco = preco;
-        this.id = id;
+        
     }
 
     //gets e sets
