@@ -125,6 +125,14 @@ public class TelaOperacoesUsuario {
         });
         cadastrarEstudante = new Button("Cadastrar Estudante");
         cadastrarEstudante.setPrefWidth(200);
+        cadastrarEstudante.setOnAction(e -> {
+            try {
+                this.administradorController.cadastrarUsuario("Estudante");
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         caixaCadastraClienteEstudante = new HBox();
         caixaCadastraClienteEstudante.setSpacing(30);
         caixaCadastraClienteEstudante.setAlignment(Pos.CENTER);
