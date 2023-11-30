@@ -81,7 +81,7 @@ public class TelaDeSessoes {
             caixaConteiner.setStyle("-fx-background-color: lightgreen;");
 
         } else {
-            estamosFechados = new Label("Não há sessões disponíveis no momento.");
+            semSessao = new Label("Não há sessões disponíveis no momento.");
             caixaConteiner = new VBox();
             caixaConteiner.getChildren().add(semSessao);
             caixaConteiner.setAlignment(Pos.CENTER);

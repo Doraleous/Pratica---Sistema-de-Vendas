@@ -9,13 +9,13 @@ import java.util.Date;
 
 import com.pratica.sistemadevendas.model.Filme;
 import com.pratica.sistemadevendas.model.Sessao;
-import com.pratica.sistemadevendas.model.util.ConexaoBanco;
+import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class SessaoDAO {
 
     public String cadastrarSessao(Sessao sessao) throws SQLException {
         String sql = "INSERT INTO cinecap.sessao (data_inicio, id_filme) VALUES (?, ?)";
-        try (Connection conexao = ConexaoBanco.conectar();
+        try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setTimestamp(1, new java.sql.Timestamp(sessao.getDataInicio().getTime()));
             statement.setLong(2, sessao.getFilmeEmCartaz().getId());
@@ -34,7 +34,7 @@ public class SessaoDAO {
                      "FROM cinecap.sessao INNER JOIN cinecap.filme " +
                      "ON cinecap.sessao.id_filme = cinecap.filme.id";
 
-        try (Connection conexao = ConexaoBanco.conectar();
+        try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {

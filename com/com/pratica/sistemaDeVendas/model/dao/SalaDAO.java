@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pratica.sistemadevendas.model.Sala;
-import com.pratica.sistemadevendas.model.util.ConexaoBanco;
+import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class SalaDAO {
 
     public void cadastrarSala(Sala sala) throws SQLException {
         String sql = "INSERT INTO cinecap.sala (nome_sala, tipo_sala) VALUES (?, ?)"; //nome dos campos esta certo?
-        try (Connection conexao = ConexaoBanco.conectar();
+        try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, sala.getNomeSala());
             statement.setString(2, sala.getTipoSala());
@@ -32,7 +32,7 @@ public class SalaDAO {
 
         String sql = "SELECT id, nome_sala, tipo_sala FROM cinecap.sala";
 
-        try (Connection conexao = ConexaoBanco.conectar();
+        try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
@@ -48,7 +48,7 @@ public class SalaDAO {
 
     public void atualizarSala(Sala sala) throws SQLException {
         String sql = "UPDATE cinecap.sala SET nome_sala = ?, tipo_sala = ? WHERE id = ?";
-        try (Connection conexao = ConexaoBanco.conectar();
+        try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setString(1, sala.getNomeSala());
             statement.setString(2, sala.getTipoSala());
@@ -59,7 +59,7 @@ public class SalaDAO {
 
     public void deletarSala(Long id) throws SQLException {
         String sql = "DELETE FROM cinecap.sala WHERE id = ?";
-        try (Connection conexao = ConexaoBanco.conectar();
+        try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setLong(1, id);
             statement.executeUpdate();
