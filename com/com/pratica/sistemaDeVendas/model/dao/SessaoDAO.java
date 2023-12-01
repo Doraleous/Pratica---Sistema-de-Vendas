@@ -19,7 +19,7 @@ public class SessaoDAO {
 
     public SessaoController sessaoController;
 
-    public SessaoDAO(Aplicacao aplicacao){
+    public SessaoDAO(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
     }
 
@@ -30,23 +30,22 @@ public class SessaoDAO {
         Long idFilme = filmeDAO.buscarFilme(this.aplicacao.getTelaOperacoesSessao().getFilmeTextField().getText());
 
         String sql = "INSERT INTO cinecap.sessao (sala_id, filme_id) VALUES (?, ?)";
-        try(Connection conexao = ConexãoBanco.conectar();
-            PreparedStatement statement = conexao.prepareStatement(sql);){
-                statement.setLong(1, idSala);
-                statement.setLong(2, idFilme);
-                statement.execute();
+        try (Connection conexao = ConexãoBanco.conectar();
+                PreparedStatement statement = conexao.prepareStatement(sql);) {
+            statement.setLong(1, idSala);
+            statement.setLong(2, idFilme);
+            statement.execute();
 
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public ArrayList<Sessao> listarSessoesDisponiveis() throws SQLException {
         ArrayList<Sessao> listaDeSessoes = new ArrayList<>();
 
-        String sql = "select cinecap.sessao.id, cinecap.sessao.sala_id, cinecap.sessao.filme_id from cinecap.sessao inner join cinecap.filme on cinecap.filme.id = cinecap.sessao.filme_id where cinecap.filme.em_cartaz = true AND cinecap.sessao.data_inicio >= now()";
+        String sql = "select cinecap.sessao.id, cinecap.sessao.sala_id, cinecap.sessao.filme_id from cinecap.sessao inner join cinecap.filme on cinecap.filme.id = cinecap.sessao.filme_id where cinecap.filme.em_cartaz = true AND (cinecap.sessao.data_inicio >= now() OR cinecap.sessao.data_inicio is null)";
 
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql);
@@ -76,7 +75,5 @@ public class SessaoDAO {
     public boolean deletarSessao(Sessao sessao) {
         return false;
     }
-
-    
 
 }
