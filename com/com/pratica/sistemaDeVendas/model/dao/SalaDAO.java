@@ -15,7 +15,7 @@ public class SalaDAO {
 
     private Aplicacao aplicacao;
 
-    public SalaDAO(Aplicacao aplicacao){
+    public SalaDAO(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
     }
 
@@ -24,7 +24,7 @@ public class SalaDAO {
         String sql = "INSERT INTO cinecap.sala (nome, tipo_sala_id) VALUES (?, ?)"; // nome dos campos esta certo?
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, sala.getNomeSala());
+            statement.setString(1, sala.getNome());
             statement.setLong(2, sala.getTipoSala().getId());
             statement.execute();
 
@@ -38,16 +38,16 @@ public class SalaDAO {
     public ArrayList<Sala> listarSalas() throws SQLException {
         ArrayList<Sala> listaDeSalas = new ArrayList<>();
 
-        String sql = "SELECT id, nome, tipo_sala_id FROM cinecap.sala";
+        String sql = "SELECT cinecap.sala.id, cinecap.sala.nome, cinecap.sala.tipo_sala_id FROM cinecap.sala";
 
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql);
                 ResultSet resultado = statement.executeQuery();) {
 
             while (resultado.next()) {
-                Long id = resultado.getLong("id");
-                String nomeSala = resultado.getString("nome");
-                Long tipoSalaId = resultado.getLong("tipo_sala_id");
+                Long id = resultado.getLong(1);
+                String nomeSala = resultado.getString(2);
+                Long tipoSalaId = resultado.getLong(3);
                 int tipoSalaIdCastado = tipoSalaId.intValue();
                 TipoSala tipoSala;
                 switch (tipoSalaIdCastado) {
@@ -82,7 +82,7 @@ public class SalaDAO {
         String sql = "UPDATE cinecap.sala SET nome_sala = ?, tipo_sala = ? WHERE id = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setString(1, sala.getNomeSala());
+            statement.setString(1, sala.getNome());
             statement.setLong(2, sala.getTipoSala().getId());
             statement.setLong(3, sala.getId());
             statement.executeUpdate();
@@ -97,7 +97,7 @@ public class SalaDAO {
         String sql = "DELETE FROM cinecap.sala WHERE nome = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setString(1, sala.getNomeSala());
+            statement.setString(1, sala.getNome());
             statement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -106,21 +106,21 @@ public class SalaDAO {
         }
     }
 
-    public Long buscarSala(String nome) throws SQLException{
+    public Long buscarSala(String nome) throws SQLException {
         String sql = "SELECT cinecap.sala.id FROM cinecap.sala WHERE cinecap.sala.nome = ?";
-        try(Connection conexao = ConexãoBanco.conectar();
-            PreparedStatement statement = conexao.prepareStatement(sql)){
-                statement.setString(1, nome);
-                try(ResultSet resultado = statement.executeQuery()){
-                    if(resultado.next()){
-                        Long idSala = resultado.getLong(1);
-                        return idSala;
-                    }else{
-                        System.out.println("Nenhum resultado encontrado para id");
-                    }
+        try (Connection conexao = ConexãoBanco.conectar();
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(1, nome);
+            try (ResultSet resultado = statement.executeQuery()) {
+                if (resultado.next()) {
+                    Long idSala = resultado.getLong(1);
+                    return idSala;
+                } else {
+                    System.out.println("Nenhum resultado encontrado para id");
                 }
+            }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0L;

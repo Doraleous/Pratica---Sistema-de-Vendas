@@ -125,7 +125,7 @@ public class FilmeDAO {
                 } else {
                     System.out.println("Nenhum resultado encontrado para o titulo: " + titulo);
                 }
-            } catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }

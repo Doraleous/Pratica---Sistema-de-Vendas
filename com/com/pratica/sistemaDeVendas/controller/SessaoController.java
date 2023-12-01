@@ -27,6 +27,7 @@ public class SessaoController {
     }
 
     public void cadastrarSessao() throws SQLException {
+        sessaoDAO = new SessaoDAO(aplicacao);
         sessaoDAO.cadastrarSessao();
     }
 
