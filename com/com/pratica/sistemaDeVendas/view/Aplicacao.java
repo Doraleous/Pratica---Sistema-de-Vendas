@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import com.pratica.sistemadevendas.controller.AdministradorController;
 import com.pratica.sistemadevendas.controller.FilmeController;
+import com.pratica.sistemadevendas.controller.SalaController;
 import com.pratica.sistemadevendas.controller.UsuarioComumController;
 import com.pratica.sistemadevendas.controller.UsuarioController;
 
@@ -30,6 +31,7 @@ public class Aplicacao extends Application {
     private TelaUsuario telaUsuario;
     private TelaComprarFilmes telaComprarFilmes;
     private UsuarioComumController usuarioComumController;
+    private SalaController salaController;
     private AdministradorController administradorController;
     private FilmeController filmeController;
     private TelaDeSessoes telaSessoes;
@@ -66,6 +68,7 @@ public class Aplicacao extends Application {
         administradorController = new AdministradorController(this);
         this.filmeController = new FilmeController(this);
         this.telaSessoes = new TelaDeSessoes(this);
+        salaController = new SalaController(this);
         
 
         usuarioController = new UsuarioController(this);
@@ -127,6 +130,10 @@ public class Aplicacao extends Application {
 
     public AdministradorController getAdministradorController() {
         return this.administradorController;
+    }
+
+    public SalaController getSalaController(){
+        return this.salaController;
     }
 
     public void mudaCena(Scene novaCena) {

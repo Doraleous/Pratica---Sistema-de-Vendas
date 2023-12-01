@@ -13,12 +13,14 @@ import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 public class SalaDAO {
 
     public String cadastrarSala(Sala sala) throws SQLException {
+        
         String sql = "INSERT INTO cinecap.sala (nome, tipo_sala_id) VALUES (?, ?)"; // nome dos campos esta certo?
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, sala.getNomeSala());
             statement.setLong(2, sala.getTipoSala().getId());
             statement.execute();
+           
             return "Sala Cadastrada Com Sucesso.";
         } catch (SQLException e) {
             e.printStackTrace();

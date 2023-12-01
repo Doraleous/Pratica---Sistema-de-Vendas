@@ -6,6 +6,7 @@ import java.util.Date;
 
 import com.pratica.sistemadevendas.model.Administrador;
 import com.pratica.sistemadevendas.model.Filme;
+import com.pratica.sistemadevendas.model.Sala;
 import com.pratica.sistemadevendas.model.Usuario;
 import com.pratica.sistemadevendas.model.UsuarioComum;
 import com.pratica.sistemadevendas.model.UsuarioCritico;
@@ -41,6 +42,31 @@ public class AdministradorController {
         String tituloDoFilme = this.aplicacao.getTelaOperacoesFilmesCLUD().getTituloTextField().getText();
         FilmeController filmeController = new FilmeController(this.aplicacao);
         filmeController.deletaFilme(tituloDoFilme);
+    }
+
+    public void cadastrarSala3D() throws SQLException{
+        Sala salaCadastrada = this.aplicacao.gettTelaOperacoesSala().novaSala3D();
+        SalaController salaController = new SalaController(this.aplicacao);
+        salaController.cadastraSala3D(salaCadastrada);
+        
+    }
+
+    public void cadastrarSalaXD() throws SQLException{
+        Sala salaCadastrada = this.aplicacao.gettTelaOperacoesSala().novaSalaXD();
+        SalaController salaController = new SalaController(this.aplicacao);
+        salaController.cadastraSala3D(salaCadastrada);
+    }
+
+    public void cadastrarSalaXD3D() throws SQLException{
+        Sala salaCadastrada = this.aplicacao.gettTelaOperacoesSala().novaSala3DXD();
+        SalaController salaController = new SalaController(this.aplicacao);
+        salaController.cadastraSalaXD3D(salaCadastrada);
+    }
+
+    public void cadastrarSalaComum() throws SQLException{
+        Sala salaCadastrada = this.aplicacao.gettTelaOperacoesSala().novaSalaComum();
+        SalaController salaController = new SalaController(this.aplicacao);
+        salaController.cadastraSalaComum(salaCadastrada);
     }
 
     public boolean cadastrarUsuario(String tipo) throws SQLException {
