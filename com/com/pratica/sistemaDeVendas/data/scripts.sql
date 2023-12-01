@@ -305,3 +305,20 @@ ALTER TABLE cinecap.filme
 
 --dia 30/11 - Diego
 INSERT INTO cinecap.tipo_sala (id, nome) VALUES (4, 'COMUM');
+
+-- dia 30/11 - Valeriano
+CREATE TABLE cinecap.lanche (
+  id BIGSERIAL NOT NULL,
+  nome VARCHAR(20) NOT NULL,
+  preco NUMERIC(20,2) NOT NULL,
+  PRIMARY KEY(id)
+) ;
+
+ALTER TABLE cinecap.lanche
+  ALTER COLUMN id SET STATISTICS 0;
+
+ALTER TABLE cinecap.lanche
+  ALTER COLUMN nome SET STATISTICS 0;
+
+ALTER TABLE cinecap.lanche
+  ALTER COLUMN preco SET STATISTICS 0;
