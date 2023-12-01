@@ -49,8 +49,12 @@ public class SalaDAO {
                     case 2:
                         tipoSala = TipoSala.XD;
                         break;
-                    default:
+
+                    case 3:
                         tipoSala = TipoSala.XD3D;
+                        break;
+                    default:
+                        tipoSala = TipoSala.COMUM;
                         break;
                 }
 

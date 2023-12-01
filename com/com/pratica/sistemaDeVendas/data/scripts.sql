@@ -302,3 +302,6 @@ ALTER TABLE cinecap.historico_filmes
 --dia 30/11 - Diógenes
 ALTER TABLE cinecap.filme
   DROP CONSTRAINT filme_em_cartaz_key RESTRICT;
+
+--dia 30/11 - Diego
+INSERT INTO cinecap.tipo_sala (id, nome) VALUES (4, 'COMUM');
