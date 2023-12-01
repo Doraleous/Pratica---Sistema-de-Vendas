@@ -11,20 +11,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class TelaLanchoneteUsuario extends Application {
+public class TelaLanchoneteUsuario {
     private final LancheController lancheController = new LancheController();
     private final ObservableList<Lanche> lanchesObservableList = FXCollections.observableArrayList();
     private Aplicacao aplicacao;
+    private Scene scene;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        // public TelaLanchoneteUsuario (Aplicacao aplicacao)
-        primaryStage.setTitle("Compra de Lanches");
+    public TelaLanchoneteUsuario(Aplicacao aplicacao) {
+        this.aplicacao = aplicacao;
+        // this.aplicacao.getEstagioAtual().initStyle(StageStyle.UNDECORATED);
 
         // Criar elementos da interface gráfica
         ListView<Lanche> lanchesListView = new ListView<>();
@@ -42,6 +39,7 @@ public class TelaLanchoneteUsuario extends Application {
                 mensagemLabel)); // Passe o Label para a função comprarLanche
 
         Button voltarButton = new Button("Voltar");
+        voltarButton.setOnAction(event -> this.aplicacao.getEstagioAtual().close());
         /*
          * voltarButton.setOnAction(event -> {
          * sair();
@@ -51,15 +49,16 @@ public class TelaLanchoneteUsuario extends Application {
         // Layout
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10, 10, 10, 10));
+        vbox.setStyle("-fx-background-color: red;");
         vbox.getChildren().addAll(lanchesListView, quantidadeTextField, comprarButton, voltarButton, mensagemLabel);
 
         // Carregar lanches no início
         carregarLanches();
 
         // Criar cena e exibir a janela
-        Scene scene = new Scene(vbox, 300, 300);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        scene = new Scene(vbox, 300, 300);
+        this.aplicacao.getEstagioAtual().setScene(scene);
+        this.aplicacao.getEstagioAtual().show();
     }
 
     private void carregarLanches() {
@@ -83,9 +82,18 @@ public class TelaLanchoneteUsuario extends Application {
         }
     }
 
-    /*
-     * public void sair() {
-     * this.aplicacao.getEstagioAtual().close();
-     * }
+    /**
+     * @param aplicacao the aplicacao to set
      */
+    public void setAplicacao(Aplicacao aplicacao) {
+        this.aplicacao = aplicacao;
+    }
+
+    /**
+     * @return Scene return the scene
+     */
+    public Scene getScene() {
+        return scene;
+    }
+
 }

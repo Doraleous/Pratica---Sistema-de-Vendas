@@ -7,6 +7,7 @@ import java.util.Date;
 import com.pratica.sistemadevendas.model.Administrador;
 import com.pratica.sistemadevendas.model.Filme;
 import com.pratica.sistemadevendas.model.Sala;
+import com.pratica.sistemadevendas.model.Lanche;
 import com.pratica.sistemadevendas.model.Sessao;
 import com.pratica.sistemadevendas.model.Usuario;
 import com.pratica.sistemadevendas.model.UsuarioComum;
@@ -192,6 +193,15 @@ public class AdministradorController {
         Sessao sessao = new Sessao();
         SessaoController sessaoController = new SessaoController(this.aplicacao);
         sessaoController.cadastrarSessao();
+    }
+
+    public void cadastraLanche() throws SQLException {
+        String lancheNome = this.aplicacao.getTelaOperacoesLanchonete().getnomeProdutoTextField().getText();
+        double lancheValor = Double
+                .valueOf(this.aplicacao.getTelaOperacoesLanchonete().getvalorProdutoTextField().getText());
+        Lanche lanche = new Lanche(lancheNome, lancheValor);
+        LancheController lancheController = new LancheController();
+        lancheController.cadastrarLanche(lanche);
     }
 
 }

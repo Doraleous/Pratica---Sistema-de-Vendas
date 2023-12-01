@@ -126,6 +126,10 @@ public class TelaOperacoesSessao {
         return this.textFieldSala;
     }
 
+    public TextField getDataInicioTextField() {
+        return this.dataInicioTextField;
+    }
+
     public void cadastraSessao() throws SQLException {
         this.aplicacao.getAdministradorController().cadastrarSessao();
     }

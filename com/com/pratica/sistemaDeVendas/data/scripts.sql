@@ -326,3 +326,6 @@ ALTER TABLE cinecap.lanche
 --atualização 01/12 Diego Calado
 ALTER TABLE cinecap.sessao
   ALTER COLUMN data_inicio DROP NOT NULL;
+
+ALTER TABLE cinecap.sessao
+  ALTER COLUMN data_inicio TYPE TIMESTAMP(0) WITHOUT TIME ZONE;

@@ -1,5 +1,7 @@
 package com.pratica.sistemadevendas.view;
 
+import java.sql.SQLException;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,7 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class TelaOperacoesLanchonete {
-    
+
     private Label nomeProdutoLabel;
     private TextField nomeProdutoTextField;
     private Label valorProdutoLabel;
@@ -38,7 +40,7 @@ public class TelaOperacoesLanchonete {
 
     private Aplicacao aplicacao;
 
-    public TelaOperacoesLanchonete(Aplicacao aplicacao){
+    public TelaOperacoesLanchonete(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
 
         nomeProdutoLabel = new Label("Produto:");
@@ -51,7 +53,7 @@ public class TelaOperacoesLanchonete {
         caixaNomeEValorProdutos.setSpacing(6);
         caixaNomeEValorProdutos.setAlignment(Pos.CENTER);
         caixaNomeEValorProdutos.getChildren().addAll(nomeProdutoLabel, nomeProdutoTextField, valorProdutoLabel,
-        valorProdutoTextField);
+                valorProdutoTextField);
 
         cadastrarProdutos = new Button("Cadastrar Produto");
         cadastrarProdutos.setPrefWidth(200);
@@ -61,6 +63,14 @@ public class TelaOperacoesLanchonete {
         caixaCadastrarDeletar.setSpacing(6);
         caixaCadastrarDeletar.setAlignment(Pos.CENTER);
         caixaCadastrarDeletar.getChildren().addAll(cadastrarProdutos, deletarProdutos);
+
+        cadastrarProdutos.setOnAction(e -> {
+            try {
+                cadastraLanche();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        });
 
         listarProdutos = new Button("Listar Produto");
         listarProdutos.setPrefWidth(200);
@@ -88,20 +98,30 @@ public class TelaOperacoesLanchonete {
         caixaConteiner.setSpacing(100);
         caixaConteiner.setAlignment(Pos.CENTER);
         caixaConteiner.getChildren().addAll(caixaNomeEValorProdutos, caixaCadastrarDeletar, caixaListarAtualizar,
-        caixaStatusOperacao, caixaBotaoVoltar);
-                
+                caixaStatusOperacao, caixaBotaoVoltar);
+
         telaOperacoesLanchonete = new Scene(caixaConteiner);
     }
 
-    public Scene telaOperacoesLanchonete(){           
-
-        return telaOperacoesLanchonete;        
+    public Scene telaOperacoesLanchonete() {
+        return telaOperacoesLanchonete;
     }
 
-    public void voltar(){
+    public void voltar() {
         this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
 
     }
 
-    
+    public void cadastraLanche() throws SQLException {
+        this.aplicacao.getAdministradorController().cadastraLanche();
+    }
+
+    public TextField getnomeProdutoTextField() {
+        return this.nomeProdutoTextField;
+    }
+
+    public TextField getvalorProdutoTextField() {
+        return this.valorProdutoTextField;
+    }
+
 }

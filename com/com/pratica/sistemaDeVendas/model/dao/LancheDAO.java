@@ -11,7 +11,7 @@ public class LancheDAO {
 
     public String cadastrarLanche(Lanche lanche) {
         try (Connection conexao = ConexãoBanco.conectar()) {
-            String sql = "INSERT INTO lanche (nome, preco) VALUES (?, ?)";
+            String sql = "INSERT INTO cinecap.lanche (nome, preco) VALUES (?, ?)";
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setString(1, lanche.getNome());
                 preparedStatement.setDouble(2, lanche.getPreco());
@@ -45,7 +45,7 @@ public class LancheDAO {
 
     public boolean atualizarLanche(String nome, double preco) {
         try (Connection conexao = ConexãoBanco.conectar()) {
-            String sql = "UPDATE lanche SET preco = ? WHERE nome = ?";
+            String sql = "UPDATE cinecap.lanche SET preco = ? WHERE nome = ?";
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setDouble(1, preco);
                 preparedStatement.setString(2, nome);
@@ -60,7 +60,7 @@ public class LancheDAO {
 
     public boolean lancheExiste(String nome) {
         try (Connection conexao = ConexãoBanco.conectar()) {
-            String sql = "SELECT * FROM lanche WHERE nome = ?";
+            String sql = "SELECT * FROM cinecap.lanche WHERE nome = ?";
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setString(1, nome);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -75,7 +75,7 @@ public class LancheDAO {
 
     public long buscarLanche(String nome) {
         try (Connection conexao = ConexãoBanco.conectar()) {
-            String sql = "SELECT id FROM lanche WHERE nome = ?";
+            String sql = "SELECT id FROM cinecap.lanche WHERE nome = ?";
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setString(1, nome);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -90,7 +90,7 @@ public class LancheDAO {
 
     public boolean deletarLanche(String nome) {
         try (Connection conexao = ConexãoBanco.conectar()) {
-            String sql = "DELETE FROM lanche WHERE nome = ?";
+            String sql = "DELETE FROM cinecap.lanche WHERE nome = ?";
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setString(1, nome);
                 int rowsAffected = preparedStatement.executeUpdate();

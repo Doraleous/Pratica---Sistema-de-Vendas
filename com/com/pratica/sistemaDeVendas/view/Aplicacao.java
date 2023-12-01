@@ -29,6 +29,7 @@ public class Aplicacao extends Application {
     private UsuarioController usuarioController;
     private TelaOperacoesLanchonete telaOperacoesLanchonete;
     private TelaOperacoesFilmesCLUD telaOperacoesFilmesCLUD;
+    private TelaLanchoneteUsuario telaLanchoneteUsuario;
     private TelaOperacoesSala telaOperacoesSala;
     private TelaOperacoesSessao telaOperacoeSessao;
     private TelaUsuario telaUsuario;
@@ -40,8 +41,6 @@ public class Aplicacao extends Application {
     private SessaoDAO sessaoDAO;
     private SessaoController sessaoController;
     private SalaDAO salaDAO;
-    
-    
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -72,6 +71,7 @@ public class Aplicacao extends Application {
         telaComprarFilmes = new TelaComprarFilmes(this);
         usuarioComumController = new UsuarioComumController(this);
         administradorController = new AdministradorController(this);
+        telaLanchoneteUsuario = new TelaLanchoneteUsuario(this);
         this.filmeController = new FilmeController(this);
         salaController = new SalaController(this);
         sessaoDAO = new SessaoDAO(this);
@@ -102,6 +102,10 @@ public class Aplicacao extends Application {
         return this.telaOperacoesLanchonete;
     }
 
+    public TelaLanchoneteUsuario getTelaLanchoneteUsuario() {
+        return this.telaLanchoneteUsuario;
+    }
+
     public TelaOperacoesFilme getTelaOperacoesFilme() {
         return this.telaOperacoesFilme;
     }
@@ -125,7 +129,6 @@ public class Aplicacao extends Application {
     public TelaComprarFilmes getTelaComprarFilmes() {
         return this.telaComprarFilmes;
     }
-    
 
     public UsuarioController getUsuarioController() {
         return this.usuarioController;
@@ -139,20 +142,16 @@ public class Aplicacao extends Application {
         return this.administradorController;
     }
 
-    public SalaController getSalaController(){
+    public SalaController getSalaController() {
         return this.salaController;
     }
 
     public void mudaCena(Scene novaCena) {
         this.estagioAtual.setScene(novaCena);
-        
+
         this.estagioAtual.show();
 
     }
-
-    
-
-    
 
     public Stage getEstagioAtual() {
         return this.estagioAtual;

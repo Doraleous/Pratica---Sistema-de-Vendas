@@ -47,6 +47,8 @@ public class TelaUsuario {
         caixaFilmesLoja.setAlignment(Pos.CENTER);
         caixaFilmesLoja.getChildren().addAll(botaoFilmes, botaoLoja);
 
+        botaoLoja.setOnAction(e -> irTelaLanche());
+
         botaoSair = new Button("Sair");
         botaoSair.setPrefWidth(200);
         botaoSair.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
@@ -68,7 +70,7 @@ public class TelaUsuario {
 
     }
 
-    public Label getLabelBemVindo(){
+    public Label getLabelBemVindo() {
         return this.labelBemVindo;
     }
 
@@ -76,7 +78,11 @@ public class TelaUsuario {
         this.aplicacao.getEstagioAtual().close();
     }
 
-    public void irParaTelaCompraFilmes(){
+    public void irParaTelaCompraFilmes() {
         this.aplicacao.mudaCena(this.aplicacao.getTelaComprarFilmes().telaComprarFilmes());
+    }
+
+    public void irTelaLanche() {
+        this.aplicacao.mudaCena(this.aplicacao.getTelaLanchoneteUsuario().getScene());
     }
 }
