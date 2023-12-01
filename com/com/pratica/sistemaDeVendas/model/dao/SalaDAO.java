@@ -12,13 +12,14 @@ import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class SalaDAO {
 
-    public void cadastrarSala(Sala sala) throws SQLException {
-        String sql = "INSERT INTO cinecap.sala (nome, tipo_sala) VALUES (?, ?)"; //nome dos campos esta certo?
+    public String cadastrarSala(Sala sala) throws SQLException {
+        String sql = "INSERT INTO cinecap.sala (nome, tipo_sala_id) VALUES (?, ?)"; // nome dos campos esta certo?
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, sala.getNomeSala());
             statement.setLong(2, sala.getTipoSala().getId());
             statement.execute();
+           
             return "Sala Cadastrada Com Sucesso.";
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,11 +77,11 @@ public class SalaDAO {
         }
     }
 
-    public void deletarSala(Long id) throws SQLException {
-        String sql = "DELETE FROM cinecap.sala WHERE id = ?";
+    public void deletarSala(Sala sala) throws SQLException {
+        String sql = "DELETE FROM cinecap.sala WHERE nome = ?";
         try (Connection conexao = ConexãoBanco.conectar();
-                PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setLong(1, id);
+            PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(1, sala.getNomeSala());
             statement.executeUpdate();
         }
     }

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import com.pratica.sistemadevendas.controller.AdministradorController;
 import com.pratica.sistemadevendas.controller.FilmeController;
+import com.pratica.sistemadevendas.controller.SalaController;
 import com.pratica.sistemadevendas.controller.UsuarioComumController;
 import com.pratica.sistemadevendas.controller.UsuarioController;
 
@@ -30,8 +31,11 @@ public class Aplicacao extends Application {
     private TelaUsuario telaUsuario;
     private TelaComprarFilmes telaComprarFilmes;
     private UsuarioComumController usuarioComumController;
+    private SalaController salaController;
     private AdministradorController administradorController;
     private FilmeController filmeController;
+    private TelaDeSessoes telaSessoes;
+    
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -63,6 +67,9 @@ public class Aplicacao extends Application {
         usuarioComumController = new UsuarioComumController(this);
         administradorController = new AdministradorController(this);
         this.filmeController = new FilmeController(this);
+        this.telaSessoes = new TelaDeSessoes(this);
+        salaController = new SalaController(this);
+        
 
         usuarioController = new UsuarioController(this);
 
@@ -111,6 +118,7 @@ public class Aplicacao extends Application {
     public TelaComprarFilmes getTelaComprarFilmes() {
         return this.telaComprarFilmes;
     }
+    
 
     public UsuarioController getUsuarioController() {
         return this.usuarioController;
@@ -124,13 +132,24 @@ public class Aplicacao extends Application {
         return this.administradorController;
     }
 
+    public SalaController getSalaController(){
+        return this.salaController;
+    }
+
     public void mudaCena(Scene novaCena) {
         this.estagioAtual.setScene(novaCena);
+        
         this.estagioAtual.show();
 
     }
 
-    public Stage estagioAtual() {
+    public TelaDeSessoes getTelaDeSessoes(){
+        return this.telaSessoes;
+    }
+
+    
+
+    public Stage getEstagioAtual() {
         return this.estagioAtual;
     }
 

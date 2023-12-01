@@ -2,11 +2,17 @@ package com.pratica.sistemadevendas.view;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Pos;
 
 public class TelaUsuario {
+
+    private Label labelBemVindo;
+
+    private Region separador;
 
     private Button botaoFilmes;
     private Button botaoLoja;
@@ -23,6 +29,11 @@ public class TelaUsuario {
 
     public TelaUsuario(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
+
+        labelBemVindo = new Label("");
+        labelBemVindo.setStyle("-fx-text-fill: white; -fx-font-size: 40px;");
+        separador = new Region();
+        separador.setMinHeight(200);
 
         botaoFilmes = new Button("Filmes");
         botaoFilmes.setPrefWidth(300);
@@ -47,7 +58,7 @@ public class TelaUsuario {
         caixaConteiner = new VBox();
         caixaConteiner.setAlignment(Pos.CENTER);
         caixaConteiner.setStyle("-fx-background-color: red;");
-        caixaConteiner.getChildren().addAll(caixaFilmesLoja, caixaBotaoSair);
+        caixaConteiner.getChildren().addAll(labelBemVindo, separador, caixaFilmesLoja, caixaBotaoSair);
 
         telaUsuario = new Scene(caixaConteiner);
     }
@@ -57,8 +68,12 @@ public class TelaUsuario {
 
     }
 
+    public Label getLabelBemVindo(){
+        return this.labelBemVindo;
+    }
+
     public void sair() {
-        this.aplicacao.estagioAtual().close();
+        this.aplicacao.getEstagioAtual().close();
     }
 
     public void irParaTelaCompraFilmes(){
