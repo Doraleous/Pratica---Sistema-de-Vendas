@@ -64,16 +64,39 @@ public class Sala implements Serializable {
         return poltronas[linha][coluna];
     }
 
-    // Método para exibir informações da sala
-    /*
-     * public void exibirInformacoesDaSala() {
-     * System.out.println("Estado Atual da Sala:");
-     * for (int i = 0; i < 13; i++) {
-     * for (int j = 0; j < 19; j++) {
-     * poltronas[i][j].exibirInformacoes();
-     * System.out.println("------------------------");
-     * }
-     * }
-     * }
+    /**
+     * @return Poltrona[][] return the poltronas
      */
+    public Poltrona[][] getPoltronas() {
+        return poltronas;
+    }
+
+    /**
+     * @param poltronas the poltronas to set
+     */
+    public void setPoltronas(Poltrona[][] poltronas) {
+        this.poltronas = poltronas;
+    }
+
+    /**
+     * @param sessoes the sessoes to set
+     */
+    public void setSessoes(Sessao[] sessoes) {
+        this.sessoes = sessoes;
+    }
+
+    /**
+     * @return TipoSala return the tipoSala
+     */
+    public TipoSala getTipoSala() {
+        return tipoSala;
+    }
+
+    /**
+     * @param tipoSala the tipoSala to set
+     */
+    public void setTipoSala(TipoSala tipoSala) {
+        this.tipoSala = tipoSala;
+    }
+
 }

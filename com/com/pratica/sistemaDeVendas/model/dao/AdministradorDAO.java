@@ -60,7 +60,7 @@ public class AdministradorDAO {
         return administradores;
     }
 
-    public boolean atualizarUsuario(String cpf,
+    public boolean atualizarAdministrador(String cpf,
             String nome,
             Date dataDeNascimento,
             String email,
@@ -79,7 +79,7 @@ public class AdministradorDAO {
         boolean existe = usuarioDAO.usuarioExiste(email);
         if (existe) {
             long idUsuario = usuarioDAO.buscarUsuario(email);
-            String sql = "SELECT COUNT(*) FROM cinecap.administrador WHERE id = ?"; 
+            String sql = "SELECT COUNT(*) FROM cinecap.administrador WHERE id = ?";
             try (Connection conexao = ConexãoBanco.conectar();
                     PreparedStatement statement = conexao.prepareStatement(sql)) {
                 statement.setLong(1, idUsuario);
@@ -99,7 +99,7 @@ public class AdministradorDAO {
     }
 
     public boolean isAdministrador(long usuarioId) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM cinecap.administrador WHERE id = ?"; 
+        String sql = "SELECT COUNT(*) FROM cinecap.administrador WHERE id = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setLong(1, usuarioId);

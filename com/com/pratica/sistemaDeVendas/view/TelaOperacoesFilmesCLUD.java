@@ -66,6 +66,14 @@ public class TelaOperacoesFilmesCLUD {
         });
         deletarFilmeBotao = new Button("Deletar Filme");
         deletarFilmeBotao.setPrefWidth(300);
+        deletarFilmeBotao.setOnAction(e -> {
+            try {
+                deletaFilme();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         cadastraDeletaFilme = new HBox();
         cadastraDeletaFilme.setSpacing(50);
         cadastraDeletaFilme.setAlignment(Pos.CENTER);
@@ -82,7 +90,14 @@ public class TelaOperacoesFilmesCLUD {
 
         retirarFilmeDeCartazBotao = new Button("Retirar filme de cartaz");
         retirarFilmeDeCartazBotao.setPrefWidth(300);
-        retirarFilmeDeCartazBotao.setOnAction(e -> retiraFilmeDeCartaz());
+        retirarFilmeDeCartazBotao.setOnAction(e -> {
+            try {
+                retiraFilmeDeCartaz();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         caixaRetiraFilmeDeCartaz = new HBox();
         caixaRetiraFilmeDeCartaz.setAlignment(Pos.CENTER);
         caixaRetiraFilmeDeCartaz.getChildren().addAll(retirarFilmeDeCartazBotao);
@@ -120,8 +135,12 @@ public class TelaOperacoesFilmesCLUD {
         return this.telaOperacoesFilmesCLUD;
     }
 
-    public String retiraFilmeDeCartaz() {
-        return this.tituloTextField.getText();
+    public void retiraFilmeDeCartaz() throws SQLException {
+        this.aplicacao.getAdministradorController().retiraFilmeDeCartaz();
+    }
+
+    public void deletaFilme() throws SQLException {
+        this.aplicacao.getAdministradorController().deletaFilme();
     }
 
     public void cadastraFilme() throws SQLException {
@@ -130,6 +149,10 @@ public class TelaOperacoesFilmesCLUD {
 
     public Label statusOperacao() {
         return this.statusOperacaoLabel;
+    }
+
+    public TextField getTituloTextField(){
+        return this.tituloTextField;
     }
 
     public void voltar() {

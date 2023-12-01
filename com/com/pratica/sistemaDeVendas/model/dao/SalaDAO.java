@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.pratica.sistemadevendas.model.Sala;
+import com.pratica.sistemadevendas.model.TipoSala;
 import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class SalaDAO {
@@ -17,30 +17,45 @@ public class SalaDAO {
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, sala.getNomeSala());
-            statement.setString(2, sala.getTipoSala());
-            statement.executeUpdate();
-
-            ResultSet generatedKeys = statement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                sala.setId(generatedKeys.getLong(1));
-            }
+            statement.setLong(2, sala.getTipoSala().getId());
+            statement.execute();
+            return "Sala Cadastrada Com Sucesso.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Erro ao cadastrar a  Sala";
         }
     }
 
-    public List<String> listarSalas() throws SQLException {
-        List<String> listaDeSalas = new ArrayList<>();
+    public ArrayList<Sala> listarSalas() throws SQLException {
+        ArrayList<Sala> listaDeSalas = new ArrayList<>();
 
         String sql = "SELECT id, nome, tipo_sala FROM cinecap.sala";
 
         try (Connection conexao = ConexãoBanco.conectar();
-                PreparedStatement statement = conexao.prepareStatement(sql)) {
-            ResultSet resultado = statement.executeQuery();
+                PreparedStatement statement = conexao.prepareStatement(sql);
+                ResultSet resultado = statement.executeQuery();) {
+
             while (resultado.next()) {
                 Long id = resultado.getLong("id");
-                String nomeSala = resultado.getString("nome_sala");
-                String tipoSala = resultado.getString("tipo_sala");
-                String infoSala = "ID: " + id + ", Nome: " + nomeSala + ", Tipo: " + tipoSala;
-                listaDeSalas.add(infoSala);
+                String nomeSala = resultado.getString("nome");
+                Long tipoSalaId = resultado.getLong("tipo_sala_id");
+                int tipoSalaIdCastado = tipoSalaId.intValue();
+                TipoSala tipoSala;
+                switch (tipoSalaIdCastado) {
+                    case 1:
+                        tipoSala = TipoSala._3D;
+                        break;
+
+                    case 2:
+                        tipoSala = TipoSala.XD;
+                        break;
+                    default:
+                        tipoSala = TipoSala.XD3D;
+                        break;
+                }
+
+                Sala sala = new Sala(nomeSala, tipoSala);
+                listaDeSalas.add(sala);
             }
         }
         return listaDeSalas;
@@ -51,7 +66,7 @@ public class SalaDAO {
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setString(1, sala.getNomeSala());
-            statement.setString(2, sala.getTipoSala());
+            statement.setLong(2, sala.getTipoSala().getId());
             statement.setLong(3, sala.getId());
             statement.executeUpdate();
         }

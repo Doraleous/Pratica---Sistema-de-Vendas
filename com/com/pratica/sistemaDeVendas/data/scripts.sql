@@ -298,3 +298,7 @@ ALTER TABLE cinecap.historico_filmes
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
     NOT DEFERRABLE;
+
+--dia 30/11 - Diógenes
+ALTER TABLE cinecap.filme
+  DROP CONSTRAINT filme_em_cartaz_key RESTRICT;
