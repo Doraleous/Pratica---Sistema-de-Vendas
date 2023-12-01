@@ -7,6 +7,7 @@ import java.util.Date;
 import com.pratica.sistemadevendas.model.Administrador;
 import com.pratica.sistemadevendas.model.Filme;
 import com.pratica.sistemadevendas.model.Sala;
+import com.pratica.sistemadevendas.model.Sessao;
 import com.pratica.sistemadevendas.model.Usuario;
 import com.pratica.sistemadevendas.model.UsuarioComum;
 import com.pratica.sistemadevendas.model.UsuarioCritico;
@@ -31,11 +32,11 @@ public class AdministradorController {
         return administradorDAO.isAdministrador(idUsuario);
     }
 
-    public void retiraFilmeDeCartaz() throws SQLException{
+    public void retiraFilmeDeCartaz() throws SQLException {
         String tituloDoFilme = this.aplicacao.getTelaOperacoesFilmesCLUD().getTituloTextField().getText();
         FilmeController filmeController = new FilmeController(this.aplicacao);
         filmeController.retiraFilmeDeCartaz(tituloDoFilme);
-        
+
     }
 
     public void deletaFilme() throws SQLException {
@@ -44,26 +45,26 @@ public class AdministradorController {
         filmeController.deletaFilme(tituloDoFilme);
     }
 
-    public void cadastrarSala3D() throws SQLException{
+    public void cadastrarSala3D() throws SQLException {
         Sala salaCadastrada = this.aplicacao.gettTelaOperacoesSala().novaSala3D();
         SalaController salaController = new SalaController(this.aplicacao);
         salaController.cadastraSala3D(salaCadastrada);
-        
+
     }
 
-    public void cadastrarSalaXD() throws SQLException{
+    public void cadastrarSalaXD() throws SQLException {
         Sala salaCadastrada = this.aplicacao.gettTelaOperacoesSala().novaSalaXD();
         SalaController salaController = new SalaController(this.aplicacao);
         salaController.cadastraSala3D(salaCadastrada);
     }
 
-    public void cadastrarSalaXD3D() throws SQLException{
+    public void cadastrarSalaXD3D() throws SQLException {
         Sala salaCadastrada = this.aplicacao.gettTelaOperacoesSala().novaSala3DXD();
         SalaController salaController = new SalaController(this.aplicacao);
         salaController.cadastraSalaXD3D(salaCadastrada);
     }
 
-    public void cadastrarSalaComum() throws SQLException{
+    public void cadastrarSalaComum() throws SQLException {
         Sala salaCadastrada = this.aplicacao.gettTelaOperacoesSala().novaSalaComum();
         SalaController salaController = new SalaController(this.aplicacao);
         salaController.cadastraSalaComum(salaCadastrada);
@@ -183,6 +184,10 @@ public class AdministradorController {
             this.aplicacao.getTelaOperacoesUsuario().getLabelStatusOperacao()
                     .setText("Usuário já existe");
         }
+    }
+
+    public void cadastrarSessao() throws SQLException {
+        // Sessao sessao = new Sessao()
     }
 
 }

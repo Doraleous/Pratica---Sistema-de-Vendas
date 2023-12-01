@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SessaoDAO",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.model.dao.SessaoDAO",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        },
+        {
+            "type": "java",
+            "name": "FilmeDAO",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.model.dao.FilmeDAO",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        },
+        {
+            "type": "java",
             "name": "TelaDeSessoes",
             "request": "launch",
             "mainClass": "com.pratica.sistemadevendas.view.TelaDeSessoes",

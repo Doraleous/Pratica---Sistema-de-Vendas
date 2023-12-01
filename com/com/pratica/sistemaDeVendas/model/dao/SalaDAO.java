@@ -13,14 +13,14 @@ import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 public class SalaDAO {
 
     public String cadastrarSala(Sala sala) throws SQLException {
-        
+
         String sql = "INSERT INTO cinecap.sala (nome, tipo_sala_id) VALUES (?, ?)"; // nome dos campos esta certo?
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, sala.getNomeSala());
             statement.setLong(2, sala.getTipoSala().getId());
             statement.execute();
-           
+
             return "Sala Cadastrada Com Sucesso.";
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,19 +55,23 @@ public class SalaDAO {
                     case 3:
                         tipoSala = TipoSala.XD3D;
                         break;
+
                     default:
                         tipoSala = TipoSala.COMUM;
                         break;
                 }
 
                 Sala sala = new Sala(nomeSala, tipoSala);
+                sala.setId(id);
                 listaDeSalas.add(sala);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return listaDeSalas;
     }
 
-    public void atualizarSala(Sala sala) throws SQLException {
+    public Boolean atualizarSala(Sala sala) throws SQLException {
         String sql = "UPDATE cinecap.sala SET nome_sala = ?, tipo_sala = ? WHERE id = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
@@ -75,15 +79,23 @@ public class SalaDAO {
             statement.setLong(2, sala.getTipoSala().getId());
             statement.setLong(3, sala.getId());
             statement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
-    public void deletarSala(Sala sala) throws SQLException {
+    public Boolean deletarSala(Sala sala) throws SQLException {
         String sql = "DELETE FROM cinecap.sala WHERE nome = ?";
         try (Connection conexao = ConexãoBanco.conectar();
-            PreparedStatement statement = conexao.prepareStatement(sql)) {
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setString(1, sala.getNomeSala());
             statement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

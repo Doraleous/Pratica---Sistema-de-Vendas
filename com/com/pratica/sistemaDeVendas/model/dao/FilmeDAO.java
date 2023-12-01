@@ -24,40 +24,62 @@ public class FilmeDAO {
         }
     }
 
-    public ArrayList<String> filmesDisponiveisCompra() throws SQLException {
-        ArrayList<String> listaDeFilmes = new ArrayList<>();
+    /*
+     * public ArrayList<String> filmesDisponiveisCompra() throws SQLException {
+     * ArrayList<String> listaDeFilmes = new ArrayList<>();
+     * 
+     * String sql =
+     * "SELECT cinecap.filme.titulo FROM cinecap.filme WHERE cinecap.filme.em_cartaz = true"
+     * ;
+     * 
+     * try (Connection conexao = ConexãoBanco.conectar();
+     * PreparedStatement statement = conexao.prepareStatement(sql)) {
+     * ResultSet resultado = statement.executeQuery();
+     * while (resultado.next()) {
+     * listaDeFilmes.add(resultado.getString(1));
+     * }
+     * 
+     * }
+     * return listaDeFilmes;
+     * }
+     */
 
-        String sql = "SELECT cinecap.filme.titulo FROM cinecap.filme WHERE cinecap.filme.em_cartaz = true";
+    public ArrayList<Filme> filmesParaComprar() throws SQLException {
+        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+        String sql = "SELECT * FROM cinecap.filme WHERE em_cartaz = true";
+        Long id;
+        String titulo;
 
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
-                listaDeFilmes.add(resultado.getString(1));
+                id = resultado.getLong(1);
+                titulo = resultado.getString(2);
+                Filme filmeListado = new Filme(id, titulo);
+                listaDeFilmes.add(filmeListado);
             }
-
+            return listaDeFilmes;
         }
-        return listaDeFilmes;
+
     }
 
-    
-
-    public String retiraFilmeDeCartaz(String titulo) throws SQLException{
+    public String retiraFilmeDeCartaz(String titulo) throws SQLException {
         String sql = "UPDATE cinecap.filme SET em_cartaz = false WHERE cinecap.filme.titulo = (?)";
         System.out.println("filmedao 1");
-        try(Connection conexao = ConexãoBanco.conectar();
-            PreparedStatement statement = conexao.prepareStatement(sql);){
+        try (Connection conexao = ConexãoBanco.conectar();
+                PreparedStatement statement = conexao.prepareStatement(sql);) {
             statement.setString(1, titulo);
             statement.executeUpdate();
             System.out.println("filmedao 2");
             return "Filme retirado de cartaz";
-            
-        }catch (SQLException E){
+
+        } catch (SQLException E) {
             E.printStackTrace();
 
         }
         return null;
-            
+
     }
 
     public boolean atualizarFilme(String titulo) throws SQLException {

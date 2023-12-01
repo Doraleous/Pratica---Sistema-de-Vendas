@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.util.Date;
 import java.util.List;
 
+import com.pratica.sistemadevendas.controller.UsuarioComumController;
 import com.pratica.sistemadevendas.model.Filme;
 import com.pratica.sistemadevendas.model.Sessao;
 
@@ -32,17 +33,9 @@ public class TelaDeSessoes {
 
     public TelaDeSessoes(Aplicacao aplicacao) throws SQLException {
         this.aplicacao = aplicacao;
-        ///////////////////// test/////////////////////////
-        List<Sessao> listaDeSessoes = new ArrayList<>();
-
-        // Criando alguns filmes para teste
-        Filme filme1 = new Filme("Filme 1");
-        Filme filme2 = new Filme("Filme 2");
-
-        // Adicionando sessões fictícias
-        listaDeSessoes.add(new Sessao(new Date(), filme1));
-        listaDeSessoes.add(new Sessao(new Date(), filme2));
-        listaDeSessoes.add(new Sessao(new Date(), filme1));
+        ArrayList<Sessao> listaDeSessoes = new ArrayList<Sessao>();
+        // ArrayList<Sessao> listaDeSessoes =
+        // UsuarioComumController.listarSessoesDisponiveis();
 
         if (listaDeSessoes != null) {
             int linha = 0, colunaSessao = 0, colunaBotaoDetalhes = 1;
@@ -52,12 +45,10 @@ public class TelaDeSessoes {
             caixaSessoesEBotoes.setVgap(20);
 
             for (Sessao sessao : listaDeSessoes) {
-                /////////////// teste///////////////////
                 String horaMinuto = String.format("%02d:%02d",
                         sessao.getDataInicio().getHours(),
                         sessao.getDataInicio().getMinutes());
                 Label labelHorarioSessao = new Label(horaMinuto);
-                /////////////////////////////////////
                 Button detalhes = new Button("Detalhes");
 
                 caixaSessoesEBotoes.add(labelHorarioSessao, colunaSessao, linha);

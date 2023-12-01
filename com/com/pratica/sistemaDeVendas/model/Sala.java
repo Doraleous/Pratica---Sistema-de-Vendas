@@ -24,6 +24,17 @@ public class Sala implements Serializable {
         }
     }
 
+    public Sala() {
+        this.poltronas = new Poltrona[13][19];
+        this.sessoes = new Sessao[10]; // Por exemplo, você pode ajustar o tamanho conforme necessário
+
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 19; j++) {
+                this.poltronas[i][j] = new Poltrona((i * 19) + j + 1, true);
+            }
+        }
+    }
+
     public Sessao[] getSessoes() {
         return sessoes;
     }

@@ -7,14 +7,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import java.sql.SQLException;
 
 public class TelaOperacoesSessao {
-    
+
     private Label filmeLabel;
     private TextField filmeTextField;
     private Label dataInicioLabel;
     private TextField dataInicioTextField;
+    private Label labelSala;
+    private TextField textFieldSala;
     private HBox caixaDigitaFilmeEDataInicio;
+
+    // filmeTextField, textFieldSala
 
     private Button cadastraSessao;
     private Button deletaSessao;
@@ -36,21 +41,33 @@ public class TelaOperacoesSessao {
 
     public Aplicacao aplicacao;
 
-    public TelaOperacoesSessao(Aplicacao aplicacao){
+    public TelaOperacoesSessao(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
 
-        filmeLabel  = new Label("Filme:");        
+        filmeLabel = new Label("Filme:");
         filmeTextField = new TextField();
         filmeTextField.setPrefWidth(300);
-        dataInicioLabel  = new Label("Data de Início");        
+        dataInicioLabel = new Label("Data de Início");
         dataInicioTextField = new TextField();
         dataInicioTextField.setPrefWidth(300);
-        caixaDigitaFilmeEDataInicio = new HBox();        
+        labelSala = new Label("Sala:");
+        textFieldSala = new TextField();
+        textFieldSala.setPrefWidth(300);
+        caixaDigitaFilmeEDataInicio = new HBox();
         caixaDigitaFilmeEDataInicio.setAlignment(Pos.CENTER);
-        caixaDigitaFilmeEDataInicio.getChildren().addAll(filmeLabel, filmeTextField, dataInicioLabel, dataInicioTextField);
+        caixaDigitaFilmeEDataInicio.getChildren().addAll(filmeLabel, filmeTextField, dataInicioLabel,
+                dataInicioTextField, labelSala, textFieldSala);
 
         cadastraSessao = new Button("Cadastrar Sessão");
         cadastraSessao.setPrefWidth(200);
+        cadastraSessao.setOnAction(e -> {
+            try {
+                cadastraSessao();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         deletaSessao = new Button("Deletar Sessão");
         deletaSessao.setPrefWidth(200);
         caixaCadastraDeletaSessao = new HBox();
@@ -84,19 +101,32 @@ public class TelaOperacoesSessao {
         caixaConteiner.setSpacing(100);
         caixaConteiner.setAlignment(Pos.CENTER);
         caixaConteiner.getChildren().addAll(caixaDigitaFilmeEDataInicio, caixaCadastraDeletaSessao,
-        caixaListarAtualizarSessao, caixaStatusOperacao,caixaBotaoVoltar);
+                caixaListarAtualizarSessao, caixaStatusOperacao, caixaBotaoVoltar);
 
         telaOperacoesSessao = new Scene(caixaConteiner);
 
-
     }
 
-    public Scene telaOperacoesSessao(){
+    public Scene telaOperacoesSessao() {
         return this.telaOperacoesSessao;
     }
-    
-    public void voltar(){
+
+    public void voltar() {
         this.aplicacao.mudaCena(this.aplicacao.getTelaOperacoesFilme().telaOperacoesFilme());
 
+    }
+
+    // filmeTextField, textFieldSala
+
+    public TextField getFilmeTextField() {
+        return this.filmeTextField;
+    }
+
+    public TextField getTextFieldSala() {
+        return this.textFieldSala;
+    }
+
+    public void cadastraSessao() throws SQLException {
+        this.aplicacao.getAdministradorController().cadastrarSessao();
     }
 }

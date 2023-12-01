@@ -18,8 +18,12 @@ public class Filme implements Serializable {
     private double notaMedia;
     private ArrayList<Double> notas;
 
-    public Filme(String titulo) {
+    public Filme(Long id, String titulo) {
         this.titulo = titulo;
+        this.id = id;
+    }
+
+    public Filme() {
     }
 
     public String toString() {

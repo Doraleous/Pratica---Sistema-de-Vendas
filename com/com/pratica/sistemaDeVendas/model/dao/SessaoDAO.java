@@ -8,18 +8,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.pratica.sistemadevendas.model.Filme;
+import com.pratica.sistemadevendas.model.Sala;
 import com.pratica.sistemadevendas.model.Sessao;
 import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class SessaoDAO {
 
     public String cadastrarSessao(Sessao sessao) throws SQLException {
-        String sql = "INSERT INTO cinecap.sessao (data_inicio, id_filme) VALUES (?, ?)";
+        String sql = "INSERT INTO cinecap.sessao (sala_id, filme_id, data_inicio) VALUES (?, ?, ?)";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setTimestamp(1, new java.sql.Timestamp(sessao.getDataInicio().getTime()));
-            statement.setLong(2, sessao.getFilmeEmCartaz().getId());
-            statement.executeUpdate();
+            statement.setLong(1, sessao.getSala().getId());
+            statement.setLong(2, sessao.getFilme().getId());
+            statement.setDate(3, new java.sql.Date(sessao.getDataInicio().getTime()));
+            statement.execute();
             return "Sessão cadastrada com Sucesso";
         } catch (SQLException e) {
             e.printStackTrace();
@@ -27,24 +29,46 @@ public class SessaoDAO {
         }
     }
 
-    public ArrayList<String> listarSessoesDisponiveis() throws SQLException {
-        ArrayList<String> listaDeSessoes = new ArrayList<>();
+    public ArrayList<Sessao> listarSessoesDisponiveis() throws SQLException {
+        ArrayList<Sessao> listaDeSessoes = new ArrayList<>();
 
-        String sql = "SELECT cinecap.sessao.data_inicio, cinecap.filme.titulo " +
-                "FROM cinecap.sessao INNER JOIN cinecap.filme " +
-                "ON cinecap.sessao.id_filme = cinecap.filme.id";
+        String sql = "select cinecap.sessao.id, cinecap.sessao.sala_id, cinecap.sessao.filme_id from cinecap.sessao inner join cinecap.filme on cinecap.filme.id = cinecap.sessao.filme_id where cinecap.filme.em_cartaz = true AND cinecap.sessao.data_inicio >= now()";
 
         try (Connection conexao = ConexãoBanco.conectar();
-                PreparedStatement statement = conexao.prepareStatement(sql)) {
-            ResultSet resultado = statement.executeQuery();
+                PreparedStatement statement = conexao.prepareStatement(sql);
+                ResultSet resultado = statement.executeQuery()) {
+
             while (resultado.next()) {
-                Date dataInicio = resultado.getTimestamp("data_inicio");
-                String tituloFilme = resultado.getString("titulo");
-                String infoSessao = "Data: " + dataInicio + ", Filme: " + tituloFilme;
-                listaDeSessoes.add(infoSessao);
+                Sessao sessao = new Sessao();
+                Sala sala = new Sala();
+                Filme filme = new Filme();
+                sala.setId(resultado.getLong(2));
+                filme.setId(resultado.getLong(3));
+                sessao.setId(resultado.getLong(1));
+                sessao.setSala(sala);
+                sessao.setFilme(filme);
+                listaDeSessoes.add(sessao);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return listaDeSessoes;
+    }
+
+    public Boolean atualizarSessao(Sessao sessao) {
+        return false;
+    }
+
+    public boolean deletarSessao(Sessao sessao) {
+        return false;
+    }
+
+    public static void main(String[] args) throws SQLException {
+        SessaoDAO sessaoDAO = new SessaoDAO();
+        ArrayList<Sessao> sessoes = sessaoDAO.listarSessoesDisponiveis();
+        for (Sessao sessao : sessoes) {
+            System.out.println(sessao);
+        }
     }
 
 }
