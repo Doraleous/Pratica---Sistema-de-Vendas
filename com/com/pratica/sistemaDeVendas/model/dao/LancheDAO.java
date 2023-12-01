@@ -8,9 +8,7 @@ import com.pratica.sistemadevendas.model.Lanche;
 import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class LancheDAO {
-    private final String URL = "jdbc:mysql://seu_servidor:porta/seu_banco";
-    private final String USUARIO = "seu_usuario";
-    private final String SENHA = "sua_senha";
+    
 
     public String cadastrarLanche(Lanche lanche) {
         try (Connection conexao = ConexãoBanco.conectar()) {
