@@ -8,7 +8,6 @@ import com.pratica.sistemadevendas.model.Lanche;
 import com.pratica.sistemadevendas.model.util.ConexãoBanco;
 
 public class LancheDAO {
-    
 
     public String cadastrarLanche(Lanche lanche) {
         try (Connection conexao = ConexãoBanco.conectar()) {
@@ -28,7 +27,7 @@ public class LancheDAO {
     public ArrayList<Lanche> listarLanches() {
         ArrayList<Lanche> lanches = new ArrayList<>();
         try (Connection conexao = ConexãoBanco.conectar()) {
-            String sql = "SELECT * FROM lanche";
+            String sql = "SELECT * FROM cinecap.lanche";
             try (Statement statement = conexao.createStatement();
                     ResultSet resultSet = statement.executeQuery(sql)) {
                 while (resultSet.next()) {
