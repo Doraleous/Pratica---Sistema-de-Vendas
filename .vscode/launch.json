@@ -65,8 +65,7 @@
             "name": "Aplicacao",
             "request": "launch",
             "mainClass": "com.pratica.sistemadevendas.view.Aplicacao",
-            "projectName": "Pratica---Sistema-de-Vendas_2d12c2c0",
-            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
         },
         {
             "type": "java",
@@ -109,8 +108,7 @@
             "name": "Aplicacao",
             "request": "launch",
             "mainClass": "com.pratica.sistemaDeVendas.view.Aplicacao",
-            "projectName": "Pratica---Sistema-de-Vendas_73b0e8c8",
-            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+            "projectName": "Pratica---Sistema-de-Vendas_73b0e8c8"
         },
         {
             "type": "java",
@@ -151,8 +149,7 @@
             "name": "Aplicacao",
             "request": "launch",
             "mainClass": "com.pratica.sistemaDeVendas.view.Aplicacao",
-            "projectName": "Pratica---Sistema-de-Vendas_d55c5198",
-            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-21.0.1/lib\ --add-modules javafx.controls,javafx.fxml"
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
         },
         {
             "type": "java",
