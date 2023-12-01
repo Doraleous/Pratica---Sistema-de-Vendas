@@ -3,7 +3,8 @@ package com.pratica.sistemadevendas.model;
 public enum TipoSala {
     _3D(1, "3D"),
     XD(2, "XD"),
-    XD3D(3, "XD3D");
+    XD3D(3, "XD3D"),
+    COMUM(4, "COMUM");
 
     private final int id;
     private final String nome;
