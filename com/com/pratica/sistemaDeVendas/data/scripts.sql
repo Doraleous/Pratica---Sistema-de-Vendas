@@ -322,3 +322,7 @@ ALTER TABLE cinecap.lanche
 
 ALTER TABLE cinecap.lanche
   ALTER COLUMN preco SET STATISTICS 0;
+
+--atualização 01/12 Diego Calado
+ALTER TABLE cinecap.sessao
+  ALTER COLUMN data_inicio DROP NOT NULL;

@@ -10,8 +10,11 @@ import java.sql.SQLException;
 import com.pratica.sistemadevendas.controller.AdministradorController;
 import com.pratica.sistemadevendas.controller.FilmeController;
 import com.pratica.sistemadevendas.controller.SalaController;
+import com.pratica.sistemadevendas.controller.SessaoController;
 import com.pratica.sistemadevendas.controller.UsuarioComumController;
 import com.pratica.sistemadevendas.controller.UsuarioController;
+import com.pratica.sistemadevendas.model.dao.SalaDAO;
+import com.pratica.sistemadevendas.model.dao.SessaoDAO;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -34,7 +37,10 @@ public class Aplicacao extends Application {
     private SalaController salaController;
     private AdministradorController administradorController;
     private FilmeController filmeController;
-    private TelaDeSessoes telaSessoes;
+    private SessaoDAO sessaoDAO;
+    private SessaoController sessaoController;
+    private SalaDAO salaDAO;
+    
     
 
     private TelaOperacoesFilme telaOperacoesFilme;
@@ -67,9 +73,10 @@ public class Aplicacao extends Application {
         usuarioComumController = new UsuarioComumController(this);
         administradorController = new AdministradorController(this);
         this.filmeController = new FilmeController(this);
-        this.telaSessoes = new TelaDeSessoes(this);
         salaController = new SalaController(this);
-        
+        sessaoDAO = new SessaoDAO(this);
+        sessaoController = new SessaoController(this);
+        salaDAO = new SalaDAO(this);
 
         usuarioController = new UsuarioController(this);
 
@@ -143,9 +150,7 @@ public class Aplicacao extends Application {
 
     }
 
-    public TelaDeSessoes getTelaDeSessoes(){
-        return this.telaSessoes;
-    }
+    
 
     
 

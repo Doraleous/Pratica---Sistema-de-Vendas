@@ -7,32 +7,45 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.pratica.sistemadevendas.controller.SessaoController;
 import com.pratica.sistemadevendas.model.Filme;
 import com.pratica.sistemadevendas.model.Sala;
 import com.pratica.sistemadevendas.model.Sessao;
 import com.pratica.sistemadevendas.model.util.ConexãoBanco;
+import com.pratica.sistemadevendas.view.Aplicacao;
 
 public class SessaoDAO {
+    private Aplicacao aplicacao;
 
-    public String cadastrarSessao(Sessao sessao) throws SQLException {
-        String sql = "INSERT INTO cinecap.sessao (sala_id, filme_id, data_inicio) VALUES (?, ?, ?)";
+    public SessaoController sessaoController;
+
+    public SessaoDAO(Aplicacao aplicacao) {
+        this.aplicacao = aplicacao;
+    }
+
+    public void cadastrarSessao() throws SQLException {
+        SalaDAO salaDAO = new SalaDAO(this.aplicacao);
+        FilmeDAO filmeDAO = new FilmeDAO();
+        Long idSala = salaDAO.buscarSala(this.aplicacao.getTelaOperacoesSessao().getTextFieldSala().getText());
+        Long idFilme = filmeDAO.buscarFilme(this.aplicacao.getTelaOperacoesSessao().getFilmeTextField().getText());
+
+        String sql = "INSERT INTO cinecap.sessao (sala_id, filme_id) VALUES (?, ?)";
         try (Connection conexao = ConexãoBanco.conectar();
-                PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setLong(1, sessao.getSala().getId());
-            statement.setLong(2, sessao.getFilme().getId());
-            statement.setDate(3, new java.sql.Date(sessao.getDataInicio().getTime()));
+                PreparedStatement statement = conexao.prepareStatement(sql);) {
+            statement.setLong(1, idSala);
+            statement.setLong(2, idFilme);
             statement.execute();
-            return "Sessão cadastrada com Sucesso";
+
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Erro ao cadastrar a sessão";
         }
+
     }
 
     public ArrayList<Sessao> listarSessoesDisponiveis() throws SQLException {
         ArrayList<Sessao> listaDeSessoes = new ArrayList<>();
 
-        String sql = "select cinecap.sessao.id, cinecap.sessao.sala_id, cinecap.sessao.filme_id from cinecap.sessao inner join cinecap.filme on cinecap.filme.id = cinecap.sessao.filme_id where cinecap.filme.em_cartaz = true AND cinecap.sessao.data_inicio >= now()";
+        String sql = "select cinecap.sessao.id, cinecap.sessao.sala_id, cinecap.sessao.filme_id from cinecap.sessao inner join cinecap.filme on cinecap.filme.id = cinecap.sessao.filme_id where cinecap.filme.em_cartaz = true AND (cinecap.sessao.data_inicio >= now() OR cinecap.sessao.data_inicio is null)";
 
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql);
@@ -61,14 +74,6 @@ public class SessaoDAO {
 
     public boolean deletarSessao(Sessao sessao) {
         return false;
-    }
-
-    public static void main(String[] args) throws SQLException {
-        SessaoDAO sessaoDAO = new SessaoDAO();
-        ArrayList<Sessao> sessoes = sessaoDAO.listarSessoesDisponiveis();
-        for (Sessao sessao : sessoes) {
-            System.out.println(sessao);
-        }
     }
 
 }

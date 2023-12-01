@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 public class TelaLanchoneteUsuario extends Application {
     private final LancheController lancheController = new LancheController();
     private final ObservableList<Lanche> lanchesObservableList = FXCollections.observableArrayList();
+    private Aplicacao aplicacao;
 
     public static void main(String[] args) {
         launch(args);
@@ -22,6 +23,7 @@ public class TelaLanchoneteUsuario extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        // public TelaLanchoneteUsuario (Aplicacao aplicacao)
         primaryStage.setTitle("Compra de Lanches");
 
         // Criar elementos da interface gráfica
@@ -31,14 +33,25 @@ public class TelaLanchoneteUsuario extends Application {
         TextField quantidadeTextField = new TextField();
         quantidadeTextField.setPromptText("Quantidade");
 
+        Label mensagemLabel = new Label(); // Adicione um Label para mostrar mensagens
+
         Button comprarButton = new Button("Comprar");
-        comprarButton.setOnAction(event -> comprarLanche(lanchesListView.getSelectionModel().getSelectedItem(),
-                quantidadeTextField.getText()));
+        comprarButton.setOnAction(event -> comprarLanche(
+                lanchesListView.getSelectionModel().getSelectedItem(),
+                quantidadeTextField.getText(),
+                mensagemLabel)); // Passe o Label para a função comprarLanche
+
+        Button voltarButton = new Button("Voltar");
+        /*
+         * voltarButton.setOnAction(event -> {
+         * sair();
+         * });
+         */
 
         // Layout
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10, 10, 10, 10));
-        vbox.getChildren().addAll(lanchesListView, quantidadeTextField, comprarButton);
+        vbox.getChildren().addAll(lanchesListView, quantidadeTextField, comprarButton, voltarButton, mensagemLabel);
 
         // Carregar lanches no início
         carregarLanches();
@@ -54,19 +67,25 @@ public class TelaLanchoneteUsuario extends Application {
         lanchesObservableList.addAll(lancheController.listarLanches());
     }
 
-    private void comprarLanche(Lanche lanche, String quantidadeStr) {
+    private void comprarLanche(Lanche lanche, String quantidadeStr, Label mensagemLabel) {
         try {
             int quantidade = Integer.parseInt(quantidadeStr);
             if (lanche != null && quantidade > 0) {
                 // Aqui você pode adicionar a lógica para realizar a compra
                 // Por exemplo, atualizar o banco de dados com a compra
-                System.out.println(
+                mensagemLabel.setText(
                         "Compra realizada: " + quantidade + "x " + lanche.getNome() + " por R$" + lanche.getPreco());
             } else {
-                System.out.println("Selecione um lanche e insira uma quantidade válida.");
+                mensagemLabel.setText("Selecione um lanche e insira uma quantidade válida.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Insira uma quantidade válida.");
+            mensagemLabel.setText("Insira uma quantidade válida.");
         }
     }
+
+    /*
+     * public void sair() {
+     * this.aplicacao.getEstagioAtual().close();
+     * }
+     */
 }

@@ -187,7 +187,11 @@ public class AdministradorController {
     }
 
     public void cadastrarSessao() throws SQLException {
-        // Sessao sessao = new Sessao()
+        String nomeDoFilme = this.aplicacao.getTelaOperacoesSessao().getFilmeTextField().getText();
+        String nomedaSala = this.aplicacao.getTelaOperacoesSessao().getTextFieldSala().getText();
+        Sessao sessao = new Sessao();
+        SessaoController sessaoController = new SessaoController(this.aplicacao);
+        sessaoController.cadastrarSessao();
     }
 
 }

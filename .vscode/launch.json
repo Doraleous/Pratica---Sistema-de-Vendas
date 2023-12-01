@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SalaDAO",
+            "request": "launch",
+            "mainClass": "com.pratica.sistemadevendas.model.dao.SalaDAO",
+            "projectName": "Pratica---Sistema-de-Vendas_d55c5198"
+        },
+        {
+            "type": "java",
             "name": "TelaLanchoneteUsuario",
             "request": "launch",
             "mainClass": "com.pratica.sistemadevendas.view.TelaLanchoneteUsuario",
