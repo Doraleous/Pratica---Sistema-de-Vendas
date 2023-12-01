@@ -51,6 +51,10 @@ public class TelaLanchoneteUsuario extends Application {
 
     private void carregarLanches() {
         // Carregar lanches do banco de dados ou de onde você preferir
+        Lanche lanche;
+        for (llllllanchesObservableList : lanche){
+
+        }
         lanchesObservableList.addAll(lancheController.listarLanches());
     }
 
