@@ -47,5 +47,18 @@ public class SessaoDAO {
         return listaDeSessoes;
     }
 
+    public boolean deletarSessao(long idSessao) throws SQLException {
+        String sql = "DELETE FROM cinecap.sessao WHERE id = ?";
+        try (Connection conexao = ConexãoBanco.conectar();
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setLong(1, idSessao);
+            int linhasAfetadas = statement.executeUpdate();
+            return linhasAfetadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
 

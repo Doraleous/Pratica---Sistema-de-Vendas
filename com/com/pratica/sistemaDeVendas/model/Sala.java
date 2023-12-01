@@ -9,9 +9,9 @@ public class Sala implements Serializable {
     private Poltrona[][] poltronas;
     private Sessao[] sessoes;
     private String nomeSala;
-    private String tipoSala;
+    private Enum tipoSala;
 
-    public Sala(String nomeSala, String tipoSala) {
+    public Sala(String nomeSala, Enum tipoSala) {
         this.nomeSala = nomeSala;
         this.tipoSala = tipoSala;
         this.poltronas = new Poltrona[13][19];
@@ -44,11 +44,11 @@ public class Sala implements Serializable {
         this.nomeSala = nomeSala;
     }
 
-    public String getTipoSala() {
+    public Enum getTipoSala() {
         return tipoSala;
     }
 
-    public void setTipoSala(String tipoSala) {
+    public void setTipoSala(Enum tipoSala) {
         this.tipoSala = tipoSala;
     }
     
