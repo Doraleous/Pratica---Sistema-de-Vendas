@@ -72,11 +72,11 @@ public class SalaDAO {
         }
     }
 
-    public void deletarSala(Long id) throws SQLException {
-        String sql = "DELETE FROM cinecap.sala WHERE id = ?";
+    public void deletarSala(Sala sala) throws SQLException {
+        String sql = "DELETE FROM cinecap.sala WHERE nome = ?";
         try (Connection conexao = ConexãoBanco.conectar();
-                PreparedStatement statement = conexao.prepareStatement(sql)) {
-            statement.setLong(1, id);
+            PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(1, sala.getNomeSala());
             statement.executeUpdate();
         }
     }

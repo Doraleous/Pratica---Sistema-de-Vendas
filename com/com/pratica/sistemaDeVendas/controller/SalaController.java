@@ -28,8 +28,8 @@ public class SalaController {
         salaDAO.atualizarSala(sala);
     }
 
-    public void deletarSala(Long id) throws SQLException {
-        salaDAO.deletarSala(id);
+    public void deletarSala(Sala sala) throws SQLException {
+        salaDAO.deletarSala(sala);
     }
 
 }

@@ -2,6 +2,9 @@ package com.pratica.sistemadevendas.view;
 
 import javax.xml.soap.SOAPMessage;
 
+import com.pratica.sistemadevendas.model.Sala;
+import com.pratica.sistemadevendas.model.TipoSala;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,8 +17,8 @@ public class TelaOperacoesSala {
 
     private Label salaNomeLabel;
     private TextField salaDigitaTextField;
-    private Label sessaoLabel;
-    private TextField sessaoDigitaTextField;
+    //private Label sessaoLabel;
+    //private TextField sessaoDigitaTextField;
     private HBox digitaSalaESessao;
 
     private Button cadastraSalaComum;
@@ -49,17 +52,19 @@ public class TelaOperacoesSala {
         salaNomeLabel = new Label("Nome:");
         salaDigitaTextField = new TextField();
         salaDigitaTextField.setPrefWidth(200);
-        sessaoLabel = new Label("Sessão:");
-        sessaoDigitaTextField = new TextField();
-        sessaoDigitaTextField.setPrefWidth(200);
+        //sessaoLabel = new Label("Sessão:");
+        //sessaoDigitaTextField = new TextField();
+        //sessaoDigitaTextField.setPrefWidth(200);
         digitaSalaESessao = new HBox();
         digitaSalaESessao.setAlignment(Pos.CENTER);
-        digitaSalaESessao.getChildren().addAll(salaNomeLabel, salaDigitaTextField, sessaoLabel, sessaoDigitaTextField);
+        digitaSalaESessao.getChildren().addAll(salaNomeLabel, salaDigitaTextField /*sessaoLabel, sessaoDigitaTextField*/);
 
         cadastraSalaComum = new Button("Cadastrar Sala Comum");
         cadastraSalaComum.setPrefWidth(200);
+        //cadastraSalaComum.setOnAction(e -> cadastraSalaComum());
         cadastraSala3D = new Button("Cadastrar Sala 3D");
-        cadastraSalaComum.setPrefWidth(200);
+        cadastraSala3D.setPrefWidth(200);
+        cadastraSala3D.setOnAction(e -> cadastraSala3D());
         caixaSalasComumE3D = new HBox();
         caixaSalasComumE3D.setSpacing(30);
         caixaSalasComumE3D.setAlignment(Pos.CENTER);
@@ -67,8 +72,10 @@ public class TelaOperacoesSala {
 
         cadastraSalaXD = new Button("Cadastrar Sala XD");
         cadastraSalaXD.setPrefWidth(200);
+        cadastraSalaXD.setOnAction(e -> cadastraSalaXD());
         cadastraSalaXD3D = new Button("Cadastrar Sala XD3D");
         cadastraSalaXD3D.setPrefWidth(200);
+        cadastraSalaXD3D.setOnAction(e -> cadastraSala3DXD());
         caixaSalasXDEXD3D = new HBox();
         caixaSalasXDEXD3D.setSpacing(30);
         caixaSalasXDEXD3D.setAlignment(Pos.CENTER);
@@ -111,6 +118,36 @@ public class TelaOperacoesSala {
 
     public Scene telaOperacoesSala(){
         return this.telaOperacoesSala;
+    }
+
+    public Sala cadastraSala3D(){
+        
+        Sala novaSala3D = new Sala(this.aplicacao.gettTelaOperacoesSala().getSalaDigitaTextField().getText(), TipoSala._3D);
+        return novaSala3D;
+    }
+
+    public Sala cadastraSalaXD(){
+        
+        Sala novaSalaXD = new Sala(this.aplicacao.gettTelaOperacoesSala().getSalaDigitaTextField().getText(), TipoSala.XD);
+        return novaSalaXD;
+    }
+
+    public Sala cadastraSala3DXD(){
+        
+        Sala novaSala3DXD = new Sala(this.aplicacao.gettTelaOperacoesSala().getSalaDigitaTextField().getText(), TipoSala.XD3D);
+        return novaSala3DXD;
+    }
+
+    //public Sala cadastraSalaComum(){
+        
+        //Sala novaSala3D = new Sala(this.aplicacao.gettTelaOperacoesSala().getSalaDigitaTextField().getText(), TipoSala.);
+//}
+
+
+    
+
+    public TextField getSalaDigitaTextField(){
+        return this.salaDigitaTextField;
     }
 
     public void voltar(){
