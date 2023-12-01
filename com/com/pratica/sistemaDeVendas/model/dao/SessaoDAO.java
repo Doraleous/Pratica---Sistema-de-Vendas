@@ -31,8 +31,8 @@ public class SessaoDAO {
         ArrayList<String> listaDeSessoes = new ArrayList<>();
 
         String sql = "SELECT cinecap.sessao.data_inicio, cinecap.filme.titulo " +
-                     "FROM cinecap.sessao INNER JOIN cinecap.filme " +
-                     "ON cinecap.sessao.id_filme = cinecap.filme.id";
+                "FROM cinecap.sessao INNER JOIN cinecap.filme " +
+                "ON cinecap.sessao.id_filme = cinecap.filme.id";
 
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
@@ -48,4 +48,3 @@ public class SessaoDAO {
     }
 
 }
-
