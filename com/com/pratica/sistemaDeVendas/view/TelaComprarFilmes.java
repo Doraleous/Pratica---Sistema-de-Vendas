@@ -56,7 +56,7 @@ public class TelaComprarFilmes {
                     comprar.setStyle("-fx-border-color: #6A5ACD; -fx-border-width: 5px;");
                 }
 
-                comprar.setOnAction(e -> irParaTelaDeSessoes());
+                
 
                 caixaFilmesEBotoesComprar.add(labelNomeFilme, colunaFilme, linha);
                 caixaFilmesEBotoesComprar.add(comprar, colunaBotaoComprar, linha);
@@ -88,9 +88,7 @@ public class TelaComprarFilmes {
 
     }
 
-    public void irParaTelaDeSessoes() {
-        this.aplicacao.mudaCena(this.aplicacao.getTelaDeSessoes().telaDeSessoes());
-    }
+    
 
     public void voltar() {
         this.aplicacao.mudaCena(this.aplicacao.getTelaUsuario().telaUsuario());

@@ -46,13 +46,13 @@ public class TelaOperacoesSessao {
 
         filmeLabel = new Label("Filme:");
         filmeTextField = new TextField();
-        filmeTextField.setPrefWidth(300);
+        filmeTextField.setPrefWidth(200);
         dataInicioLabel = new Label("Data de Início");
         dataInicioTextField = new TextField();
-        dataInicioTextField.setPrefWidth(300);
+        dataInicioTextField.setPrefWidth(200);
         labelSala = new Label("Sala:");
         textFieldSala = new TextField();
-        textFieldSala.setPrefWidth(300);
+        textFieldSala.setPrefWidth(200);
         caixaDigitaFilmeEDataInicio = new HBox();
         caixaDigitaFilmeEDataInicio.setAlignment(Pos.CENTER);
         caixaDigitaFilmeEDataInicio.getChildren().addAll(filmeLabel, filmeTextField, dataInicioLabel,

@@ -16,7 +16,7 @@ public class SessaoController {
     private AdministradorController admController;
 
     public SessaoController(Aplicacao aplicacao) {
-        this.sessaoDAO = new SessaoDAO();
+        this.sessaoDAO = new SessaoDAO(this.aplicacao);
 
         this.aplicacao = aplicacao;
         this.admController = this.aplicacao.getAdministradorController();
@@ -26,8 +26,8 @@ public class SessaoController {
         return sessaoDAO.listarSessoesDisponiveis();
     }
 
-    public void cadastrarSessao(Sessao novaSessao) throws SQLException {
-        sessaoDAO.cadastrarSessao(novaSessao);
+    public void cadastrarSessao() throws SQLException {
+        sessaoDAO.cadastrarSessao();
     }
 
     public void deletarSessao(Sessao sessao) throws SQLException {

@@ -9,8 +9,15 @@ import java.util.ArrayList;
 import com.pratica.sistemadevendas.model.Sala;
 import com.pratica.sistemadevendas.model.TipoSala;
 import com.pratica.sistemadevendas.model.util.ConexãoBanco;
+import com.pratica.sistemadevendas.view.Aplicacao;
 
 public class SalaDAO {
+
+    private Aplicacao aplicacao;
+
+    public SalaDAO(Aplicacao aplicacao){
+        this.aplicacao = aplicacao;
+    }
 
     public String cadastrarSala(Sala sala) throws SQLException {
 
@@ -99,6 +106,7 @@ public class SalaDAO {
         }
     }
 
+<<<<<<< HEAD
     public static void main(String[] args) throws SQLException {
         SalaDAO salaDAO = new SalaDAO();
         ArrayList<Sala> salas = salaDAO.listarSalas();
@@ -106,4 +114,27 @@ public class SalaDAO {
             System.out.println(o);
         }
     }
+=======
+    public Long buscarSala(String nome) throws SQLException{
+        String sql = "SELECT cinecap.sala.id FROM cinecap.sala WHERE cinecap.sala.nome = ?";
+        try(Connection conexao = ConexãoBanco.conectar();
+            PreparedStatement statement = conexao.prepareStatement(sql)){
+                statement.setString(1, nome);
+                try(ResultSet resultado = statement.executeQuery()){
+                    if(resultado.next()){
+                        Long idSala = resultado.getLong(1);
+                        return idSala;
+                    }else{
+                        System.out.println("Nenhum resultado encontrado para id");
+                    }
+                }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return 0L;
+    }
+
+    // Adicione outros métodos conforme necessário
+>>>>>>> 2067776fab923252c431111da16797aefd4e6363
 }

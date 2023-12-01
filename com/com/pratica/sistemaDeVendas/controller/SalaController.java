@@ -16,7 +16,7 @@ public class SalaController {
 
     public SalaController(Aplicacao aplicacao) {
         this.aplicacao = aplicacao;
-        salaDAO = new SalaDAO();
+        salaDAO = new SalaDAO(this.aplicacao);
     }
 
     public void cadastrarSala(Sala sala) throws SQLException {

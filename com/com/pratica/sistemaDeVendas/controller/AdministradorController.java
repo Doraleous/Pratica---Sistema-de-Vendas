@@ -190,6 +190,8 @@ public class AdministradorController {
         String nomeDoFilme = this.aplicacao.getTelaOperacoesSessao().getFilmeTextField().getText();
         String nomedaSala = this.aplicacao.getTelaOperacoesSessao().getTextFieldSala().getText();
         Sessao sessao = new Sessao();
+        SessaoController sessaoController = new SessaoController(this.aplicacao);
+        sessaoController.cadastrarSessao();
     }
 
 }
