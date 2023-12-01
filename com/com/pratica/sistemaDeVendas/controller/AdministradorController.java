@@ -187,7 +187,8 @@ public class AdministradorController {
     }
 
     public void cadastrarSessao() throws SQLException {
-        // Sessao sessao = new Sessao()
+         SessaoController sessaoController = new SessaoController(this.aplicacao);
+         sessaoController.cadastrarSessao();
     }
 
 }

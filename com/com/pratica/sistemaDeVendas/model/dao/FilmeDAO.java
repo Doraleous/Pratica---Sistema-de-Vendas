@@ -113,8 +113,8 @@ public class FilmeDAO {
         return false;
     }
 
-    private long buscarFilme(String titulo) throws SQLException {
-        String sql = "SELECT cinecap.filme.id from cinecap.filme where ?";
+    public long buscarFilme(String titulo) throws SQLException {
+        String sql = "SELECT cinecap.filme.id from cinecap.filme where cinecap.filme.titulo = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setString(1, titulo);
@@ -125,6 +125,8 @@ public class FilmeDAO {
                 } else {
                     System.out.println("Nenhum resultado encontrado para o titulo: " + titulo);
                 }
+            } catch (SQLException e){
+                e.printStackTrace();
             }
         }
         return 0;
