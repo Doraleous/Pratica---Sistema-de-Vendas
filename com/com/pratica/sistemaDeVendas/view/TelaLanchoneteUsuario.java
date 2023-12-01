@@ -31,30 +31,30 @@ public class TelaLanchoneteUsuario extends Application {
         TextField quantidadeTextField = new TextField();
         quantidadeTextField.setPromptText("Quantidade");
 
+        Label mensagemLabel = new Label();  
+
         Button comprarButton = new Button("Comprar");
-        comprarButton.setOnAction(event -> comprarLanche(lanchesListView.getSelectionModel().getSelectedItem(),
-                quantidadeTextField.getText()));
+        comprarButton.setOnAction(event -> comprarLanche(
+                lanchesListView.getSelectionModel().getSelectedItem(),
+                quantidadeTextField.getText(),
+                mensagemLabel)); 
 
-        // Layout
-        VBox vbox = new VBox(10);
-        vbox.setPadding(new Insets(10, 10, 10, 10));
-        vbox.getChildren().addAll(lanchesListView, quantidadeTextField, comprarButton);
+        Button voltarButton = new Button("Voltar");
+        voltarButton.setOnAction(event -> cock);
 
-        // Carregar lanches no início
-        carregarLanches();
 
-        // Criar cena e exibir a janela
-        Scene scene = new Scene(vbox, 300, 300);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+    VBox vbox
+    vbox.setPadding(new I
+            nsetvbox.getChildren().addAll(lancesLstVew, q
+
+    carregarLanches();
+    
+
+    Scene scene = new Scene(vbox, 3
+    primaryStage.setScene(scene);primaryStage.show();
 
     private void carregarLanches() {
         // Carregar lanches do banco de dados ou de onde você preferir
-        Lanche lanche;
-        for (llllllanchesObservableList : lanche){
-
-        }
         lanchesObservableList.addAll(lancheController.listarLanches());
     }
 
@@ -64,7 +64,8 @@ public class TelaLanchoneteUsuario extends Application {
             if (lanche != null && quantidade > 0) {
                 // Aqui você pode adicionar a lógica para realizar a compra
                 // Por exemplo, atualizar o banco de dados com a compra
-                System.out.println(
+
+                mensagemLabel.setText(
                         "Compra realizada: " + quantidade + "x " + lanche.getNome() + " por R$" + lanche.getPreco());
             } else {
                 System.out.println("Selecione um lanche e insira uma quantidade válida.");

@@ -8,11 +8,11 @@ public class Sala implements Serializable {
     private Long id;
     private Poltrona[][] poltronas;
     private Sessao[] sessoes;
-    private String nomeSala;
+    private String nome;
     private TipoSala tipoSala;
 
-    public Sala(String nomeSala, TipoSala tipoSala) {
-        this.nomeSala = nomeSala;
+    public Sala(String nome, TipoSala tipoSala) {
+        this.nome = nome;
         this.tipoSala = tipoSala;
         this.poltronas = new Poltrona[13][19];
         this.sessoes = new Sessao[10]; // Por exemplo, você pode ajustar o tamanho conforme necessário
@@ -45,14 +45,6 @@ public class Sala implements Serializable {
         } else {
             System.out.println("Índice inválido para adicionar sessão.");
         }
-    }
-
-    public String getNomeSala() {
-        return nomeSala;
-    }
-
-    public void setNomeSala(String nomeSala) {
-        this.nomeSala = nomeSala;
     }
 
     public Long getId() {
@@ -100,6 +92,28 @@ public class Sala implements Serializable {
      */
     public void setTipoSala(TipoSala tipoSala) {
         this.tipoSala = tipoSala;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " id='" + getId() + "'" +
+                ", poltronas='" + getPoltronas() + "'" +
+                ", sessoes='" + getSessoes() + "'" +
+                ", nomeSala='" + getNome() + "'" +
+                ", tipoSala='" + getTipoSala() + "'" +
+                "}";
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

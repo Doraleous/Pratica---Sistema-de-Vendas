@@ -130,7 +130,7 @@ public class UsuarioDAO {
     }
 
     public long buscarUsuario(String email) throws SQLException {
-        String sql = "SELECT cinecap.usuario.id FROM cinecap.usuario WHERE email = ?";
+        String sql = "SELECT cinecap.usuario.id FROM cinecap.usuario WHERE cinecap.usuario.email = ?";
         try (Connection conexao = ConexãoBanco.conectar();
                 PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setString(1, email);
@@ -166,19 +166,19 @@ public class UsuarioDAO {
         return false;
     }
 
-    public String bemVindoNome (String email){
+    public String bemVindoNome(String email) {
         String sql = "SELECT cinecap.usuario.nome WHERE email = ?";
-        try(Connection conexao = ConexãoBanco.conectar();
-            PreparedStatement statement = conexao.prepareStatement(sql)){
-                statement.setString(1, email);
-                try(ResultSet resultado = statement.executeQuery()){
-                    while(resultado.next()){
-                        String nomeDoUsuario = resultado.getString(1);
-                        return nomeDoUsuario;
-                    }
+        try (Connection conexao = ConexãoBanco.conectar();
+                PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(1, email);
+            try (ResultSet resultado = statement.executeQuery()) {
+                while (resultado.next()) {
+                    String nomeDoUsuario = resultado.getString(1);
+                    return nomeDoUsuario;
                 }
+            }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
 
         }
         return "";

@@ -45,4 +45,10 @@ public class Lanche implements Serializable {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return " nome " + getNome() +
+                ", preco " + getPreco();
+    }
+
 }
