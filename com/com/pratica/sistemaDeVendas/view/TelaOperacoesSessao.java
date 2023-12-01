@@ -129,4 +129,8 @@ public class TelaOperacoesSessao {
     public void cadastraSessao() throws SQLException {
         this.aplicacao.getAdministradorController().cadastrarSessao();
     }
+
+    public Label getStatusLabel(){
+        return this.statusOperacaoLabel;
+    }
 }

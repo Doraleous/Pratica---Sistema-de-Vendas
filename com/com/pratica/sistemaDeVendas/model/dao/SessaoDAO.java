@@ -35,6 +35,7 @@ public class SessaoDAO {
             statement.setLong(1, idSala);
             statement.setLong(2, idFilme);
             statement.execute();
+            this.aplicacao.getTelaOperacoesSessao().getStatusLabel().setText("Sessão cadastrada com sucesso");
 
         } catch (SQLException e) {
             e.printStackTrace();

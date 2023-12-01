@@ -42,6 +42,7 @@ public class Aplicacao extends Application {
     private SalaDAO salaDAO;
     
     
+    
 
     private TelaOperacoesFilme telaOperacoesFilme;
 
@@ -77,6 +78,7 @@ public class Aplicacao extends Application {
         sessaoDAO = new SessaoDAO(this);
         sessaoController = new SessaoController(this);
         salaDAO = new SalaDAO(this);
+        
 
         usuarioController = new UsuarioController(this);
 
@@ -149,6 +151,8 @@ public class Aplicacao extends Application {
         this.estagioAtual.show();
 
     }
+
+    
 
     
 
