@@ -31,6 +31,10 @@ public class UsuarioController {
      * && (this.usuarioDAO.usuarioExiste(email))
      */
 
+     public String bemVindoNome(){
+        return this.usuarioDAO.bemVindoNome(this.aplicacao.getTelaLogin().loginTextField().getText());
+     }
+
     public String Logar(String email, String senha) throws SQLException {
         if ((this.aplicacao.getTelaLogin().campoLogin().equals(""))) {
             this.aplicacao.getTelaLogin().getLabelStatusOperacao().setText("Campo Login Vazio");

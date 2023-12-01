@@ -36,6 +36,7 @@ public class TelaLogin {
     private VBox telaLogin;
 
     private Scene cenaLogin;
+    
 
     private Aplicacao aplicacao;
 
@@ -91,7 +92,7 @@ public class TelaLogin {
 
     public void sair() {
         // this.usuarioController.sair();
-        this.aplicacao.estagioAtual().close();
+        this.aplicacao.getEstagioAtual().close();
     }
 
     public String campoSenha() {
@@ -122,11 +123,15 @@ public class TelaLogin {
 
         switch (tipoDeUsuario) {
             case "Administrador":
+                
                 this.aplicacao.mudaCena(this.aplicacao.getTelaAdministrador().telaMenuAdministrador());
                 break;
-
+            
             case "Usuário Comum":
+                this.aplicacao.getTelaUsuario().getLabelBemVindo().setText("Bem vindo " 
+                + this.aplicacao.getUsuarioController().bemVindoNome());
                 this.aplicacao.mudaCena(this.aplicacao.getTelaUsuario().telaUsuario());
+                
                 break;
 
             case "Usuário Crítico":

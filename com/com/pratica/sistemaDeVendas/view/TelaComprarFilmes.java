@@ -47,7 +47,14 @@ public class TelaComprarFilmes {
 
             for (String tituloFilme : listaDeFilmes) {
                 Label labelNomeFilme = new Label(tituloFilme);
-                Button comprar = new Button("Comprar");//
+                labelNomeFilme.setStyle("-fx-font-size: 15px;");
+                Button comprar = new Button("Comprar");
+                if(linha%2 == 0){
+                    comprar.setStyle("-fx-border-color: purple; -fx-border-width: 5px;");
+                }else{
+                    comprar.setStyle("-fx-border-color: #6A5ACD; -fx-border-width: 5px;");
+                }
+                
                 comprar.setOnAction(e -> irParaTelaDeSessoes());
 
                 caixaFilmesEBotoesComprar.add(labelNomeFilme, colunaFilme, linha);
@@ -64,7 +71,7 @@ public class TelaComprarFilmes {
             caixaBotaoVoltar.getChildren().addAll(botaoVoltar);
             caixaBotaoVoltar.setAlignment(Pos.CENTER);
 
-            caixaConteiner = new VBox();
+            caixaConteiner = new VBox(50);
             caixaConteiner.getChildren().addAll(caixaFilmesEBotoesComprar, caixaBotaoVoltar);
             caixaConteiner.setAlignment(Pos.CENTER);
             caixaConteiner.setStyle("-fx-background-color: red;");

@@ -121,6 +121,8 @@ public class UsuarioComumDAO {
         return 0l;
     }
 
+    
+
     public boolean deletarUsuarioComum(String email) throws SQLException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         boolean encontrado = usuarioDAO.usuarioExiste(email);

@@ -131,6 +131,7 @@ public class Aplicacao extends Application {
 
     public void mudaCena(Scene novaCena) {
         this.estagioAtual.setScene(novaCena);
+        
         this.estagioAtual.show();
 
     }
@@ -141,7 +142,7 @@ public class Aplicacao extends Application {
 
     
 
-    public Stage estagioAtual() {
+    public Stage getEstagioAtual() {
         return this.estagioAtual;
     }
 

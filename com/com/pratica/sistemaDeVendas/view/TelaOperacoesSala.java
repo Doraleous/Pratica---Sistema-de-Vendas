@@ -61,7 +61,7 @@ public class TelaOperacoesSala {
 
         cadastraSalaComum = new Button("Cadastrar Sala Comum");
         cadastraSalaComum.setPrefWidth(200);
-        //cadastraSalaComum.setOnAction(e -> cadastraSalaComum());
+        cadastraSalaComum.setOnAction(e -> cadastraSalaComum());
         cadastraSala3D = new Button("Cadastrar Sala 3D");
         cadastraSala3D.setPrefWidth(200);
         cadastraSala3D.setOnAction(e -> cadastraSala3D());
@@ -138,10 +138,11 @@ public class TelaOperacoesSala {
         return novaSala3DXD;
     }
 
-    //public Sala cadastraSalaComum(){
+    public Sala cadastraSalaComum(){
         
-        //Sala novaSala3D = new Sala(this.aplicacao.gettTelaOperacoesSala().getSalaDigitaTextField().getText(), TipoSala.);
-//}
+        Sala novaSalaCOMUM = new Sala(this.aplicacao.gettTelaOperacoesSala().getSalaDigitaTextField().getText(), TipoSala.COMUM);
+        return novaSalaCOMUM;
+}
 
 
     
