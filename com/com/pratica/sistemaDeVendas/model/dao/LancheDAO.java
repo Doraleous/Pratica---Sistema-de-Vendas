@@ -29,7 +29,7 @@ public class LancheDAO {
 
     public ArrayList<Lanche> listarLanches() {
         ArrayList<Lanche> lanches = new ArrayList<>();
-        try (Connection conexao = DriverManager.getConnection(URL, USUARIO, SENHA)) {
+        try (Connection conexao = ConexãoBanco.conectar()) {
             String sql = "SELECT * FROM lanche";
             try (Statement statement = conexao.createStatement();
                     ResultSet resultSet = statement.executeQuery(sql)) {
@@ -47,7 +47,7 @@ public class LancheDAO {
     }
 
     public boolean atualizarLanche(String nome, double preco) {
-        try (Connection conexao = DriverManager.getConnection(URL, USUARIO, SENHA)) {
+        try (Connection conexao = ConexãoBanco.conectar()) {
             String sql = "UPDATE lanche SET preco = ? WHERE nome = ?";
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setDouble(1, preco);
@@ -62,7 +62,7 @@ public class LancheDAO {
     }
 
     public boolean lancheExiste(String nome) {
-        try (Connection conexao = DriverManager.getConnection(URL, USUARIO, SENHA)) {
+        try (Connection conexao = ConexãoBanco.conectar()) {
             String sql = "SELECT * FROM lanche WHERE nome = ?";
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setString(1, nome);
@@ -77,7 +77,7 @@ public class LancheDAO {
     }
 
     public long buscarLanche(String nome) {
-        try (Connection conexao = DriverManager.getConnection(URL, USUARIO, SENHA)) {
+        try (Connection conexao = ConexãoBanco.conectar()) {
             String sql = "SELECT id FROM lanche WHERE nome = ?";
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setString(1, nome);
@@ -92,7 +92,7 @@ public class LancheDAO {
     }
 
     public boolean deletarLanche(String nome) {
-        try (Connection conexao = DriverManager.getConnection(URL, USUARIO, SENHA)) {
+        try (Connection conexao = ConexãoBanco.conectar()) {
             String sql = "DELETE FROM lanche WHERE nome = ?";
             try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
                 preparedStatement.setString(1, nome);
