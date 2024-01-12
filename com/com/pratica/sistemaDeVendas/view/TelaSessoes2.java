@@ -1,4 +1,4 @@
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import javafx.scene.layout.HBox;
 

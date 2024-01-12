@@ -1,4 +1,4 @@
-package com.pratica.sistemadevendas.model;
+package com.pratica.sistemaDeVendas.model;
 
 public enum TipoSala {
     _3D(1, "3D"),

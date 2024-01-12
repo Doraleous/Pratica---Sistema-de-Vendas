@@ -1,12 +1,11 @@
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.pratica.sistemadevendas.controller.FilmeController;
-import com.pratica.sistemadevendas.model.Filme;
+import com.pratica.sistemaDeVendas.controller.FilmeController;
+import com.pratica.sistemaDeVendas.model.Filme;
 
-import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

@@ -1,12 +1,12 @@
-package com.pratica.sistemadevendas.controller;
+package com.pratica.sistemaDeVendas.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.pratica.sistemadevendas.model.CarrinhoDeCompras;
-import com.pratica.sistemadevendas.model.Lanche;
-import com.pratica.sistemadevendas.view.CompraLancheView;
+import com.pratica.sistemaDeVendas.model.CarrinhoDeCompras;
+import com.pratica.sistemaDeVendas.model.Lanche;
+import com.pratica.sistemaDeVendas.view.CompraLancheView;
 
 public class CompraLancheController {
     private List<Lanche> menu;

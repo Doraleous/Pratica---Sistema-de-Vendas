@@ -1,4 +1,4 @@
-package com.pratica.sistemadevendas.model;
+package com.pratica.sistemaDeVendas.model;
 
 import java.util.ArrayList;
 import java.util.List;

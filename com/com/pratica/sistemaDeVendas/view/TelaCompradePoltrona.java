@@ -1,18 +1,13 @@
 
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
-import com.pratica.sistemadevendas.model.Sala;
+import com.pratica.sistemaDeVendas.model.Poltrona;
+import com.pratica.sistemaDeVendas.model.Sala;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import com.pratica.sistemadevendas.model.Poltrona;
 
 public class TelaCompradePoltrona extends GridPane {
     private Sala sala;

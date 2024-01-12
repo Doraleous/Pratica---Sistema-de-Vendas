@@ -1,13 +1,11 @@
-package com.pratica.sistemadevendas.controller;
+package com.pratica.sistemaDeVendas.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
-import com.pratica.sistemadevendas.model.Filme;
-import com.pratica.sistemadevendas.model.Sessao;
-import com.pratica.sistemadevendas.model.dao.SessaoDAO;
-import com.pratica.sistemadevendas.view.Aplicacao;
+import com.pratica.sistemaDeVendas.model.Sessao;
+import com.pratica.sistemaDeVendas.model.dao.SessaoDAO;
+import com.pratica.sistemaDeVendas.view.Aplicacao;
 
 public class SessaoController {
 

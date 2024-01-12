@@ -1,4 +1,4 @@
-package com.pratica.sistemadevendas.model.dao;
+package com.pratica.sistemaDeVendas.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.pratica.sistemadevendas.model.Administrador;
-import com.pratica.sistemadevendas.model.Usuario;
-import com.pratica.sistemadevendas.model.UsuarioComum;
-import com.pratica.sistemadevendas.model.util.ConexãoBanco;
+import com.pratica.sistemaDeVendas.model.Usuario;
+import com.pratica.sistemaDeVendas.model.UsuarioComum;
+import com.pratica.sistemaDeVendas.model.util.ConexãoBanco;
 
 public class UsuarioComumDAO {
     public static String cadastrarUsuarioComum(UsuarioComum usuarioComum) throws SQLException {

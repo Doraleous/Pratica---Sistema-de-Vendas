@@ -1,19 +1,11 @@
-package com.pratica.sistemadevendas.controller;
+package com.pratica.sistemaDeVendas.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 
-import com.pratica.sistemadevendas.model.Administrador;
-import com.pratica.sistemadevendas.model.Usuario;
-import com.pratica.sistemadevendas.model.dao.UsuarioDAO;
-import com.pratica.sistemadevendas.view.Aplicacao;
+import com.pratica.sistemaDeVendas.model.Usuario;
+import com.pratica.sistemaDeVendas.model.dao.UsuarioDAO;
+import com.pratica.sistemaDeVendas.view.Aplicacao;
 
 public class UsuarioController {
     private UsuarioDAO usuarioDAO;

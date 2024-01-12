@@ -1,18 +1,17 @@
-package com.pratica.sistemadevendas.model.dao;
+package com.pratica.sistemaDeVendas.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
-import com.pratica.sistemadevendas.controller.SessaoController;
-import com.pratica.sistemadevendas.model.Filme;
-import com.pratica.sistemadevendas.model.Sala;
-import com.pratica.sistemadevendas.model.Sessao;
-import com.pratica.sistemadevendas.model.util.ConexãoBanco;
-import com.pratica.sistemadevendas.view.Aplicacao;
+import com.pratica.sistemaDeVendas.controller.SessaoController;
+import com.pratica.sistemaDeVendas.model.Filme;
+import com.pratica.sistemaDeVendas.model.Sala;
+import com.pratica.sistemaDeVendas.model.Sessao;
+import com.pratica.sistemaDeVendas.model.util.ConexãoBanco;
+import com.pratica.sistemaDeVendas.view.Aplicacao;
 
 public class SessaoDAO {
     private Aplicacao aplicacao;

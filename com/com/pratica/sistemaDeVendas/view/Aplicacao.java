@@ -2,19 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import com.pratica.sistemadevendas.controller.AdministradorController;
-import com.pratica.sistemadevendas.controller.FilmeController;
-import com.pratica.sistemadevendas.controller.SalaController;
-import com.pratica.sistemadevendas.controller.SessaoController;
-import com.pratica.sistemadevendas.controller.UsuarioComumController;
-import com.pratica.sistemadevendas.controller.UsuarioController;
-import com.pratica.sistemadevendas.model.dao.SalaDAO;
-import com.pratica.sistemadevendas.model.dao.SessaoDAO;
+import com.pratica.sistemaDeVendas.controller.AdministradorController;
+import com.pratica.sistemaDeVendas.controller.FilmeController;
+import com.pratica.sistemaDeVendas.controller.SalaController;
+import com.pratica.sistemaDeVendas.controller.SessaoController;
+import com.pratica.sistemaDeVendas.controller.UsuarioComumController;
+import com.pratica.sistemaDeVendas.controller.UsuarioController;
+import com.pratica.sistemaDeVendas.model.dao.SalaDAO;
+import com.pratica.sistemaDeVendas.model.dao.SessaoDAO;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

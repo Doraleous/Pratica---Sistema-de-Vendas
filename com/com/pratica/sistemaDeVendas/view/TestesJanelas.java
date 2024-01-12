@@ -1,13 +1,6 @@
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.io.IOException;
-
-import com.pratica.sistemadevendas.controller.UsuarioController;
-import com.pratica.sistemadevendas.model.Administrador;
-import com.pratica.sistemadevendas.model.Usuario;
-import com.pratica.sistemadevendas.model.UsuarioComum;
-import com.pratica.sistemadevendas.model.UsuarioCritico;
-import com.pratica.sistemadevendas.model.UsuarioEstudante;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

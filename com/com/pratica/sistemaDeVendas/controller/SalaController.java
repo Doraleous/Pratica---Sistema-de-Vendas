@@ -1,13 +1,11 @@
-package com.pratica.sistemadevendas.controller;
+package com.pratica.sistemaDeVendas.controller;
 
-import com.pratica.sistemadevendas.model.Sala;
-import com.pratica.sistemadevendas.model.dao.SalaDAO;
-import com.pratica.sistemadevendas.view.Aplicacao;
-
-import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
+import com.pratica.sistemaDeVendas.model.Sala;
+import com.pratica.sistemaDeVendas.model.dao.SalaDAO;
+import com.pratica.sistemaDeVendas.view.Aplicacao;
 
 public class SalaController {
 

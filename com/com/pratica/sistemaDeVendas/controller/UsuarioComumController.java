@@ -1,15 +1,11 @@
-package com.pratica.sistemadevendas.controller;
+package com.pratica.sistemaDeVendas.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import com.pratica.sistemadevendas.model.Filme;
-import com.pratica.sistemadevendas.model.Sessao;
-import com.pratica.sistemadevendas.model.Usuario;
-import com.pratica.sistemadevendas.model.UsuarioComum;
-import com.pratica.sistemadevendas.model.dao.UsuarioComumDAO;
-import com.pratica.sistemadevendas.model.dao.UsuarioDAO;
-import com.pratica.sistemadevendas.view.Aplicacao;
+import com.pratica.sistemaDeVendas.model.UsuarioComum;
+import com.pratica.sistemaDeVendas.model.dao.UsuarioComumDAO;
+import com.pratica.sistemaDeVendas.model.dao.UsuarioDAO;
+import com.pratica.sistemaDeVendas.view.Aplicacao;
 
 public class UsuarioComumController {
     private Aplicacao aplicacao;

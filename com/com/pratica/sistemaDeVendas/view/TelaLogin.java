@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.sql.SQLException;
 
-import com.pratica.sistemadevendas.controller.UsuarioController;
+import com.pratica.sistemaDeVendas.controller.UsuarioController;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

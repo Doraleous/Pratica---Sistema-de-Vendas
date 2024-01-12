@@ -1,15 +1,14 @@
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.pratica.sistemadevendas.controller.FilmeController;
-import com.pratica.sistemadevendas.controller.UsuarioController;
-import com.pratica.sistemadevendas.model.Filme;
-import com.pratica.sistemadevendas.model.Sala;
-import com.pratica.sistemadevendas.model.Sessao;
-import com.pratica.sistemadevendas.model.dao.SalaDAO;
-import com.pratica.sistemadevendas.model.dao.SessaoDAO;
+import com.pratica.sistemaDeVendas.controller.FilmeController;
+import com.pratica.sistemaDeVendas.model.Filme;
+import com.pratica.sistemaDeVendas.model.Sala;
+import com.pratica.sistemaDeVendas.model.Sessao;
+import com.pratica.sistemaDeVendas.model.dao.SalaDAO;
+import com.pratica.sistemaDeVendas.model.dao.SessaoDAO;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

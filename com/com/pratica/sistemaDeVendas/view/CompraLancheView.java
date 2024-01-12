@@ -1,10 +1,10 @@
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.util.List;
 import java.util.Scanner;
 
-import com.pratica.sistemadevendas.controller.CompraLancheController;
-import com.pratica.sistemadevendas.model.Lanche;
+import com.pratica.sistemaDeVendas.controller.CompraLancheController;
+import com.pratica.sistemaDeVendas.model.Lanche;
 
 public class CompraLancheView {
     public void exibirMenu(List<Lanche> lanches) {

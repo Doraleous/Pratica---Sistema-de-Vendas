@@ -1,11 +1,14 @@
-package com.pratica.sistemadevendas.model.dao;
+package com.pratica.sistemaDeVendas.model.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.pratica.sistemadevendas.model.Lanche;
-
-import com.pratica.sistemadevendas.model.util.ConexãoBanco;
+import com.pratica.sistemaDeVendas.model.Lanche;
+import com.pratica.sistemaDeVendas.model.util.ConexãoBanco;
 
 public class LancheDAO {
 

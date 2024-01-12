@@ -1,9 +1,10 @@
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javafx.application.Application;
+import com.pratica.sistemaDeVendas.model.Sessao;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,14 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-import java.util.Date;
-import java.util.List;
-
-import com.pratica.sistemadevendas.controller.UsuarioComumController;
-import com.pratica.sistemadevendas.model.Filme;
-import com.pratica.sistemadevendas.model.Sessao;
 
 public class TelaDeSessoes {
 

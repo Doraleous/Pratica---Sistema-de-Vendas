@@ -1,15 +1,9 @@
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.sql.SQLException;
 
-import com.pratica.sistemadevendas.controller.AdministradorController;
-import com.pratica.sistemadevendas.controller.UsuarioController;
-import com.pratica.sistemadevendas.model.Administrador;
-import com.pratica.sistemadevendas.model.UsuarioComum;
-import com.pratica.sistemadevendas.model.UsuarioCritico;
-import com.pratica.sistemadevendas.model.UsuarioEstudante;
+import com.pratica.sistemaDeVendas.controller.AdministradorController;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,9 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.stage.Stage;
 
 public class TelaOperacoesUsuario {
 

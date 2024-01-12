@@ -1,11 +1,9 @@
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
 import java.sql.SQLException;
 
-import javax.xml.soap.SOAPMessage;
-
-import com.pratica.sistemadevendas.model.Sala;
-import com.pratica.sistemadevendas.model.TipoSala;
+import com.pratica.sistemaDeVendas.model.Sala;
+import com.pratica.sistemaDeVendas.model.TipoSala;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

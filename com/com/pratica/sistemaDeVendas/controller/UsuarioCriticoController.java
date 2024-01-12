@@ -1,11 +1,10 @@
-package com.pratica.sistemadevendas.controller;
+package com.pratica.sistemaDeVendas.controller;
 
 import java.sql.SQLException;
 
-import com.pratica.sistemadevendas.model.UsuarioCritico;
-import com.pratica.sistemadevendas.model.UsuarioEstudante;
-import com.pratica.sistemadevendas.model.dao.UsuarioCriticoDAO;
-import com.pratica.sistemadevendas.view.Aplicacao;
+import com.pratica.sistemaDeVendas.model.UsuarioCritico;
+import com.pratica.sistemaDeVendas.model.dao.UsuarioCriticoDAO;
+import com.pratica.sistemaDeVendas.view.Aplicacao;
 
 public class UsuarioCriticoController {
     private Aplicacao aplicacao;

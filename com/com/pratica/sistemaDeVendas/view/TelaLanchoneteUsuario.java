@@ -1,14 +1,17 @@
-package com.pratica.sistemadevendas.view;
+package com.pratica.sistemaDeVendas.view;
 
-import com.pratica.sistemadevendas.controller.LancheController;
-import com.pratica.sistemadevendas.model.Lanche;
+import com.pratica.sistemaDeVendas.controller.LancheController;
+import com.pratica.sistemaDeVendas.model.Lanche;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
